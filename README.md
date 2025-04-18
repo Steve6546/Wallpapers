@@ -2,99 +2,96 @@
 
 <div align="center">
   <img src="./docs/static/img/logo.png" alt="Logo" width="200">
-  <h1 align="center">OpenHands: Code Less, Make More</h1>
+  <h1 align="center">AZM AI: Advanced AI Development Platform</h1>
 </div>
 
 
 <div align="center">
-  <a href="https://github.com/All-Hands-AI/OpenHands/graphs/contributors"><img src="https://img.shields.io/github/contributors/All-Hands-AI/OpenHands?style=for-the-badge&color=blue" alt="Contributors"></a>
-  <a href="https://github.com/All-Hands-AI/OpenHands/stargazers"><img src="https://img.shields.io/github/stars/All-Hands-AI/OpenHands?style=for-the-badge&color=blue" alt="Stargazers"></a>
-  <a href="https://codecov.io/github/All-Hands-AI/OpenHands?branch=main"><img alt="CodeCov" src="https://img.shields.io/codecov/c/github/All-Hands-AI/OpenHands?style=for-the-badge&color=blue"></a>
-  <a href="https://github.com/All-Hands-AI/OpenHands/blob/main/LICENSE"><img src="https://img.shields.io/github/license/All-Hands-AI/OpenHands?style=for-the-badge&color=blue" alt="MIT License"></a>
+  <a href="https://github.com/Steve6546/azm-ai/graphs/contributors"><img src="https://img.shields.io/github/contributors/Steve6546/azm-ai?style=for-the-badge&color=blue" alt="Contributors"></a>
+  <a href="https://github.com/Steve6546/azm-ai/stargazers"><img src="https://img.shields.io/github/stars/Steve6546/azm-ai?style=for-the-badge&color=blue" alt="Stargazers"></a>
+  <a href="https://github.com/Steve6546/azm-ai/blob/main/LICENSE"><img src="https://img.shields.io/github/license/Steve6546/azm-ai?style=for-the-badge&color=blue" alt="MIT License"></a>
   <br/>
-  <a href="https://join.slack.com/t/openhands-ai/shared_invite/zt-2ngejmfw6-9gW4APWOC9XUp1n~SiQ6iw"><img src="https://img.shields.io/badge/Slack-Join%20Us-red?logo=slack&logoColor=white&style=for-the-badge" alt="Join our Slack community"></a>
-  <a href="https://discord.gg/ESHStjSjD4"><img src="https://img.shields.io/badge/Discord-Join%20Us-purple?logo=discord&logoColor=white&style=for-the-badge" alt="Join our Discord community"></a>
-  <a href="https://github.com/All-Hands-AI/OpenHands/blob/main/CREDITS.md"><img src="https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white" alt="Credits"></a>
+  <a href="https://github.com/Steve6546/azm-ai/blob/main/CREDITS.md"><img src="https://img.shields.io/badge/Project-Credits-blue?style=for-the-badge&color=FFE165&logo=github&logoColor=white" alt="Credits"></a>
   <br/>
-  <a href="https://docs.all-hands.dev/modules/usage/getting-started"><img src="https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge" alt="Check out the documentation"></a>
-  <a href="https://arxiv.org/abs/2407.16741"><img src="https://img.shields.io/badge/Paper%20on%20Arxiv-000?logoColor=FFE165&logo=arxiv&style=for-the-badge" alt="Paper on Arxiv"></a>
-  <a href="https://huggingface.co/spaces/OpenHands/evaluation"><img src="https://img.shields.io/badge/Benchmark%20score-000?logoColor=FFE165&logo=huggingface&style=for-the-badge" alt="Evaluation Benchmark Score"></a>
+  <a href="https://github.com/Steve6546/azm-ai/wiki"><img src="https://img.shields.io/badge/Documentation-000?logo=googledocs&logoColor=FFE165&style=for-the-badge" alt="Check out the documentation"></a>
+  <a href="https://github.com/Steve6546/azm-ai"><img src="https://img.shields.io/badge/AZM%20AI-000?logoColor=FFE165&logo=github&style=for-the-badge" alt="AZM AI"></a>
   <hr>
 </div>
 
-Welcome to OpenHands (formerly OpenDevin), a platform for software development agents powered by AI.
+Welcome to AZM AI, an advanced platform for software development agents powered by AI.
 
-OpenHands agents can do anything a human developer can: modify code, run commands, browse the web,
+AZM AI agents can do anything a human developer can: modify code, run commands, browse the web,
 call APIs, and yes—even copy code snippets from StackOverflow.
 
-Learn more at [docs.all-hands.dev](https://docs.all-hands.dev), or [sign up for OpenHands Cloud](https://app.all-hands.dev) to get started.
+Learn more in our [GitHub Wiki](https://github.com/Steve6546/azm-ai/wiki) to get started.
 
 > [!IMPORTANT]
-> Using OpenHands for work? We'd love to chat! Fill out
-> [this short form](https://docs.google.com/forms/d/e/1FAIpQLSet3VbGaz8z32gW9Wm-Grl4jpt5WgMXPgJ4EDPVmCETCBpJtQ/viewform)
-> to join our Design Partner program, where you'll get early access to commercial features and the opportunity to provide input on our product roadmap.
+> Using AZM AI for work? We'd love to chat! Contact us at
+> [Steve6546](https://github.com/Steve6546)
+> to learn more about our services and how AZM AI can help your business.
 
 ![App screenshot](./docs/static/img/screenshot.png)
 
-## ☁️ OpenHands Cloud
-The easiest way to get started with OpenHands is on [OpenHands Cloud](https://app.all-hands.dev),
-which comes with $50 in free credits for new users.
+## ☁️ AZM AI Cloud
+The easiest way to get started with AZM AI is on our cloud platform,
+contact us to learn more about our cloud offerings.
 
-## 💻 Running OpenHands Locally
+## 💻 Running AZM AI Locally
 
-OpenHands can also run on your local system using Docker.
-See the [Running OpenHands](https://docs.all-hands.dev/modules/usage/installation) guide for
+AZM AI can also run on your local system using Docker.
+See our [Wiki](https://github.com/Steve6546/azm-ai/wiki) for
 system requirements and more information.
 
 > [!WARNING]
-> On a public network? See our [Hardened Docker Installation Guide](https://docs.all-hands.dev/modules/usage/runtimes/docker#hardened-docker-installation)
+> On a public network? See our [Security Guide](https://github.com/Steve6546/azm-ai/wiki/Security)
 > to secure your deployment by restricting network binding and implementing additional security measures.
 
 
 ```bash
-docker pull docker.all-hands.dev/all-hands-ai/runtime:0.33-nikolaik
+docker pull ghcr.io/steve6546/azm-ai/runtime:latest
 
 docker run -it --rm --pull=always \
-    -e SANDBOX_RUNTIME_CONTAINER_IMAGE=docker.all-hands.dev/all-hands-ai/runtime:0.33-nikolaik \
+    -e SANDBOX_RUNTIME_CONTAINER_IMAGE=ghcr.io/steve6546/azm-ai/runtime:latest \
     -e LOG_ALL_EVENTS=true \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v ~/.openhands-state:/.openhands-state \
+    -v ~/.azm-ai-state:/.azm-ai-state \
     -p 3000:3000 \
+    -p 12001:12001 \
     --add-host host.docker.internal:host-gateway \
-    --name openhands-app \
-    docker.all-hands.dev/all-hands-ai/openhands:0.33
+    --name azm-ai-app \
+    ghcr.io/steve6546/azm-ai/azm-ai:latest
 ```
 
-You'll find OpenHands running at [http://localhost:3000](http://localhost:3000)!
+You'll find AZM AI running at [http://localhost:3000](http://localhost:3000)!
 
 When you open the application, you'll be asked to choose an LLM provider and add an API key.
 [Anthropic's Claude 3.5 Sonnet](https://www.anthropic.com/api) (`anthropic/claude-3-5-sonnet-20241022`)
-works best, but you have [many options](https://docs.all-hands.dev/modules/usage/llms).
+works best, but you have many options available.
 
-## 💡 Other ways to run OpenHands
+## 💡 Other ways to run AZM AI
 
 > [!CAUTION]
-> OpenHands is meant to be run by a single user on their local workstation.
+> AZM AI is meant to be run by a single user on their local workstation.
 > It is not appropriate for multi-tenant deployments where multiple users share the same instance. There is no built-in authentication, isolation, or scalability.
 >
-> If you're interested in running OpenHands in a multi-tenant environment, please
-> [get in touch with us](https://docs.google.com/forms/d/e/1FAIpQLSet3VbGaz8z32gW9Wm-Grl4jpt5WgMXPgJ4EDPVmCETCBpJtQ/viewform)
+> If you're interested in running AZM AI in a multi-tenant environment, please
+> [contact us](https://github.com/Steve6546)
 > for advanced deployment options.
 
-You can also [connect OpenHands to your local filesystem](https://docs.all-hands.dev/modules/usage/runtimes/docker#connecting-to-your-filesystem),
-run OpenHands in a scriptable [headless mode](https://docs.all-hands.dev/modules/usage/how-to/headless-mode),
+You can also [connect AZM AI to your local filesystem](https://docs.all-hands.dev/modules/usage/runtimes/docker#connecting-to-your-filesystem),
+run AZM AI in a scriptable [headless mode](https://docs.all-hands.dev/modules/usage/how-to/headless-mode),
 interact with it via a [friendly CLI](https://docs.all-hands.dev/modules/usage/how-to/cli-mode),
 or run it on tagged issues with [a github action](https://docs.all-hands.dev/modules/usage/how-to/github-action).
 
-Visit [Running OpenHands](https://docs.all-hands.dev/modules/usage/installation) for more information and setup instructions.
+Visit [Running AZM AI](https://docs.all-hands.dev/modules/usage/installation) for more information and setup instructions.
 
-If you want to modify the OpenHands source code, check out [Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md).
+If you want to modify the AZM AI source code, check out [Development.md](https://github.com/Steve6546/azm-ai/blob/main/Development.md).
 
 Having issues? The [Troubleshooting Guide](https://docs.all-hands.dev/modules/usage/troubleshooting) can help.
 
 ## 📖 Documentation
 
-To learn more about the project, and for tips on using OpenHands,
+To learn more about the project, and for tips on using AZM AI,
 check out our [documentation](https://docs.all-hands.dev/modules/usage/getting-started).
 
 There you'll find resources on how to use different LLM providers,
@@ -102,22 +99,21 @@ troubleshooting resources, and advanced configuration options.
 
 ## 🤝 How to Join the Community
 
-OpenHands is a community-driven project, and we welcome contributions from everyone. We do most of our communication
-through Slack, so this is the best place to start, but we also are happy to have you contact us on Discord or Github:
+AZM AI is a community-driven project, and we welcome contributions from everyone. We do most of our communication
+through GitHub, so this is the best place to start:
 
-- [Join our Slack workspace](https://join.slack.com/t/openhands-ai/shared_invite/zt-2ngejmfw6-9gW4APWOC9XUp1n~SiQ6iw) - Here we talk about research, architecture, and future development.
-- [Join our Discord server](https://discord.gg/ESHStjSjD4) - This is a community-run server for general discussion, questions, and feedback.
-- [Read or post Github Issues](https://github.com/All-Hands-AI/OpenHands/issues) - Check out the issues we're working on, or add your own ideas.
+- [Read or post Github Issues](https://github.com/Steve6546/azm-ai/issues) - Check out the issues we're working on, or add your own ideas.
+- [Contact us directly](https://github.com/Steve6546) - For business inquiries or partnership opportunities.
 
 See more about the community in [COMMUNITY.md](./COMMUNITY.md) or find details on contributing in [CONTRIBUTING.md](./CONTRIBUTING.md).
 
 ## 📈 Progress
 
-See the monthly OpenHands roadmap [here](https://github.com/orgs/All-Hands-AI/projects/1) (updated at the maintainer's meeting at the end of each month).
+See the AZM AI roadmap [here](https://github.com/Steve6546/azm-ai/projects) for our upcoming features and improvements.
 
 <p align="center">
-  <a href="https://star-history.com/#All-Hands-AI/OpenHands&Date">
-    <img src="https://api.star-history.com/svg?repos=All-Hands-AI/OpenHands&type=Date" width="500" alt="Star History Chart">
+  <a href="https://star-history.com/#Steve6546/azm-ai&Date">
+    <img src="https://api.star-history.com/svg?repos=Steve6546/azm-ai&type=Date" width="500" alt="Star History Chart">
   </a>
 </p>
 
@@ -127,20 +123,10 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 
 ## 🙏 Acknowledgements
 
-OpenHands is built by a large number of contributors, and every contribution is greatly appreciated! We also build upon other open source projects, and we are deeply thankful for their work.
+AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! We also build upon other open source projects, and we are deeply thankful for their work.
 
-For a list of open source projects and licenses used in OpenHands, please see our [CREDITS.md](./CREDITS.md) file.
+For a list of open source projects and licenses used in AZM AI, please see our [CREDITS.md](./CREDITS.md) file.
 
-## 📚 Cite
+## 📚 References
 
-```
-@misc{openhands,
-      title={{OpenHands: An Open Platform for AI Software Developers as Generalist Agents}},
-      author={Xingyao Wang and Boxuan Li and Yufan Song and Frank F. Xu and Xiangru Tang and Mingchen Zhuge and Jiayi Pan and Yueqi Song and Bowen Li and Jaskirat Singh and Hoang H. Tran and Fuqiang Li and Ren Ma and Mingzhang Zheng and Bill Qian and Yanjun Shao and Niklas Muennighoff and Yizhe Zhang and Binyuan Hui and Junyang Lin and Robert Brennan and Hao Peng and Heng Ji and Graham Neubig},
-      year={2024},
-      eprint={2407.16741},
-      archivePrefix={arXiv},
-      primaryClass={cs.SE},
-      url={https://arxiv.org/abs/2407.16741},
-}
-```
+AZM AI is based on advanced AI research and development in the field of generalist agents for software development.

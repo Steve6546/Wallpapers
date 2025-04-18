@@ -21,29 +21,29 @@ RESET=$(shell tput -Txterm sgr0)
 
 # Build
 build:
-        @@echo "$(GREEN)Building project...$(RESET)"
-@@$(MAKE) -s check-dependencies
-@@$(MAKE) -s install-python-dependencies
-@@$(MAKE) -s install-frontend-dependencies
-@@$(MAKE) -s install-pre-commit-hooks
-@@$(MAKE) -s build-frontend
-@@echo "$(GREEN)Build completed successfully.$(RESET)"
+        @echo "$(GREEN)Building project...$(RESET)"
+        @$(MAKE) -s check-dependencies
+        @$(MAKE) -s install-python-dependencies
+        @$(MAKE) -s install-frontend-dependencies
+        @$(MAKE) -s install-pre-commit-hooks
+        @$(MAKE) -s build-frontend
+        @echo "$(GREEN)Build completed successfully.$(RESET)"
 
 check-dependencies:
-@@echo "$(YELLOW)Checking dependencies...$(RESET)"
-@@$(MAKE) -s check-system
-@@$(MAKE) -s check-python
-@@$(MAKE) -s check-npm
-@@$(MAKE) -s check-nodejs
+        @echo "$(YELLOW)Checking dependencies...$(RESET)"
+        @$(MAKE) -s check-system
+        @$(MAKE) -s check-python
+        @$(MAKE) -s check-npm
+        @$(MAKE) -s check-nodejs
 ifeq ($(INSTALL_DOCKER),)
-@@$(MAKE) -s check-docker
+        @$(MAKE) -s check-docker
 endif
-@@$(MAKE) -s check-poetry
-@@echo "$(GREEN)Dependencies checked successfully.$(RESET)"
+        @$(MAKE) -s check-poetry
+        @echo "$(GREEN)Dependencies checked successfully.$(RESET)"
 
 check-system:
-@@echo "$(YELLOW)Checking system...$(RESET)"
-@@if [ "$(shell uname)" = "Darwin" ]; then \
+@echo "$(YELLOW)Checking system...$(RESET)"
+@if [ "$(shell uname)" = "Darwin" ]; then \
 @        echo "$(BLUE)macOS detected.$(RESET)"; \
 @elif [ "$(shell uname)" = "Linux" ]; then \
 @        if [ -f "/etc/manjaro-release" ]; then \
@@ -59,8 +59,8 @@ check-system:
 @fi
 
 check-python:
-@@echo "$(YELLOW)Checking Python installation...$(RESET)"
-@@if command -v python$(PYTHON_VERSION) > /dev/null; then \
+@echo "$(YELLOW)Checking Python installation...$(RESET)"
+@if command -v python$(PYTHON_VERSION) > /dev/null; then \
 @        echo "$(BLUE)$(shell python$(PYTHON_VERSION) --version) is already installed.$(RESET)"; \
 @else \
 @        echo "$(RED)Python $(PYTHON_VERSION) is not installed. Please install Python $(PYTHON_VERSION) to continue.$(RESET)"; \
@@ -68,8 +68,8 @@ check-python:
 @fi
 
 check-npm:
-@@echo "$(YELLOW)Checking npm installation...$(RESET)"
-@@if command -v npm > /dev/null; then \
+@echo "$(YELLOW)Checking npm installation...$(RESET)"
+@if command -v npm > /dev/null; then \
 @        echo "$(BLUE)npm $(shell npm --version) is already installed.$(RESET)"; \
 @else \
 @        echo "$(RED)npm is not installed. Please install Node.js to continue.$(RESET)"; \
@@ -77,8 +77,8 @@ check-npm:
 @fi
 
 check-nodejs:
-@@echo "$(YELLOW)Checking Node.js installation...$(RESET)"
-@@if command -v node > /dev/null; then \
+@echo "$(YELLOW)Checking Node.js installation...$(RESET)"
+@if command -v node > /dev/null; then \
 @        NODE_VERSION=$(shell node --version | sed -E 's/v//g'); \
 @        IFS='.' read -r -a NODE_VERSION_ARRAY <<< "$$NODE_VERSION"; \
 @        if [ "$${NODE_VERSION_ARRAY[0]}" -ge 22 ]; then \
@@ -93,8 +93,8 @@ check-nodejs:
 @fi
 
 check-docker:
-@@echo "$(YELLOW)Checking Docker installation...$(RESET)"
-@@if command -v docker > /dev/null; then \
+@echo "$(YELLOW)Checking Docker installation...$(RESET)"
+@if command -v docker > /dev/null; then \
 @        echo "$(BLUE)$(shell docker --version) is already installed.$(RESET)"; \
 @else \
 @        echo "$(RED)Docker is not installed. Please install Docker to continue.$(RESET)"; \
@@ -102,8 +102,8 @@ check-docker:
 @fi
 
 check-poetry:
-@@echo "$(YELLOW)Checking Poetry installation...$(RESET)"
-@@if command -v poetry > /dev/null; then \
+@echo "$(YELLOW)Checking Poetry installation...$(RESET)"
+@if command -v poetry > /dev/null; then \
 @        POETRY_VERSION=$(shell poetry --version 2>&1 | sed -E 's/Poetry \(version ([0-9]+\.[0-9]+\.[0-9]+)\)/\1/'); \
 @        IFS='.' read -r -a POETRY_VERSION_ARRAY <<< "$$POETRY_VERSION"; \
 @        if [ $${POETRY_VERSION_ARRAY[0]} -gt 1 ] || ([ $${POETRY_VERSION_ARRAY[0]} -eq 1 ] && [ $${POETRY_VERSION_ARRAY[1]} -ge 8 ]); then \
@@ -122,24 +122,24 @@ check-poetry:
 @fi
 
 install-python-dependencies:
-@@echo "$(GREEN)Installing Python dependencies...$(RESET)"
-@@if [ -z "${TZ}" ]; then \
+@echo "$(GREEN)Installing Python dependencies...$(RESET)"
+@if [ -z "${TZ}" ]; then \
 @        echo "Defaulting TZ (timezone) to UTC"; \
 @        export TZ="UTC"; \
 @fi
 @poetry env use python$(PYTHON_VERSION)
-@@if [ "$(shell uname)" = "Darwin" ]; then \
+@if [ "$(shell uname)" = "Darwin" ]; then \
 @        echo "$(BLUE)Installing chroma-hnswlib...$(RESET)"; \
 @        export HNSWLIB_NO_NATIVE=1; \
 @        poetry run pip install chroma-hnswlib; \
 @fi
-@@if [ -n "${POETRY_GROUP}" ]; then \
+@if [ -n "${POETRY_GROUP}" ]; then \
 @        echo "Installing only POETRY_GROUP=${POETRY_GROUP}"; \
 @        poetry install --only $${POETRY_GROUP}; \
 @else \
 @        poetry install; \
 @fi
-@@if [ "${INSTALL_PLAYWRIGHT}" != "false" ] && [ "${INSTALL_PLAYWRIGHT}" != "0" ]; then \
+@if [ "${INSTALL_PLAYWRIGHT}" != "false" ] && [ "${INSTALL_PLAYWRIGHT}" != "0" ]; then \
 @        if [ -f "/etc/manjaro-release" ]; then \
 @                echo "$(BLUE)Detected Manjaro Linux. Installing Playwright dependencies...$(RESET)"; \
 @                poetry run pip install playwright; \
@@ -157,54 +157,54 @@ install-python-dependencies:
 @else \
 @        echo "Skipping Playwright installation (INSTALL_PLAYWRIGHT=${INSTALL_PLAYWRIGHT})."; \
 @fi
-@@echo "$(GREEN)Python dependencies installed successfully.$(RESET)"
+@echo "$(GREEN)Python dependencies installed successfully.$(RESET)"
 
 install-frontend-dependencies:
-@@echo "$(YELLOW)Setting up frontend environment...$(RESET)"
-@@echo "$(YELLOW)Detect Node.js version...$(RESET)"
-@@cd frontend && node ./scripts/detect-node-version.js
+@echo "$(YELLOW)Setting up frontend environment...$(RESET)"
+@echo "$(YELLOW)Detect Node.js version...$(RESET)"
+@cd frontend && node ./scripts/detect-node-version.js
 @echo "$(BLUE)Installing frontend dependencies with npm...$(RESET)"
-@@cd frontend && npm install
-@@echo "$(GREEN)Frontend dependencies installed successfully.$(RESET)"
+@cd frontend && npm install
+@echo "$(GREEN)Frontend dependencies installed successfully.$(RESET)"
 
 install-pre-commit-hooks:
-@@echo "$(YELLOW)Installing pre-commit hooks...$(RESET)"
-@@git config --unset-all core.hooksPath || true
-@@poetry run pre-commit install --config $(PRE_COMMIT_CONFIG_PATH)
-@@echo "$(GREEN)Pre-commit hooks installed successfully.$(RESET)"
+@echo "$(YELLOW)Installing pre-commit hooks...$(RESET)"
+@git config --unset-all core.hooksPath || true
+@poetry run pre-commit install --config $(PRE_COMMIT_CONFIG_PATH)
+@echo "$(GREEN)Pre-commit hooks installed successfully.$(RESET)"
 
 lint-backend:
-@@echo "$(YELLOW)Running linters...$(RESET)"
-@@poetry run pre-commit run --files openhands/**/* agenthub/**/* evaluation/**/* --show-diff-on-failure --config $(PRE_COMMIT_CONFIG_PATH)
+@echo "$(YELLOW)Running linters...$(RESET)"
+@poetry run pre-commit run --files openhands/**/* agenthub/**/* evaluation/**/* --show-diff-on-failure --config $(PRE_COMMIT_CONFIG_PATH)
 
 lint-frontend:
-@@echo "$(YELLOW)Running linters for frontend...$(RESET)"
-@@cd frontend && npm run lint
+@echo "$(YELLOW)Running linters for frontend...$(RESET)"
+@cd frontend && npm run lint
 
 lint:
-@@$(MAKE) -s lint-frontend
-@@$(MAKE) -s lint-backend
+@$(MAKE) -s lint-frontend
+@$(MAKE) -s lint-backend
 
 test-frontend:
-@@echo "$(YELLOW)Running tests for frontend...$(RESET)"
-@@cd frontend && npm run test
+@echo "$(YELLOW)Running tests for frontend...$(RESET)"
+@cd frontend && npm run test
 
 test:
-@@$(MAKE) -s test-frontend
+@$(MAKE) -s test-frontend
 
 build-frontend:
-@@echo "$(YELLOW)Building frontend...$(RESET)"
-@@cd frontend && npm run prepare && npm run build
+@echo "$(YELLOW)Building frontend...$(RESET)"
+@cd frontend && npm run prepare && npm run build
 
 # Start backend
 start-backend:
-@@echo "$(YELLOW)Starting backend...$(RESET)"
-@@poetry run uvicorn openhands.server.listen:app --host $(BACKEND_HOST) --port $(BACKEND_PORT) --reload --reload-exclude "./workspace"
+@echo "$(YELLOW)Starting backend...$(RESET)"
+@poetry run uvicorn openhands.server.listen:app --host $(BACKEND_HOST) --port $(BACKEND_PORT) --reload --reload-exclude "./workspace"
 
 # Start frontend
 start-frontend:
-@@echo "$(YELLOW)Starting frontend...$(RESET)"
-@@cd frontend && \
+@echo "$(YELLOW)Starting frontend...$(RESET)"
+@cd frontend && \
 @if grep -qi microsoft /proc/version 2>/dev/null; then \
 @        echo "Detected WSL environment. Using 'dev_wsl'"; \
 @        SCRIPT=dev_wsl; \
@@ -215,28 +215,28 @@ start-frontend:
 
 # Common setup for running the app (non-callable)
 _run_setup:
-@@if [ "$(OS)" = "Windows_NT" ]; then \
+@if [ "$(OS)" = "Windows_NT" ]; then \
 @        echo "$(RED) Windows is not supported, use WSL instead!$(RESET)"; \
 @        exit 1; \
 @fi
-@@mkdir -p logs
-@@echo "$(YELLOW)Starting backend server...$(RESET)"
-@@poetry run uvicorn openhands.server.listen:app --host $(BACKEND_HOST) --port $(BACKEND_PORT) &
-@@echo "$(YELLOW)Waiting for the backend to start...$(RESET)"
-@@until nc -z localhost $(BACKEND_PORT); do sleep 0.1; done
-@@echo "$(GREEN)Backend started successfully.$(RESET)"
+@mkdir -p logs
+@echo "$(YELLOW)Starting backend server...$(RESET)"
+@poetry run uvicorn openhands.server.listen:app --host $(BACKEND_HOST) --port $(BACKEND_PORT) &
+@echo "$(YELLOW)Waiting for the backend to start...$(RESET)"
+@until nc -z localhost $(BACKEND_PORT); do sleep 0.1; done
+@echo "$(GREEN)Backend started successfully.$(RESET)"
 
 # Run the app (standard mode)
 run:
-@@echo "$(YELLOW)Running the app...$(RESET)"
-@@$(MAKE) -s _run_setup
-@@$(MAKE) -s start-frontend
-@@echo "$(GREEN)Application started successfully.$(RESET)"
+@echo "$(YELLOW)Running the app...$(RESET)"
+@$(MAKE) -s _run_setup
+@$(MAKE) -s start-frontend
+@echo "$(GREEN)Application started successfully.$(RESET)"
 
 # Run the app (in docker)
 docker-run: WORKSPACE_BASE ?= $(PWD)/workspace
 docker-run:
-@@if [ -f /.dockerenv ]; then \
+@if [ -f /.dockerenv ]; then \
 @        echo "Running inside a Docker container. Exiting..."; \
 @        exit 0; \
 @else \
@@ -250,35 +250,35 @@ docker-run:
 
 # Setup config.toml
 setup-config:
-@@echo "$(YELLOW)Setting up config.toml...$(RESET)"
-@@$(MAKE) setup-config-prompts
-@@mv $(CONFIG_FILE).tmp $(CONFIG_FILE)
-@@echo "$(GREEN)Config.toml setup completed.$(RESET)"
+@echo "$(YELLOW)Setting up config.toml...$(RESET)"
+@$(MAKE) setup-config-prompts
+@mv $(CONFIG_FILE).tmp $(CONFIG_FILE)
+@echo "$(GREEN)Config.toml setup completed.$(RESET)"
 
 setup-config-prompts:
-@@echo "[core]" > $(CONFIG_FILE).tmp
+@echo "[core]" > $(CONFIG_FILE).tmp
 
-@@read -p "Enter your workspace directory (as absolute path) [default: $(DEFAULT_WORKSPACE_DIR)]: " workspace_dir; \
+@read -p "Enter your workspace directory (as absolute path) [default: $(DEFAULT_WORKSPACE_DIR)]: " workspace_dir; \
 @ workspace_dir=$${workspace_dir:-$(DEFAULT_WORKSPACE_DIR)}; \
 @ echo "workspace_base=\"$$workspace_dir\"" >> $(CONFIG_FILE).tmp
 
-@@echo "" >> $(CONFIG_FILE).tmp
+@echo "" >> $(CONFIG_FILE).tmp
 
-@@echo "[llm]" >> $(CONFIG_FILE).tmp
-@@read -p "Enter your LLM model name, used for running without UI. Set the model in the UI after you start the app. (see https://docs.litellm.ai/docs/providers for full list) [default: $(DEFAULT_MODEL)]: " llm_model; \
+@echo "[llm]" >> $(CONFIG_FILE).tmp
+@read -p "Enter your LLM model name, used for running without UI. Set the model in the UI after you start the app. (see https://docs.litellm.ai/docs/providers for full list) [default: $(DEFAULT_MODEL)]: " llm_model; \
 @ llm_model=$${llm_model:-$(DEFAULT_MODEL)}; \
 @ echo "model=\"$$llm_model\"" >> $(CONFIG_FILE).tmp
 
-@@read -p "Enter your LLM api key: " llm_api_key; \
+@read -p "Enter your LLM api key: " llm_api_key; \
 @ echo "api_key=\"$$llm_api_key\"" >> $(CONFIG_FILE).tmp
 
-@@read -p "Enter your LLM base URL [mostly used for local LLMs, leave blank if not needed - example: http://localhost:5001/v1/]: " llm_base_url; \
+@read -p "Enter your LLM base URL [mostly used for local LLMs, leave blank if not needed - example: http://localhost:5001/v1/]: " llm_base_url; \
 @ if [[ ! -z "$$llm_base_url" ]]; then echo "base_url=\"$$llm_base_url\"" >> $(CONFIG_FILE).tmp; fi
 
 
 # Develop in container
 docker-dev:
-@@if [ -f /.dockerenv ]; then \
+@if [ -f /.dockerenv ]; then \
 @        echo "Running inside a Docker container. Exiting..."; \
 @        exit 0; \
 @else \
@@ -288,25 +288,25 @@ docker-dev:
 
 # Clean up all caches
 clean:
-@@echo "$(YELLOW)Cleaning up caches...$(RESET)"
-@@rm -rf openhands/.cache
-@@echo "$(GREEN)Caches cleaned up successfully.$(RESET)"
+@echo "$(YELLOW)Cleaning up caches...$(RESET)"
+@rm -rf openhands/.cache
+@echo "$(GREEN)Caches cleaned up successfully.$(RESET)"
 
 # Help
 help:
-@@echo "$(BLUE)Usage: make [target]$(RESET)"
-@@echo "Targets:"
-@@echo "  $(GREEN)build$(RESET)               - Build project, including environment setup and dependencies."
-@@echo "  $(GREEN)lint$(RESET)                - Run linters on the project."
-@@echo "  $(GREEN)setup-config$(RESET)        - Setup the configuration for OpenHands by providing LLM API key,"
-@@echo "                        LLM Model name, and workspace directory."
-@@echo "  $(GREEN)start-backend$(RESET)       - Start the backend server for the OpenHands project."
-@@echo "  $(GREEN)start-frontend$(RESET)      - Start the frontend server for the OpenHands project."
-@@echo "  $(GREEN)run$(RESET)                 - Run the OpenHands application, starting both backend and frontend servers."
-@@echo "                        Backend Log file will be stored in the 'logs' directory."
-@@echo "  $(GREEN)docker-dev$(RESET)          - Build and run the OpenHands application in Docker."
-@@echo "  $(GREEN)docker-run$(RESET)          - Run the OpenHands application, starting both backend and frontend servers in Docker."
-@@echo "  $(GREEN)help$(RESET)                - Display this help message, providing information on available targets."
+@echo "$(BLUE)Usage: make [target]$(RESET)"
+@echo "Targets:"
+@echo "  $(GREEN)build$(RESET)               - Build project, including environment setup and dependencies."
+@echo "  $(GREEN)lint$(RESET)                - Run linters on the project."
+@echo "  $(GREEN)setup-config$(RESET)        - Setup the configuration for OpenHands by providing LLM API key,"
+@echo "                        LLM Model name, and workspace directory."
+@echo "  $(GREEN)start-backend$(RESET)       - Start the backend server for the OpenHands project."
+@echo "  $(GREEN)start-frontend$(RESET)      - Start the frontend server for the OpenHands project."
+@echo "  $(GREEN)run$(RESET)                 - Run the OpenHands application, starting both backend and frontend servers."
+@echo "                        Backend Log file will be stored in the 'logs' directory."
+@echo "  $(GREEN)docker-dev$(RESET)          - Build and run the OpenHands application in Docker."
+@echo "  $(GREEN)docker-run$(RESET)          - Run the OpenHands application, starting both backend and frontend servers in Docker."
+@echo "  $(GREEN)help$(RESET)                - Display this help message, providing information on available targets."
 
 # Phony targets
 .PHONY: build check-dependencies check-python check-npm check-docker check-poetry install-python-dependencies install-frontend-dependencies install-pre-commit-hooks lint start-backend start-frontend run run-wsl setup-config setup-config-prompts help
