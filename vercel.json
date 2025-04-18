@@ -1,0 +1,27 @@
+{
+  "buildCommand": "cd frontend && npm install && npm run build",
+  "outputDirectory": "frontend/build",
+  "framework": "vite",
+  "rewrites": [
+    { "source": "/api/(.*)", "destination": "/api/$1" },
+    { "source": "/(.*)", "destination": "/index.html" }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET, POST, PUT, DELETE, OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "X-Requested-With, Content-Type, Accept" }
+      ]
+    }
+  ],
+  "env": {
+    "VITE_APP_MODE": "oss",
+    "VITE_USE_TLS": "false",
+    "VITE_INSECURE_SKIP_VERIFY": "false",
+    "VITE_MOCK_API": "true",
+    "VITE_MOCK_SAAS": "false",
+    "VITE_FRONTEND_PORT": "3000"
+  }
+}

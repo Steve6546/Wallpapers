@@ -1,0 +1,9 @@
+{
+  "OPENROUTER_INFO$TITLE": "About OpenRouter",
+  "OPENROUTER_INFO$DESCRIPTION": "OpenRouter is a unified API that gives you access to many AI models. Some models are free to use, while others require credits.",
+  "OPENROUTER_INFO$FREE_MODELS_TITLE": "Free models",
+  "OPENROUTER_INFO$FREE_MODELS_DESCRIPTION": "include models like Mistral, Llama, and Gemma. These models have good capabilities but may not be as powerful as paid models.",
+  "OPENROUTER_INFO$PAID_MODELS_TITLE": "Paid models",
+  "OPENROUTER_INFO$PAID_MODELS_DESCRIPTION": "like GPT-4 and Claude require credits on your OpenRouter account.",
+  "OPENROUTER_INFO$GET_API_KEY": "Get your API key from OpenRouter"
+}

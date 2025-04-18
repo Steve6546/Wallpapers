@@ -57,6 +57,11 @@ export default defineConfig(({ mode }) => {
         ignored: ['**/node_modules/**', '**/.git/**'],
       },
     },
+    build: {
+      outDir: 'build',
+      emptyOutDir: true,
+      sourcemap: true,
+    },
     ssr: {
       noExternal: ["react-syntax-highlighter"],
     },

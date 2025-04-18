@@ -15,7 +15,9 @@ const isInitConfig = (data: unknown): data is InitConfig =>
   "action" in data &&
   data.action === "initialize";
 
-const chat = ws.link(`ws://${window?.location.host}/socket.io`);
+// Use the current protocol (http or https) for the WebSocket connection
+const wsProtocol = window.location.protocol === "https:" ? "wss:" : "ws:";
+const chat = ws.link(`${wsProtocol}//${window?.location.host}/socket.io`);
 
 export const handlers: WebSocketHandler[] = [
   chat.addEventListener("connection", (connection) => {

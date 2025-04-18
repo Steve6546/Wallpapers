@@ -1,0 +1,8 @@
+{
+  "API_KEY_ERROR$TITLE": "API Key Error",
+  "API_KEY_ERROR$DESCRIPTION": "Your API key appears to be invalid or has insufficient credits. Please check:",
+  "API_KEY_ERROR$CHECK_CORRECT_KEY": "That you have entered the correct API key from OpenRouter",
+  "API_KEY_ERROR$CHECK_CREDITS": "That your OpenRouter account has credits if you are using paid models",
+  "API_KEY_ERROR$TRY_FREE_MODEL": "Try using a free model like Mistral or Llama instead",
+  "API_KEY_ERROR$CHECK_ACCOUNT": "Check your OpenRouter account"
+}
