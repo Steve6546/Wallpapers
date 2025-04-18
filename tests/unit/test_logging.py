@@ -6,7 +6,7 @@ from unittest.mock import patch
 import pytest
 
 from openhands.core.config import AppConfig, LLMConfig
-from openhands.core.logger import OpenHandsLoggerAdapter, json_log_handler
+from openhands.core.logger import AZMAILoggerAdapter, json_log_handler
 from openhands.core.logger import openhands_logger as openhands_logger
 
 
@@ -163,7 +163,7 @@ class TestJsonOutput:
 
     def test_extra_fields_from_adapter(self, json_handler):
         logger, string_io = json_handler
-        subject = OpenHandsLoggerAdapter(logger, extra={'context_field': '..val..'})
+        subject = AZMAILoggerAdapter(logger, extra={'context_field': '..val..'})
         subject.info('Test message', extra={'log_fied': '..val..'})
         output = json.loads(string_io.getvalue())
         del output['timestamp']
@@ -176,7 +176,7 @@ class TestJsonOutput:
 
     def test_extra_fields_from_adapter_can_override(self, json_handler):
         logger, string_io = json_handler
-        subject = OpenHandsLoggerAdapter(logger, extra={'override': 'a'})
+        subject = AZMAILoggerAdapter(logger, extra={'override': 'a'})
         subject.info('Test message', extra={'override': 'b'})
         output = json.loads(string_io.getvalue())
         del output['timestamp']

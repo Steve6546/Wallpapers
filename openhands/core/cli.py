@@ -246,12 +246,12 @@ def display_event(event: Event, config: AppConfig) -> None:
 
 def display_help(style=DEFAULT_STYLE):
     print_formatted_text(
-        HTML(f'\n<grey>OpenHands CLI v{__version__}</grey>\n'), style=style
+        HTML(f'\n<grey>AZM AI CLI v{__version__}</grey>\n'), style=style
     )
 
     print_formatted_text(
         HTML(
-            '<gold>OpenHands CLI lets you interact with the OpenHands agent from the command line.</gold>'
+            '<gold>AZM AI CLI lets you interact with the AZM AI agent from the command line.</gold>'
         )
     )
     print_formatted_text('')
@@ -302,17 +302,17 @@ def display_help(style=DEFAULT_STYLE):
 def display_banner(session_id: str, is_loaded: asyncio.Event):
     print_formatted_text(
         HTML(r"""<gold>
-     ___                    _   _                 _
-    /  _ \ _ __   ___ _ __ | | | | __ _ _ __   __| |___
-    | | | | '_ \ / _ \ '_ \| |_| |/ _` | '_ \ / _` / __|
-    | |_| | |_) |  __/ | | |  _  | (_| | | | | (_| \__ \
-    \___ /| .__/ \___|_| |_|_| |_|\__,_|_| |_|\__,_|___/
-          |_|
+      _    ________  ___    _    ___ 
+     / \  |__  /_ _|/ _ \  / \  |_ _|
+    / _ \   / / | || | | |/ _ \  | | 
+   / ___ \ / /_ | || |_| / ___ \ | | 
+  /_/   \_\____||_|\___/_/   \_\___|
+                                    
     </gold>"""),
         style=DEFAULT_STYLE,
     )
 
-    print_formatted_text(HTML(f'<grey>OpenHands CLI v{__version__}</grey>'))
+    print_formatted_text(HTML(f'<grey>AZM AI CLI v{__version__}</grey>'))
 
     banner_text = (
         'Initialized session' if is_loaded.is_set() else 'Initializing session'

@@ -11,7 +11,7 @@ from openhands.controller.replay import ReplayManager
 from openhands.controller.state.state import State
 from openhands.core.config import AgentConfig, AppConfig, LLMConfig
 from openhands.core.exceptions import AgentRuntimeUnavailableError
-from openhands.core.logger import OpenHandsLoggerAdapter
+from openhands.core.logger import AZMAILoggerAdapter
 from openhands.core.schema.agent import AgentState
 from openhands.events.action import ChangeAgentStateAction, MessageAction
 from openhands.events.event import Event, EventSource
@@ -71,7 +71,7 @@ class AgentSession:
         self.file_store = file_store
         self._status_callback = status_callback
         self.user_id = user_id
-        self.logger = OpenHandsLoggerAdapter(
+        self.logger = AZMAILoggerAdapter(
             extra={'session_id': sid, 'user_id': user_id}
         )
 

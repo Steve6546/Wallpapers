@@ -12,7 +12,7 @@ from openhands.core.config.condenser_config import (
     CondenserPipelineConfig,
     LLMSummarizingCondenserConfig,
 )
-from openhands.core.logger import OpenHandsLoggerAdapter
+from openhands.core.logger import AZMAILoggerAdapter
 from openhands.core.schema import AgentState
 from openhands.events.action import MessageAction, NullAction
 from openhands.events.event import Event, EventSource
@@ -58,7 +58,7 @@ class Session:
         self.sio = sio
         self.last_active_ts = int(time.time())
         self.file_store = file_store
-        self.logger = OpenHandsLoggerAdapter(extra={'session_id': sid})
+        self.logger = AZMAILoggerAdapter(extra={'session_id': sid})
         self.agent_session = AgentSession(
             sid,
             file_store,
