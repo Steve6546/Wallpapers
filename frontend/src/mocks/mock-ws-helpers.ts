@@ -52,12 +52,12 @@ export const generateUserMessageAction = (
 export const emitAssistantMessage = (
   io: ReturnType<typeof toSocketIo>,
   message: string,
-) => io.client.emit("oh_event", generateAssistantMessageAction(message));
+) => io.client.emit("azm_event", generateAssistantMessageAction(message));
 
 export const emitUserMessage = (
   io: ReturnType<typeof toSocketIo>,
   message: string,
-) => io.client.emit("oh_event", generateUserMessageAction(message));
+) => io.client.emit("azm_event", generateUserMessageAction(message));
 
 export const emitMessages = (
   io: ReturnType<typeof toSocketIo>,
