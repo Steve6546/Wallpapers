@@ -224,14 +224,34 @@ class LocalRuntime(ActionExecutionClient):
         logger.debug(f'POETRY_VIRTUALENVS_PATH: {poetry_venvs_path}')
 
         check_dependencies(code_repo_path, poetry_venvs_path)
-        self.server_process = subprocess.Popen(
-            cmd,
-            stdout=subprocess.PIPE,
-            stderr=subprocess.STDOUT,
-            universal_newlines=True,
-            bufsize=1,
-            env=env,
-        )
+        
+        # Validate command components to prevent injection
+        if not isinstance(cmd, list):
+            logger.error(f"Invalid command type: {type(cmd)}")
+            raise ValueError(f"Invalid command type: {type(cmd)}")
+            
+        for part in cmd:
+            if not isinstance(part, str) or ';' in part or '&' in part or '|' in part or '>' in part or '<' in part:
+                error_msg = f"Invalid command component detected: {part}"
+                logger.error(error_msg)
+                raise ValueError(error_msg)
+        
+        # Log the command being executed for debugging
+        logger.debug(f"Executing server command: {' '.join(cmd)}")
+        
+        try:
+            self.server_process = subprocess.Popen(
+                cmd,
+                stdout=subprocess.PIPE,
+                stderr=subprocess.STDOUT,
+                universal_newlines=True,
+                bufsize=1,
+                env=env,
+                shell=False,  # Explicitly set shell=False for security
+            )
+        except (subprocess.SubprocessError, OSError) as e:
+            logger.error(f"Failed to start action execution server: {str(e)}")
+            raise
 
         # Start a thread to read and log server output
         def log_output():
