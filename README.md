@@ -142,7 +142,7 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 
 AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! 
 
-This project is based on OpenHands under the MIT license. We've built upon their excellent foundation to create AZM AI with our own enhancements and modifications.
+This project is based on the original foundation under the MIT license. We've built upon that excellent foundation to create AZM AI with our own enhancements and modifications.
 
 For a list of open source projects and licenses used in AZM AI, please see our [CREDITS.md](./CREDITS.md) file.
 
