@@ -157,7 +157,69 @@ Here's a guide to the important documentation files in the repository:
 - [/frontend/README.md](./frontend/README.md): Frontend React application setup and development guide
 - [/containers/README.md](./containers/README.md): Information about Docker containers and deployment
 - [/tests/unit/README.md](./tests/unit/README.md): Guide to writing and running unit tests
-- [/evaluation/README.md](./evaluation/README.md): Documentation for the evaluation framework and benchmarks
-- [/microagents/README.md](./microagents/README.md): Information about the microagents architecture and implementation
-- [/azm_ai/server/README.md](./azm_ai/server/README.md): Server implementation details and API documentation
-- [/azm_ai/runtime/README.md](./azm_ai/runtime/README.md): Documentation for the runtime environment and execution model
+
+## Code Structure and Architecture
+
+### Backend Architecture
+
+The AZM AI backend is organized into several key modules:
+
+1. **Core Module** (`azm_ai/core/`):
+   - Configuration management
+   - Logging and error handling
+   - Core data structures and interfaces
+
+2. **Agent Hub** (`azm_ai/agenthub/`):
+   - Agent implementations
+   - Tool definitions and implementations
+   - Agent state management
+
+3. **Runtime** (`azm_ai/runtime/`):
+   - Execution environments (Docker, E2B, Modal, Local)
+   - Sandbox isolation
+   - File system operations
+   - Command execution
+
+4. **LLM Integration** (`azm_ai/llm/`):
+   - Model providers and configurations
+   - Prompt management
+   - Response parsing and handling
+
+5. **Events System** (`azm_ai/events/`):
+   - Event definitions (actions and observations)
+   - Event streaming and processing
+   - Conversation history management
+
+6. **Server** (`azm_ai/server/`):
+   - FastAPI implementation
+   - WebSocket handling
+   - Middleware and authentication
+   - API endpoints
+
+### Frontend Architecture
+
+The frontend is a React application with the following structure:
+
+1. **State Management**:
+   - Redux for global state
+   - React Context for theme and settings
+
+2. **Components**:
+   - UI components organized by feature
+   - Reusable components in shared directories
+
+3. **API Integration**:
+   - WebSocket connection for real-time updates
+   - REST API clients for data fetching
+
+4. **Internationalization**:
+   - i18n support for multiple languages
+   - Translation files and utilities
+
+## Development Workflow
+
+1. **Setup Environment**: Follow the setup instructions above
+2. **Make Changes**: Implement your changes following the project's code style
+3. **Run Tests**: Ensure all tests pass with your changes
+4. **Local Testing**: Test your changes in a local environment
+5. **Submit PR**: Create a pull request with a clear description of your changes
