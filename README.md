@@ -125,10 +125,59 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 
 AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! 
 
-This project is based on [OpenHands](https://github.com/OpenHands/openhands) under the MIT license. We've built upon their excellent foundation to create AZM AI with our own enhancements and modifications.
+AZM AI is an advanced AI development platform built under the MIT license. We've created a comprehensive solution with innovative features and capabilities to enhance AI-driven development workflows.
 
 For a list of open source projects and licenses used in AZM AI, please see our [CREDITS.md](./CREDITS.md) file.
 
 ## 📚 References
 
 AZM AI is based on advanced AI research and development in the field of generalist agents for software development.
+
+## 🏗️ Project Structure
+
+AZM AI is organized into several key components:
+
+### Core Components
+
+- **azm_ai/core**: Core functionality and configuration
+- **azm_ai/events**: Event handling system for actions and observations
+- **azm_ai/runtime**: Runtime environments for executing agent actions
+  - **impl/modal**: High-availability runtime implementation
+  - **impl/e2b**: File system operations implementation
+  - **impl/browsergym**: Web browsing capabilities
+- **azm_ai/server**: Server implementation including API endpoints and middleware
+- **azm_ai/storage**: Data persistence layer
+- **azm_ai/utils**: Utility functions used throughout the codebase
+
+### Frontend
+
+- **frontend**: React-based user interface
+  - **src/components**: UI components
+  - **src/pages**: Application pages
+  - **src/hooks**: Custom React hooks
+  - **src/utils**: Frontend utility functions
+
+### Testing
+
+- **tests**: Comprehensive test suite
+  - **unit**: Unit tests for individual components
+  - **integration**: Integration tests for component interactions
+  - **e2e**: End-to-end tests for complete workflows
+
+### Documentation
+
+- **docs**: Project documentation
+  - **static**: Static assets including images
+  - **api**: API documentation
+  - **guides**: User and developer guides
+
+## 🧩 Architecture
+
+AZM AI follows a modular architecture with clear separation of concerns:
+
+1. **Event-Driven Core**: The system is built around an event stream that handles actions and observations
+2. **Pluggable Runtimes**: Different runtime environments can be used for executing actions
+3. **Extensible API**: The server exposes a RESTful API for interacting with the system
+4. **Responsive UI**: The frontend provides a user-friendly interface for interacting with AI agents
+
+This architecture allows for easy extension and customization of the platform for different use cases.
