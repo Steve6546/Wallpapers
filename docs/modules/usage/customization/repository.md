@@ -1,16 +1,16 @@
 # Repository Customization
 
-You can customize how OpenHands works with your repository by creating a
-`.openhands` directory at the root level.
+You can customize how AZM AI works with your repository by creating a
+`.azm_ai` directory at the root level.
 
 ## Microagents
-You can use microagents to extend the OpenHands prompts with information
-about your project and how you want OpenHands to work. See
+You can use microagents to extend the AZM AI prompts with information
+about your project and how you want AZM AI to work. See
 [Repository Microagents](../prompting/microagents-repo) for more information.
 
 
 ## Setup Script
-You can add `.openhands/setup.sh`, which will be run every time OpenHands begins
+You can add `.azm_ai/setup.sh`, which will be run every time AZM AI begins
 working with your repository. This is a good place to install dependencies, set
 environment variables, etc.
 

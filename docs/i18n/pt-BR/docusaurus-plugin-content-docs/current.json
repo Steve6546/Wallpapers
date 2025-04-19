@@ -19,9 +19,9 @@
         "message": "Guias do Usuário",
         "description": "The label for category User Guides in sidebar docsSidebar"
     },
-    "sidebar.docsSidebar.category.Running OpenHands": {
-        "message": "Executando OpenHands",
-        "description": "The label for category Running OpenHands in sidebar docsSidebar"
+    "sidebar.docsSidebar.category.Running AZM AI": {
+        "message": "Executando AZM AI",
+        "description": "The label for category Running AZM AI in sidebar docsSidebar"
     },
     "sidebar.docsSidebar.category.Prompting": {
         "message": "Prompting",
@@ -31,9 +31,9 @@
         "message": "Arquitetura",
         "description": "The label for category Architecture in sidebar docsSidebar"
     },
-    "sidebar.docsSidebar.doc.Running OpenHands": {
-        "message": "Executando OpenHands",
-        "description": "The label for document Running OpenHands in sidebar docsSidebar"
+    "sidebar.docsSidebar.doc.Running AZM AI": {
+        "message": "Executando AZM AI",
+        "description": "The label for document Running AZM AI in sidebar docsSidebar"
     },
     "sidebar.docsSidebar.doc.Getting Started": {
         "message": "Começando",
@@ -63,9 +63,9 @@
         "message": "Feedback",
         "description": "The label for document Feedback in sidebar docsSidebar"
     },
-    "sidebar.docsSidebar.category.For OpenHands Developers": {
-        "message": "Para Desenvolvedores OpenHands",
-        "description": "The label for category For OpenHands Developers in sidebar docsSidebar"
+    "sidebar.docsSidebar.category.For AZM AI Developers": {
+        "message": "Para Desenvolvedores AZM AI",
+        "description": "The label for category For AZM AI Developers in sidebar docsSidebar"
     },
     "sidebar.docsSidebar.doc.About": {
         "message": "Sobre",
@@ -115,9 +115,9 @@
         "message": "Nuvem",
         "description": "The label for category Cloud in sidebar docsSidebar"
     },
-    "sidebar.docsSidebar.doc.Openhands Cloud": {
-        "message": "OpenHands Cloud",
-        "description": "The label for document Openhands Cloud in sidebar docsSidebar"
+    "sidebar.docsSidebar.doc.AZM AI Cloud": {
+        "message": "AZM AI Cloud",
+        "description": "The label for document AZM AI Cloud in sidebar docsSidebar"
     },
     "sidebar.docsSidebar.doc.Cloud GitHub Resolver": {
         "message": "Resolvedor GitHub Cloud",

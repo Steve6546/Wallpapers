@@ -7,9 +7,9 @@ license = "MIT"
 readme = "README.md"
 repository = "https://github.com/Steve6546/azm-ai"
 packages = [
-  { include = "openhands/**/*" },
-  { include = "pyproject.toml", to = "openhands" },
-  { include = "poetry.lock", to = "openhands" }
+  { include = "azm_ai/**/*" },
+  { include = "pyproject.toml", to = "azm_ai" },
+  { include = "poetry.lock", to = "azm_ai" }
 ]
 
 [tool.poetry.dependencies]
@@ -62,7 +62,7 @@ runloop-api-client = "0.30.0"
 libtmux = ">=0.37,<0.47"
 pygithub = "^2.5.0"
 joblib = "*"
-openhands-aci = "^0.2.10"
+azm-ai-aci = "^0.2.10"
 python-socketio = "^5.11.4"
 redis = "^5.2.0"
 sse-starlette = "^2.1.3"
@@ -154,8 +154,7 @@ enable = true
 style = "semver"
 
 [tool.poetry.scripts]
-azm-ai = "openhands.core.cli:main"
-openhands = "openhands.core.cli:main"
+azm-ai = "azm_ai.core.cli:main"
 
 [tool.poetry.group.testgeneval.dependencies]
 fuzzywuzzy = "^0.18.0"

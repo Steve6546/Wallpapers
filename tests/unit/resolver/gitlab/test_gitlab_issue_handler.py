@@ -1,9 +1,9 @@
 from unittest.mock import MagicMock, patch
 
-from openhands.core.config import LLMConfig
-from openhands.resolver.interfaces.gitlab import GitlabIssueHandler, GitlabPRHandler
-from openhands.resolver.interfaces.issue import ReviewThread
-from openhands.resolver.interfaces.issue_definitions import (
+from azm_ai.core.config import LLMConfig
+from azm_ai.resolver.interfaces.gitlab import GitlabIssueHandler, GitlabPRHandler
+from azm_ai.resolver.interfaces.issue import ReviewThread
+from azm_ai.resolver.interfaces.issue_definitions import (
     ServiceContextIssue,
     ServiceContextPR,
 )

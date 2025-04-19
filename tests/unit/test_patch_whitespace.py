@@ -1,5 +1,5 @@
-from openhands.resolver.patching.apply import apply_diff
-from openhands.resolver.patching.patch import parse_patch
+from azm_ai.resolver.patching.apply import apply_diff
+from azm_ai.resolver.patching.patch import parse_patch
 
 
 def test_patch_whitespace_mismatch():

@@ -1,4 +1,4 @@
-from openhands.events.observation.commands import (
+from azm_ai.events.observation.commands import (
     CmdOutputMetadata,
     CmdOutputObservation,
     IPythonRunCellObservation,

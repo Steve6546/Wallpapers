@@ -5,8 +5,8 @@ from pathlib import Path
 
 import pytest
 
-from openhands.core.exceptions import MicroagentValidationError
-from openhands.microagent import (
+from azm_ai.core.exceptions import MicroagentValidationError
+from azm_ai.microagent import (
     BaseMicroagent,
     KnowledgeMicroagent,
     MicroagentMetadata,
@@ -23,7 +23,7 @@ CONTENT = (
 
 def test_legacy_micro_agent_load(tmp_path):
     """Test loading of legacy microagents."""
-    legacy_file = tmp_path / '.openhands_instructions'
+    legacy_file = tmp_path / '.azm_ai_instructions'
     legacy_file.write_text(CONTENT)
 
     micro_agent = BaseMicroagent.load(legacy_file)

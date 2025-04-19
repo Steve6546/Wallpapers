@@ -1,7 +1,7 @@
 from unittest.mock import patch
 
-from openhands.core.config import AppConfig
-from openhands.io import read_input
+from azm_ai.core.config import AppConfig
+from azm_ai.io import read_input
 
 
 def test_single_line_input():

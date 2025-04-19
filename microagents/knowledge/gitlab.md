@@ -19,7 +19,7 @@ If you encounter authentication issues when pushing to GitLab (such as password 
 Here are some instructions for pushing, but ONLY do this if the user asks you to:
 * NEVER push directly to the `main` or `master` branch
 * Git config (username and email) is pre-set. Do not modify.
-* You may already be on a branch starting with `openhands-workspace`. Create a new branch with a better name before pushing.
+* You may already be on a branch starting with `azm-ai-workspace`. Create a new branch with a better name before pushing.
 * Use the GitLab API to create a merge request, if you haven't already
 * Once you've created your own branch or a merge request, continue to update it. Do NOT create a new one unless you are explicitly asked to. Update the PR title and description as necessary, but don't change the branch name.
 * Use the main branch as the base branch, unless the user requests otherwise
@@ -31,5 +31,5 @@ git remote -v && git branch # to find the current org, repo and branch
 git checkout -b create-widget && git add . && git commit -m "Create widget" && git push -u origin create-widget
 curl -X POST "https://gitlab.com/api/v4/projects/$PROJECT_ID/merge_requests" \
     -H "Authorization: Bearer $GITLAB_TOKEN" \
-    -d '{"source_branch": "create-widget", "target_branch": "openhands-workspace", "title": "Create widget"}'
+    -d '{"source_branch": "create-widget", "target_branch": "azm-ai-workspace", "title": "Create widget"}'
 ```

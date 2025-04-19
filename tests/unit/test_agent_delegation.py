@@ -5,26 +5,26 @@ from uuid import uuid4
 
 import pytest
 
-from openhands.controller.agent import Agent
-from openhands.controller.agent_controller import AgentController
-from openhands.controller.state.state import State
-from openhands.core.config import LLMConfig
-from openhands.core.config.agent_config import AgentConfig
-from openhands.core.schema import AgentState
-from openhands.events import EventSource, EventStream
-from openhands.events.action import (
+from azm_ai.controller.agent import Agent
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import LLMConfig
+from azm_ai.core.config.agent_config import AgentConfig
+from azm_ai.core.schema import AgentState
+from azm_ai.events import EventSource, EventStream
+from azm_ai.events.action import (
     AgentDelegateAction,
     AgentFinishAction,
     MessageAction,
 )
-from openhands.events.action.agent import RecallAction
-from openhands.events.event import Event, RecallType
-from openhands.events.observation.agent import RecallObservation
-from openhands.events.stream import EventStreamSubscriber
-from openhands.llm.llm import LLM
-from openhands.llm.metrics import Metrics
-from openhands.memory.memory import Memory
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.events.action.agent import RecallAction
+from azm_ai.events.event import Event, RecallType
+from azm_ai.events.observation.agent import RecallObservation
+from azm_ai.events.stream import EventStreamSubscriber
+from azm_ai.llm.llm import LLM
+from azm_ai.llm.metrics import Metrics
+from azm_ai.memory.memory import Memory
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @pytest.fixture
@@ -46,7 +46,7 @@ def mock_parent_agent():
     agent.config = AgentConfig()
 
     # Add a proper system message mock
-    from openhands.events.action.message import SystemMessageAction
+    from azm_ai.events.action.message import SystemMessageAction
 
     system_message = SystemMessageAction(content='Test system message')
     system_message._source = EventSource.AGENT
@@ -67,7 +67,7 @@ def mock_child_agent():
     agent.config = AgentConfig()
 
     # Add a proper system message mock
-    from openhands.events.action.message import SystemMessageAction
+    from azm_ai.events.action.message import SystemMessageAction
 
     system_message = SystemMessageAction(content='Test system message')
     system_message._source = EventSource.AGENT

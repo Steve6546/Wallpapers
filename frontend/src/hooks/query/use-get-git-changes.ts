@@ -1,7 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import React from "react";
 import { useSelector } from "react-redux";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { useConversation } from "#/context/conversation-context";
 import { GitChange } from "#/api/open-hands.types";
 import { RootState } from "#/store";
@@ -17,7 +17,7 @@ export const useGetGitChanges = () => {
 
   const result = useQuery({
     queryKey: ["file_changes", conversationId],
-    queryFn: () => OpenHands.getGitChanges(conversationId),
+    queryFn: () => AZM AI.getGitChanges(conversationId),
     retry: false,
     staleTime: 1000 * 60 * 5, // 5 minutes
     gcTime: 1000 * 60 * 15, // 15 minutes

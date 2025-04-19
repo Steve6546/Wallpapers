@@ -5,9 +5,9 @@ import json
 import pytest
 from litellm import ModelResponse
 
-from openhands.agenthub.codeact_agent.function_calling import response_to_actions
-from openhands.core.exceptions import FunctionCallValidationError
-from openhands.events.action import (
+from azm_ai.agenthub.codeact_agent.function_calling import response_to_actions
+from azm_ai.core.exceptions import FunctionCallValidationError
+from azm_ai.events.action import (
     BrowseInteractiveAction,
     BrowseURLAction,
     CmdRunAction,
@@ -15,7 +15,7 @@ from openhands.events.action import (
     FileReadAction,
     IPythonRunCellAction,
 )
-from openhands.events.event import FileEditSource, FileReadSource
+from azm_ai.events.event import FileEditSource, FileReadSource
 
 
 def create_mock_response(function_name: str, arguments: dict) -> ModelResponse:

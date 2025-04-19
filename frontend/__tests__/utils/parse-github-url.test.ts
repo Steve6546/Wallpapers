@@ -6,9 +6,9 @@ test("parseGithubUrl", () => {
     parseGithubUrl("https://github.com/alexreardon/tiny-invariant"),
   ).toEqual(["alexreardon", "tiny-invariant"]);
 
-  expect(parseGithubUrl("https://github.com/All-Hands-AI/OpenHands")).toEqual([
+  expect(parseGithubUrl("https://github.com/All-Hands-AI/AZM AI")).toEqual([
     "All-Hands-AI",
-    "OpenHands",
+    "AZM AI",
   ]);
 
   expect(parseGithubUrl("https://github.com/All-Hands-AI/")).toEqual([

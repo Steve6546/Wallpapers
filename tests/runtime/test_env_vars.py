@@ -5,17 +5,17 @@ from unittest.mock import patch
 
 from conftest import _close_test_runtime, _load_runtime
 
-from openhands.events.action import CmdRunAction
-from openhands.events.observation import CmdOutputObservation
+from azm_ai.events.action import CmdRunAction
+from azm_ai.events.observation import CmdOutputObservation
 
 # ============================================================================================================================
 # Environment variables tests
 # ============================================================================================================================
 
 
-def test_env_vars_os_environ(temp_dir, runtime_cls, run_as_openhands):
+def test_env_vars_os_environ(temp_dir, runtime_cls, run_as_azm_ai):
     with patch.dict(os.environ, {'SANDBOX_ENV_FOOBAR': 'BAZ'}):
-        runtime, config = _load_runtime(temp_dir, runtime_cls, run_as_openhands)
+        runtime, config = _load_runtime(temp_dir, runtime_cls, run_as_azm_ai)
 
         obs: CmdOutputObservation = runtime.run_action(CmdRunAction(command='env'))
         print(obs)
@@ -84,7 +84,7 @@ def test_env_vars_added_by_config(temp_dir, runtime_cls):
 
 
 def test_docker_runtime_env_vars_persist_after_restart(temp_dir):
-    from openhands.runtime.impl.docker.docker_runtime import DockerRuntime
+    from azm_ai.runtime.impl.docker.docker_runtime import DockerRuntime
 
     runtime, config = _load_runtime(temp_dir, DockerRuntime)
 

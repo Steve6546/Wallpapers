@@ -2,7 +2,7 @@ from unittest.mock import Mock
 
 import pytest
 
-from openhands.runtime.utils.log_streamer import LogStreamer
+from azm_ai.runtime.utils.log_streamer import LogStreamer
 
 
 @pytest.fixture

@@ -1,4 +1,4 @@
-# OpenHands Documentation
+# AZM AI Documentation
 
 This website is built using [Docusaurus](https://docusaurus.io/).
 

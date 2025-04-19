@@ -1,4 +1,4 @@
-# Publishes the OpenHands PyPi package
+# Publishes the AZM AI PyPi package
 name: Publish PyPi Package
 
 # Triggered manually

@@ -15,7 +15,7 @@ import { openHands } from "./open-hands-axios";
 import { ApiSettings, PostApiSettings } from "#/types/settings";
 import { GitUser, GitRepository } from "#/types/git";
 
-class OpenHands {
+class AZM AI {
   /**
    * Retrieve the list of models available
    * @returns List of models available
@@ -301,4 +301,4 @@ class OpenHands {
   }
 }
 
-export default OpenHands;
+export default AZM AI;

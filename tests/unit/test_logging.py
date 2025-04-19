@@ -5,9 +5,9 @@ from unittest.mock import patch
 
 import pytest
 
-from openhands.core.config import AppConfig, LLMConfig
-from openhands.core.logger import AZMAILoggerAdapter, json_log_handler
-from openhands.core.logger import openhands_logger as openhands_logger
+from azm_ai.core.config import AppConfig, LLMConfig
+from azm_ai.core.logger import AZMAILoggerAdapter, json_log_handler
+from azm_ai.core.logger import azm_ai_logger as azm_ai_logger
 
 
 @pytest.fixture
@@ -17,18 +17,18 @@ def test_handler():
     handler.setLevel(logging.INFO)
     formatter = logging.Formatter('%(message)s')
     handler.setFormatter(formatter)
-    openhands_logger.addHandler(handler)
-    yield openhands_logger, stream
-    openhands_logger.removeHandler(handler)
+    azm_ai_logger.addHandler(handler)
+    yield azm_ai_logger, stream
+    azm_ai_logger.removeHandler(handler)
 
 
 @pytest.fixture
 def json_handler():
     stream = StringIO()
     json_handler = json_log_handler(logging.INFO, _out=stream)
-    openhands_logger.addHandler(json_handler)
-    yield openhands_logger, stream
-    openhands_logger.removeHandler(json_handler)
+    azm_ai_logger.addHandler(json_handler)
+    yield azm_ai_logger, stream
+    azm_ai_logger.removeHandler(json_handler)
 
 
 def test_openai_api_key_masking(test_handler):
@@ -103,7 +103,7 @@ def test_sensitive_env_vars_masking(test_handler):
         'JWT_SECRET': 'JWT_SECRET_VALUE',
     }
 
-    with patch.dict('openhands.core.logger.os.environ', environ, clear=True):
+    with patch.dict('azm_ai.core.logger.os.environ', environ, clear=True):
         log_message = ' '.join(f"{attr}='{value}'" for attr, value in environ.items())
         logger.info(log_message)
 
@@ -119,7 +119,7 @@ def test_special_cases_masking(test_handler):
         'SANDBOX_ENV_GITHUB_TOKEN': 'SANDBOX_ENV_GITHUB_TOKEN_VALUE',
     }
 
-    with patch.dict('openhands.core.logger.os.environ', environ, clear=True):
+    with patch.dict('azm_ai.core.logger.os.environ', environ, clear=True):
         log_message = ' '.join(
             f"{attr}={value} with no single quotes' and something"
             for attr, value in environ.items()

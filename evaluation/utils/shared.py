@@ -15,14 +15,14 @@ import pandas as pd
 from pydantic import BaseModel
 from tqdm import tqdm
 
-from openhands.controller.state.state import State
-from openhands.core.config import LLMConfig, SandboxConfig
-from openhands.core.config.agent_config import AgentConfig
-from openhands.core.config.condenser_config import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import LLMConfig, SandboxConfig
+from azm_ai.core.config.agent_config import AgentConfig
+from azm_ai.core.config.condenser_config import (
     CondenserConfig,
     NoOpCondenserConfig,
 )
-from openhands.core.exceptions import (
+from azm_ai.core.exceptions import (
     AgentRuntimeBuildError,
     AgentRuntimeDisconnectedError,
     AgentRuntimeError,
@@ -31,14 +31,14 @@ from openhands.core.exceptions import (
     AgentRuntimeTimeoutError,
     AgentRuntimeUnavailableError,
 )
-from openhands.core.logger import get_console_handler
-from openhands.core.logger import openhands_logger as logger
-from openhands.events.action import Action
-from openhands.events.action.message import MessageAction
-from openhands.events.event import Event
-from openhands.events.serialization.event import event_to_dict
-from openhands.events.utils import get_pairs_from_events
-from openhands.memory.condenser import get_condensation_metadata
+from azm_ai.core.logger import get_console_handler
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.events.action import Action
+from azm_ai.events.action.message import MessageAction
+from azm_ai.events.event import Event
+from azm_ai.events.serialization.event import event_to_dict
+from azm_ai.events.utils import get_pairs_from_events
+from azm_ai.memory.condenser import get_condensation_metadata
 
 
 class EvalMetadata(BaseModel):

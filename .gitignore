@@ -177,7 +177,7 @@ evaluation/toolqa/data
 evaluation/scienceagentbench/benchmark
 evaluation/commit0_bench/repos
 
-# openhands resolver
+# azm_ai resolver
 output/
 
 # frontend

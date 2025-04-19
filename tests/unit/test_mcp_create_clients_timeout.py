@@ -2,8 +2,8 @@ import asyncio
 
 import pytest
 
-from openhands.mcp.client import MCPClient
-from openhands.mcp.utils import create_mcp_clients
+from azm_ai.mcp.client import MCPClient
+from azm_ai.mcp.utils import create_mcp_clients
 
 
 @pytest.mark.asyncio

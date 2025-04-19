@@ -1,10 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 
 export function useSearchRepositories(query: string) {
   return useQuery({
     queryKey: ["repositories", query],
-    queryFn: () => OpenHands.searchGitRepositories(query, 3),
+    queryFn: () => AZM AI.searchGitRepositories(query, 3),
     enabled: !!query,
     select: (data) => data.map((repo) => ({ ...repo, is_public: true })),
     staleTime: 1000 * 60 * 5, // 5 minutes

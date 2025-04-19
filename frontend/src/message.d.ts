@@ -1,6 +1,6 @@
 import { PayloadAction } from "@reduxjs/toolkit";
-import { OpenHandsObservation } from "./types/core/observations";
-import { OpenHandsAction } from "./types/core/actions";
+import { AZM AIObservation } from "./types/core/observations";
+import { AZM AIAction } from "./types/core/actions";
 
 export type Message = {
   sender: "user" | "assistant";
@@ -12,6 +12,6 @@ export type Message = {
   pending?: boolean;
   translationID?: string;
   eventID?: number;
-  observation?: PayloadAction<OpenHandsObservation>;
-  action?: PayloadAction<OpenHandsAction>;
+  observation?: PayloadAction<AZM AIObservation>;
+  action?: PayloadAction<AZM AIAction>;
 };

@@ -1,6 +1,6 @@
 # Docker Runtime
 
-This is the default Runtime that's used when you start OpenHands.
+This is the default Runtime that's used when you start AZM AI.
 
 ## Image
 The `SANDBOX_RUNTIME_CONTAINER_IMAGE` from nikolaik is a pre-built runtime image
@@ -15,12 +15,12 @@ A useful feature is the ability to connect to your local filesystem. To mount yo
     export WORKSPACE_BASE=/path/to/your/code
 
     # Linux and Mac Example
-    # export WORKSPACE_BASE=$HOME/OpenHands
-    # Will set $WORKSPACE_BASE to /home/<username>/OpenHands
+    # export WORKSPACE_BASE=$HOME/AZM AI
+    # Will set $WORKSPACE_BASE to /home/<username>/AZM AI
     #
     # WSL on Windows Example
-    # export WORKSPACE_BASE=/mnt/c/dev/OpenHands
-    # Will set $WORKSPACE_BASE to C:\dev\OpenHands
+    # export WORKSPACE_BASE=/mnt/c/dev/AZM AI
+    # Will set $WORKSPACE_BASE to C:\dev\AZM AI
     ```
 2. Add the following options to the `docker run` command:
 
@@ -32,7 +32,7 @@ A useful feature is the ability to connect to your local filesystem. To mount yo
         # ...
     ```
 
-Be careful! There's nothing stopping the OpenHands agent from deleting or modifying
+Be careful! There's nothing stopping the AZM AI agent from deleting or modifying
 any files that are mounted into its workspace.
 
 The `-e SANDBOX_USER_ID=$(id -u)` is passed to the Docker command to ensure the sandbox user matches the host user’s
@@ -40,8 +40,8 @@ permissions. This prevents the agent from creating root-owned files in the mount
 
 ## Hardened Docker Installation
 
-When deploying OpenHands in environments where security is a priority, you should consider implementing a hardened
-Docker configuration. This section provides recommendations for securing your OpenHands Docker deployment beyond the default configuration.
+When deploying AZM AI in environments where security is a priority, you should consider implementing a hardened
+Docker configuration. This section provides recommendations for securing your AZM AI Docker deployment beyond the default configuration.
 
 ### Security Considerations
 
@@ -50,10 +50,10 @@ running on a public network (e.g. airport WiFi), you should implement additional
 
 ### Network Binding Security
 
-By default, OpenHands binds to all network interfaces (`0.0.0.0`), which can expose your instance to all networks the
+By default, AZM AI binds to all network interfaces (`0.0.0.0`), which can expose your instance to all networks the
 host is connected to. For a more secure setup:
 
-1. **Restrict Network Binding**: Use the `runtime_binding_address` configuration to restrict which network interfaces OpenHands listens on:
+1. **Restrict Network Binding**: Use the `runtime_binding_address` configuration to restrict which network interfaces AZM AI listens on:
 
    ```bash
    docker run # ...
@@ -61,7 +61,7 @@ host is connected to. For a more secure setup:
        # ...
    ```
 
-   This configuration ensures OpenHands only listens on the loopback interface (`127.0.0.1`), making it accessible only from the local machine.
+   This configuration ensures AZM AI only listens on the loopback interface (`127.0.0.1`), making it accessible only from the local machine.
 
 2. **Secure Port Binding**: Modify the `-p` flag to bind only to localhost instead of all interfaces:
 
@@ -70,17 +70,17 @@ host is connected to. For a more secure setup:
        -p 127.0.0.1:3000:3000 \
    ```
 
-   This ensures that the OpenHands web interface is only accessible from the local machine, not from other machines on the network.
+   This ensures that the AZM AI web interface is only accessible from the local machine, not from other machines on the network.
 
 ### Network Isolation
 
-Use Docker's network features to isolate OpenHands:
+Use Docker's network features to isolate AZM AI:
 
 ```bash
 # Create an isolated network
-docker network create openhands-network
+docker network create azm_ai-network
 
-# Run OpenHands in the isolated network
+# Run AZM AI in the isolated network
 docker run # ... \
-    --network openhands-network \
+    --network azm_ai-network \
 ```

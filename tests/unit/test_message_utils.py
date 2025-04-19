@@ -1,10 +1,10 @@
-from openhands.core.message_utils import (
+from azm_ai.core.message_utils import (
     get_token_usage_for_event,
     get_token_usage_for_event_id,
 )
-from openhands.events.event import Event
-from openhands.events.tool import ToolCallMetadata
-from openhands.llm.metrics import Metrics, TokenUsage
+from azm_ai.events.event import Event
+from azm_ai.events.tool import ToolCallMetadata
+from azm_ai.llm.metrics import Metrics, TokenUsage
 
 
 def test_get_token_usage_for_event():

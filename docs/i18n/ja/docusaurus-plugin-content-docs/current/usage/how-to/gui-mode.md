@@ -1,11 +1,11 @@
 # GUIモード
 
-OpenHandsは、AI アシスタントとやり取りするためのグラフィカルユーザーインターフェース（GUI）モードを提供しています。
+AZM AIは、AI アシスタントとやり取りするためのグラフィカルユーザーインターフェース（GUI）モードを提供しています。
 
 ## インストールとセットアップ
 
-1. インストール手順に従って、OpenHandsをインストールします。
-2. コマンドを実行した後、[http://localhost:3000](http://localhost:3000)でOpenHandsにアクセスします。
+1. インストール手順に従って、AZM AIをインストールします。
+2. コマンドを実行した後、[http://localhost:3000](http://localhost:3000)でAZM AIにアクセスします。
 
 ## GUIでのやり取り
 
@@ -18,11 +18,11 @@ OpenHandsは、AI アシスタントとやり取りするためのグラフィ�
 
 ### バージョン管理トークン
 
-OpenHandsは複数のバージョン管理プロバイダーをサポートしています。複数のプロバイダーのトークンを同時に設定できます。
+AZM AIは複数のバージョン管理プロバイダーをサポートしています。複数のプロバイダーのトークンを同時に設定できます。
 
 #### GitHubトークンの設定
 
-OpenHandsは、利用可能な場合、自動的に`GITHUB_TOKEN`をシェル環境にエクスポートします。これは2つの方法で行われます。
+AZM AIは、利用可能な場合、自動的に`GITHUB_TOKEN`をシェル環境にエクスポートします。これは2つの方法で行われます。
 
 **ローカルインストール**: ユーザーが直接GitHubトークンを入力します。
 <details>
@@ -36,7 +36,7 @@ OpenHandsは、利用可能な場合、自動的に`GITHUB_TOKEN`をシェル環
    - **Fine-Grained Tokens**
      - All Repositories（特定のリポジトリを選択できますが、これはリポジトリ検索の結果に影響します）
      - Minimal Permissions（検索用に**Meta Data = Read-only**を選択し、ブランチ作成用に**Pull Requests = Read and Write**、**Content = Read and Write**を選択します）
-  2. **OpenHandsにトークンを入力**:
+  2. **AZM AIにトークンを入力**:
    - 設定ボタン（歯車アイコン）をクリックします。
    - `Git Provider Settings`セクションに移動します。
    - `GitHub Token`フィールドにトークンを貼り付けます。
@@ -81,26 +81,26 @@ OpenHandsは、利用可能な場合、自動的に`GITHUB_TOKEN`をシェル環
      - ブラウザのコンソールでエラーメッセージを確認してください。
 </details>
 
-**OpenHands Cloud**: トークンはGitHub OAuth認証を通じて取得されます。
+**AZM AI Cloud**: トークンはGitHub OAuth認証を通じて取得されます。
 
 <details>
   <summary>OAuth認証</summary>
 
-  OpenHands Cloudを使用する場合、GitHub OAuthフローは以下の権限を要求します:
+  AZM AI Cloudを使用する場合、GitHub OAuthフローは以下の権限を要求します:
    - リポジトリアクセス（読み取り/書き込み）
    - ワークフロー管理
    - 組織の読み取りアクセス
 
-  OpenHandsを認証するには:
+  AZM AIを認証するには:
    - プロンプトが表示されたら、`Sign in with GitHub`をクリックします。
    - 要求された権限を確認します。
-   - OpenHandsがGitHubアカウントにアクセスすることを承認します。
+   - AZM AIがGitHubアカウントにアクセスすることを承認します。
    - 組織を使用している場合は、プロンプトが表示されたら組織へのアクセスを承認します。
 </details>
 
 #### GitLabトークンの設定
 
-OpenHandsは、利用可能な場合、ローカルインストールのみ、自動的に`GITLAB_TOKEN`をシェル環境にエクスポートします。
+AZM AIは、利用可能な場合、ローカルインストールのみ、自動的に`GITLAB_TOKEN`をシェル環境にエクスポートします。
 
 <details>
   <summary>GitLabトークンの設定</summary>
@@ -113,7 +113,7 @@ OpenHandsは、利用可能な場合、ローカルインストールのみ、�
      - `read_repository`（リポジトリ読み取り）
      - `write_repository`（リポジトリ書き込み）
    - 有効期限を設定するか、無期限トークンの場合は空白のままにします。
-  2. **OpenHandsにトークンを入力**:
+  2. **AZM AIにトークンを入力**:
    - 設定ボタン（歯車アイコン）をクリックします。
    - `Git Provider Settings`セクションに移動します。
    - `GitLab Token`フィールドにトークンを貼り付けます。
@@ -157,4 +157,4 @@ OpenHandsは、利用可能な場合、ローカルインストールのみ、�
 - ワークスペースパネルを使用して、プロジェクト構造を探索します。
 - [LLMsセクション](usage/llms/llms.md)で説明されているように、推奨モデルの1つを使用します。
 
-OpenHandsのGUIモードは、AIアシスタントとのやり取りをできるだけスムーズで直感的にすることを目的としています。生産性を最大限に高めるために、ぜひその機能を探ってみてください。
+AZM AIのGUIモードは、AIアシスタントとのやり取りをできるだけスムーズで直感的にすることを目的としています。生産性を最大限に高めるために、ぜひその機能を探ってみてください。

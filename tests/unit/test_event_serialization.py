@@ -1,7 +1,7 @@
-from openhands.events.action import MessageAction
-from openhands.events.observation import CmdOutputMetadata, CmdOutputObservation
-from openhands.events.serialization import event_from_dict, event_to_dict
-from openhands.llm.metrics import Cost, Metrics, ResponseLatency, TokenUsage
+from azm_ai.events.action import MessageAction
+from azm_ai.events.observation import CmdOutputMetadata, CmdOutputObservation
+from azm_ai.events.serialization import event_from_dict, event_to_dict
+from azm_ai.llm.metrics import Cost, Metrics, ResponseLatency, TokenUsage
 
 
 def test_command_output_success_serialization():

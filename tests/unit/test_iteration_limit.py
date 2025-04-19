@@ -2,12 +2,12 @@ import asyncio
 
 import pytest
 
-from openhands.controller.agent_controller import AgentController
-from openhands.core.schema import AgentState
-from openhands.events import EventStream
-from openhands.events.action import MessageAction
-from openhands.events.event import EventSource
-from openhands.llm.metrics import Metrics
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.core.schema import AgentState
+from azm_ai.events import EventStream
+from azm_ai.events.action import MessageAction
+from azm_ai.events.event import EventSource
+from azm_ai.llm.metrics import Metrics
 
 
 class DummyAgent:
@@ -27,8 +27,8 @@ class DummyAgent:
 
     def get_system_message(self):
         # Return a proper SystemMessageAction for the refactored system message handling
-        from openhands.events.action.message import SystemMessageAction
-        from openhands.events.event import EventSource
+        from azm_ai.events.action.message import SystemMessageAction
+        from azm_ai.events.event import EventSource
 
         system_message = SystemMessageAction(content='This is a dummy system message')
         system_message._source = EventSource.AGENT
@@ -39,7 +39,7 @@ class DummyAgent:
 @pytest.mark.asyncio
 async def test_iteration_limit_extends_on_user_message():
     # Initialize test components
-    from openhands.storage.memory import InMemoryFileStore
+    from azm_ai.storage.memory import InMemoryFileStore
 
     file_store = InMemoryFileStore()
     event_stream = EventStream(sid='test', file_store=file_store)

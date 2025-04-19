@@ -294,7 +294,7 @@ function isCommonDevelopmentString(str) {
 
   // Check for specific technical identifiers from the test failures
   if (
-    /^(download_via_vscode_button_clicked|open-vscode-error-|set-indicator|settings_saved|openhands-trace-|provider-item-|last_browser_action_error)$/.test(
+    /^(download_via_vscode_button_clicked|open-vscode-error-|set-indicator|settings_saved|azm-ai-trace-|provider-item-|last_browser_action_error)$/.test(
       str,
     )
   ) {
@@ -350,7 +350,7 @@ function isCommonDevelopmentString(str) {
       "This conversation does not exist, or you do not have permission to access it." ||
     str === "Failed to fetch settings. Please try reloading." ||
     str ===
-      "If you tell OpenHands to start a web server, the app will appear here." ||
+      "If you tell AZM AI to start a web server, the app will appear here." ||
     str ===
       "Your browser doesn't support downloading files. Please use Chrome, Edge, or another browser that supports the File System Access API." ||
     str ===

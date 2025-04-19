@@ -19,9 +19,9 @@
     "message": "用户指南",
     "description": "The label for category User Guides in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.category.Running OpenHands": {
-    "message": "运行 OpenHands",
-    "description": "The label for category Running OpenHands in sidebar docsSidebar"
+  "sidebar.docsSidebar.category.Running AZM AI": {
+    "message": "运行 AZM AI",
+    "description": "The label for category Running AZM AI in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.category.Prompting": {
     "message": "提示",
@@ -31,9 +31,9 @@
     "message": "架构",
     "description": "The label for category Architecture in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.doc.Running OpenHands": {
-    "message": "运行 OpenHands",
-    "description": "The label for document Running OpenHands in sidebar docsSidebar"
+  "sidebar.docsSidebar.doc.Running AZM AI": {
+    "message": "运行 AZM AI",
+    "description": "The label for document Running AZM AI in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.Getting Started": {
     "message": "入门",
@@ -63,9 +63,9 @@
     "message": "反馈",
     "description": "The label for document Feedback in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.category.For OpenHands Developers": {
-    "message": "OpenHands 开发者",
-    "description": "The label for category For OpenHands Developers in sidebar docsSidebar"
+  "sidebar.docsSidebar.category.For AZM AI Developers": {
+    "message": "AZM AI 开发者",
+    "description": "The label for category For AZM AI Developers in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.About": {
     "message": "关于",
@@ -115,9 +115,9 @@
     "message": "云",
     "description": "The label for category Cloud in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.doc.Openhands Cloud": {
-    "message": "OpenHands 云",
-    "description": "The label for document Openhands Cloud in sidebar docsSidebar"
+  "sidebar.docsSidebar.doc.AZM AI Cloud": {
+    "message": "AZM AI 云",
+    "description": "The label for document AZM AI Cloud in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.Cloud GitHub Resolver": {
     "message": "云 GitHub 解析器",

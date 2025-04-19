@@ -62,7 +62,7 @@ describe.skip("TreeNode", () => {
     expect(await screen.findByText("file2.ts")).toBeInTheDocument();
   });
 
-  it("should call `OpenHands.getFile` and return the full path of a file when clicking on a file", async () => {
+  it("should call `AZM AI.getFile` and return the full path of a file when clicking on a file", async () => {
     const user = userEvent.setup();
     renderWithProviders(<TreeNode path="/folder1/file2.ts" defaultOpen />);
 

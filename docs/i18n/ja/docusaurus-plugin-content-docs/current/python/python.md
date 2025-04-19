@@ -1,14 +1,14 @@
 # Python API
 
-OpenHandsは、Pythonコードから直接使用できる豊富なAPIを提供しています。以下は、主要なAPIの概要です。
+AZM AIは、Pythonコードから直接使用できる豊富なAPIを提供しています。以下は、主要なAPIの概要です。
 
-## OpenHands クライアント
+## AZM AI クライアント
 
 ```python
-from openhands import OpenHandsClient
+from azm_ai import AZM AIClient
 
 # クライアントの初期化
-client = OpenHandsClient(
+client = AZM AIClient(
     api_key="your-api-key",  # OpenAI APIキーなど
     model="gpt-4",           # 使用するLLMモデル
     workspace="/path/to/workspace"  # 作業ディレクトリ
@@ -26,7 +26,7 @@ print(result.error)    # エラーメッセージ（存在する場合）
 ## サンドボックス設定
 
 ```python
-from openhands import SandboxConfig
+from azm_ai import SandboxConfig
 
 # サンドボックス設定のカスタマイズ
 config = SandboxConfig(
@@ -37,7 +37,7 @@ config = SandboxConfig(
 )
 
 # 設定を使用してクライアントを初期化
-client = OpenHandsClient(
+client = AZM AIClient(
     api_key="your-api-key",
     model="gpt-4",
     workspace="/path/to/workspace",
@@ -48,7 +48,7 @@ client = OpenHandsClient(
 ## イベントハンドリング
 
 ```python
-from openhands import OpenHandsClient
+from azm_ai import AZM AIClient
 
 def on_progress(event):
     print(f"進捗: {event.message}")
@@ -57,7 +57,7 @@ def on_error(event):
     print(f"エラー: {event.error}")
 
 # イベントハンドラーを設定してクライアントを初期化
-client = OpenHandsClient(
+client = AZM AIClient(
     api_key="your-api-key",
     model="gpt-4",
     workspace="/path/to/workspace",
@@ -70,11 +70,11 @@ client = OpenHandsClient(
 
 ```python
 import asyncio
-from openhands import AsyncOpenHandsClient
+from azm_ai import AsyncAZM AIClient
 
 async def main():
     # 非同期クライアントの初期化
-    client = AsyncOpenHandsClient(
+    client = AsyncAZM AIClient(
         api_key="your-api-key",
         model="gpt-4",
         workspace="/path/to/workspace"

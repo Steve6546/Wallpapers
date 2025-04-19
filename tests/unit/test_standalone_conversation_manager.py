@@ -5,13 +5,13 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from openhands.core.config.app_config import AppConfig
-from openhands.server.conversation_manager.standalone_conversation_manager import (
+from azm_ai.core.config.app_config import AppConfig
+from azm_ai.server.conversation_manager.standalone_conversation_manager import (
     StandaloneConversationManager,
 )
-from openhands.server.monitoring import MonitoringListener
-from openhands.server.session.conversation_init_data import ConversationInitData
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.server.monitoring import MonitoringListener
+from azm_ai.server.session.conversation_init_data import ConversationInitData
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @dataclass
@@ -49,11 +49,11 @@ async def test_init_new_local_session():
     is_agent_loop_running_mock.return_value = True
     with (
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.Session',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.Session',
             mock_session,
         ),
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
             get_running_agent_loops_mock,
         ),
     ):
@@ -65,7 +65,7 @@ async def test_init_new_local_session():
             )
             with (
                 patch(
-                    'openhands.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.is_agent_loop_running',
+                    'azm_ai.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.is_agent_loop_running',
                     is_agent_loop_running_mock,
                 ),
             ):
@@ -94,11 +94,11 @@ async def test_join_local_session():
     is_agent_loop_running_mock.return_value = True
     with (
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.Session',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.Session',
             mock_session,
         ),
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
             get_running_agent_loops_mock,
         ),
     ):
@@ -110,7 +110,7 @@ async def test_join_local_session():
             )
             with (
                 patch(
-                    'openhands.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.is_agent_loop_running',
+                    'azm_ai.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.is_agent_loop_running',
                     is_agent_loop_running_mock,
                 ),
             ):
@@ -144,11 +144,11 @@ async def test_add_to_local_event_stream():
     get_running_agent_loops_mock.return_value = set()
     with (
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.Session',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.Session',
             mock_session,
         ),
         patch(
-            'openhands.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
+            'azm_ai.server.conversation_manager.standalone_conversation_manager.StandaloneConversationManager.get_running_agent_loops',
             get_running_agent_loops_mock,
         ),
     ):

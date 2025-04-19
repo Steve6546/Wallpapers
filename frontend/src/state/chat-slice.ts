@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import type { Message } from "#/message";
 
 import { ActionSecurityRisk } from "#/state/security-analyzer-slice";
-import { OpenHandsAction } from "#/types/core/actions";
-import { OpenHandsEventType } from "#/types/core/base";
+import { AZM AIAction } from "#/types/core/actions";
+import { AZM AIEventType } from "#/types/core/base";
 import {
   CommandObservation,
   IPythonObservation,
-  OpenHandsObservation,
+  AZM AIObservation,
   RecallObservation,
 } from "#/types/core/observations";
 
@@ -15,7 +15,7 @@ type SliceState = { messages: Message[] };
 
 const MAX_CONTENT_LENGTH = 1000;
 
-const HANDLED_ACTIONS: OpenHandsEventType[] = [
+const HANDLED_ACTIONS: AZM AIEventType[] = [
   "run",
   "run_ipython",
   "write",
@@ -92,7 +92,7 @@ export const chatSlice = createSlice({
 
     addAssistantAction(
       state: SliceState,
-      action: PayloadAction<OpenHandsAction>,
+      action: PayloadAction<AZM AIAction>,
     ) {
       const actionID = action.payload.action;
       if (!HANDLED_ACTIONS.includes(actionID)) {
@@ -144,7 +144,7 @@ export const chatSlice = createSlice({
 
     addAssistantObservation(
       state: SliceState,
-      observation: PayloadAction<OpenHandsObservation>,
+      observation: PayloadAction<AZM AIObservation>,
     ) {
       const observationID = observation.payload.observation;
       if (!HANDLED_ACTIONS.includes(observationID)) {

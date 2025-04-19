@@ -1,4 +1,4 @@
-以下は、OpenHandsのデバッグに関する入門書です。開発目的で使用してください。
+以下は、AZM AIのデバッグに関する入門書です。開発目的で使用してください。
 
 ## サーバー / VSCode
 
@@ -9,19 +9,19 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "OpenHands CLI",
+            "name": "AZM AI CLI",
             "type": "debugpy",
             "request": "launch",
-            "module": "openhands.core.cli",
+            "module": "azm_ai.core.cli",
             "justMyCode": false
         },
         {
-            "name": "OpenHands WebApp",
+            "name": "AZM AI WebApp",
             "type": "debugpy",
             "request": "launch",
             "module": "uvicorn",
             "args": [
-                "openhands.server.listen:app",
+                "azm_ai.server.listen:app",
                 "--reload",
                 "--reload-exclude",
                 "${workspaceFolder}/workspace",
@@ -42,7 +42,7 @@
       "name": "Debug CodeAct",
       "type": "debugpy",
       "request": "launch",
-      "module": "openhands.core.main",
+      "module": "azm_ai.core.main",
       "args": [
         "-t",
         "Ask me what your task is.",
@@ -63,7 +63,7 @@
 上記のスニペットの値は、以下のように更新できます。
 
     * *t*: タスク
-    * *d*: openhandsワークスペースディレクトリ
+    * *d*: azm_aiワークスペースディレクトリ
     * *c*: エージェント
     * *l*: LLM設定（config.tomlで事前定義）
     * *n*: セッション名（例：eventstream名）

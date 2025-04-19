@@ -1,4 +1,4 @@
-export type OpenHandsEventType =
+export type AZM AIEventType =
   | "message"
   | "agent_state_changed"
   | "run"
@@ -15,21 +15,21 @@ export type OpenHandsEventType =
   | "error"
   | "recall";
 
-interface OpenHandsBaseEvent {
+interface AZM AIBaseEvent {
   id: number;
   source: "agent" | "user";
   message: string;
   timestamp: string; // ISO 8601
 }
 
-export interface OpenHandsActionEvent<T extends OpenHandsEventType>
-  extends OpenHandsBaseEvent {
+export interface AZM AIActionEvent<T extends AZM AIEventType>
+  extends AZM AIBaseEvent {
   action: T;
   args: Record<string, unknown>;
 }
 
-export interface OpenHandsObservationEvent<T extends OpenHandsEventType>
-  extends OpenHandsBaseEvent {
+export interface AZM AIObservationEvent<T extends AZM AIEventType>
+  extends AZM AIBaseEvent {
   cause: number;
   observation: T;
   content: string;

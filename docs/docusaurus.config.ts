@@ -3,7 +3,7 @@ import type { Config } from '@docusaurus/types';
 import { themes as prismThemes } from 'prism-react-renderer';
 
 const config: Config = {
-  title: 'OpenHands',
+  title: 'AZM AI',
   tagline: 'Code Less, Make More',
   favicon: 'img/logo-square.png',
 
@@ -13,7 +13,7 @@ const config: Config = {
 
   // GitHub pages deployment config.
   organizationName: 'All-Hands-AI',
-  projectName: 'OpenHands',
+  projectName: 'AZM AI',
   trailingSlash: false,
 
   onBrokenLinks: 'throw',
@@ -63,9 +63,9 @@ const config: Config = {
   themeConfig: {
     image: 'img/docusaurus.png',
     navbar: {
-      title: 'OpenHands',
+      title: 'AZM AI',
       logo: {
-        alt: 'OpenHands',
+        alt: 'AZM AI',
         src: 'img/logo.png',
       },
       items: [
@@ -85,7 +85,7 @@ const config: Config = {
           position: 'right',
         },
         {
-          href: 'https://github.com/All-Hands-AI/OpenHands',
+          href: 'https://github.com/All-Hands-AI/AZM AI',
           label: 'GitHub',
           position: 'right',
         },

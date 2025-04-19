@@ -5,7 +5,7 @@ import EventLogger from "#/utils/event-logger";
 import { handleAssistantMessage } from "#/services/actions";
 import { showChatError } from "#/utils/error-handler";
 import { useRate } from "#/hooks/use-rate";
-import { OpenHandsParsedEvent } from "#/types/core";
+import { AZM AIParsedEvent } from "#/types/core";
 import {
   AssistantMessageAction,
   CommandAction,
@@ -16,7 +16,7 @@ import {
 import { Conversation } from "#/api/open-hands.types";
 import { useAuth } from "./auth-context";
 
-const isOpenHandsEvent = (event: unknown): event is OpenHandsParsedEvent =>
+const isAZM AIEvent = (event: unknown): event is AZM AIParsedEvent =>
   typeof event === "object" &&
   event !== null &&
   "id" in event &&
@@ -25,18 +25,18 @@ const isOpenHandsEvent = (event: unknown): event is OpenHandsParsedEvent =>
   "timestamp" in event;
 
 const isFileWriteAction = (
-  event: OpenHandsParsedEvent,
+  event: AZM AIParsedEvent,
 ): event is FileWriteAction => "action" in event && event.action === "write";
 
 const isFileEditAction = (
-  event: OpenHandsParsedEvent,
+  event: AZM AIParsedEvent,
 ): event is FileEditAction => "action" in event && event.action === "edit";
 
-const isCommandAction = (event: OpenHandsParsedEvent): event is CommandAction =>
+const isCommandAction = (event: AZM AIParsedEvent): event is CommandAction =>
   "action" in event && event.action === "run";
 
 const isUserMessage = (
-  event: OpenHandsParsedEvent,
+  event: AZM AIParsedEvent,
 ): event is UserMessageAction =>
   "source" in event &&
   "type" in event &&
@@ -44,7 +44,7 @@ const isUserMessage = (
   event.type === "message";
 
 const isAssistantMessage = (
-  event: OpenHandsParsedEvent,
+  event: AZM AIParsedEvent,
 ): event is AssistantMessageAction =>
   "source" in event &&
   "type" in event &&
@@ -52,7 +52,7 @@ const isAssistantMessage = (
   event.type === "message";
 
 const isMessageAction = (
-  event: OpenHandsParsedEvent,
+  event: AZM AIParsedEvent,
 ): event is UserMessageAction | AssistantMessageAction =>
   isUserMessage(event) || isAssistantMessage(event);
 
@@ -145,7 +145,7 @@ export function WsClientProvider({
   }
 
   function handleMessage(event: Record<string, unknown>) {
-    if (isOpenHandsEvent(event)) {
+    if (isAZM AIEvent(event)) {
       if (isMessageAction(event)) {
         messageRateHandler.record(new Date().getTime());
       }
