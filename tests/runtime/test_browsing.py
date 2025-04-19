@@ -98,7 +98,7 @@ def test_read_pdf_browse(temp_dir, runtime_cls, run_as_azm_ai):
         assert 'test_document.pdf' in obs.content
 
         # Get server url
-        action_cmd = CmdRunAction(command='cat /tmp/oh-server-url')
+        action_cmd = CmdRunAction(command='cat /tmp/azm-server-url')
         logger.info(action_cmd, extra={'msg_type': 'ACTION'})
         obs = runtime.run_action(action_cmd)
         logger.info(obs, extra={'msg_type': 'OBSERVATION'})
@@ -150,7 +150,7 @@ def test_read_png_browse(temp_dir, runtime_cls, run_as_azm_ai):
         assert 'test_image.png' in obs.content
 
         # Get server url
-        action_cmd = CmdRunAction(command='cat /tmp/oh-server-url')
+        action_cmd = CmdRunAction(command='cat /tmp/azm-server-url')
         logger.info(action_cmd, extra={'msg_type': 'ACTION'})
         obs = runtime.run_action(action_cmd)
         logger.info(obs, extra={'msg_type': 'OBSERVATION'})
