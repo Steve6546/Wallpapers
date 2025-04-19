@@ -52,15 +52,33 @@ def check_dependencies(code_repo_path: str, poetry_venvs_path: str):
         )
     # Check jupyter is installed
     logger.debug('Checking dependencies: Jupyter')
-    output = subprocess.check_output(
-        'poetry run jupyter --version',
-        shell=True,
-        text=True,
-        cwd=code_repo_path,
-    )
-    logger.debug(f'Jupyter output: {output}')
-    if 'jupyter' not in output.lower():
-        raise ValueError('Jupyter is not properly installed. ' + ERROR_MESSAGE)
+    try:
+        # Use a safer approach with a list of arguments
+        cmd = ['poetry', 'run', 'jupyter', '--version']
+        
+        # Validate command components
+        for part in cmd:
+            if not isinstance(part, str) or ';' in part or '&' in part or '|' in part or '>' in part or '<' in part:
+                error_msg = f"Invalid command component detected: {part}"
+                logger.error(error_msg)
+                raise ValueError(error_msg)
+        
+        output = subprocess.check_output(
+            cmd,
+            shell=False,  # Safer to use shell=False with a list
+            text=True,
+            cwd=code_repo_path,
+            timeout=30,  # Add timeout to prevent hanging
+        )
+        logger.debug(f'Jupyter output: {output}')
+        if 'jupyter' not in output.lower():
+            raise ValueError('Jupyter is not properly installed. ' + ERROR_MESSAGE)
+    except (subprocess.SubprocessError, OSError) as e:
+        logger.error(f"Failed to check Jupyter installation: {str(e)}")
+        raise ValueError(f"Failed to check Jupyter installation: {str(e)}. " + ERROR_MESSAGE) from e
+    except Exception as e:
+        logger.error(f"Unexpected error checking Jupyter: {str(e)}")
+        raise ValueError(f"Unexpected error checking Jupyter: {str(e)}. " + ERROR_MESSAGE) from e
 
     # Check libtmux is installed
     logger.debug('Checking dependencies: libtmux')
@@ -207,19 +225,39 @@ class LocalRuntime(ActionExecutionClient):
         env['PYTHONPATH'] = f'{code_repo_path}:$PYTHONPATH'
         env['AZM_AI_REPO_PATH'] = code_repo_path
         env['LOCAL_RUNTIME_MODE'] = '1'
-        # run poetry show -v | head -n 1 | awk '{print $2}'
-        poetry_venvs_path = (
-            subprocess.check_output(
-                ['poetry', 'show', '-v'],
+        # Get poetry virtualenvs path
+        try:
+            # Validate command components
+            cmd = ['poetry', 'show', '-v']
+            for part in cmd:
+                if not isinstance(part, str) or ';' in part or '&' in part or '|' in part or '>' in part or '<' in part:
+                    error_msg = f"Invalid command component detected: {part}"
+                    logger.error(error_msg)
+                    raise ValueError(error_msg)
+            
+            # Execute with proper error handling and timeout
+            output = subprocess.check_output(
+                cmd,
                 env=env,
                 cwd=code_repo_path,
                 text=True,
                 shell=False,
+                timeout=60,  # Add timeout to prevent hanging
             )
-            .splitlines()[0]
-            .split(':')[1]
-            .strip()
-        )
+            
+            # Process the output safely
+            if not output or not output.splitlines():
+                raise ValueError("Poetry command returned empty output")
+                
+            poetry_venvs_path = output.splitlines()[0].split(':')[1].strip()
+            
+            # Validate the path is reasonable
+            if not poetry_venvs_path or len(poetry_venvs_path) < 3:
+                raise ValueError(f"Invalid poetry virtualenvs path: '{poetry_venvs_path}'")
+                
+        except (subprocess.SubprocessError, OSError, IndexError) as e:
+            logger.error(f"Failed to get poetry virtualenvs path: {str(e)}")
+            raise AgentRuntimeDisconnectedError(f"Failed to get poetry virtualenvs path: {str(e)}") from e
         env['POETRY_VIRTUALENVS_PATH'] = poetry_venvs_path
         logger.debug(f'POETRY_VIRTUALENVS_PATH: {poetry_venvs_path}')
 
