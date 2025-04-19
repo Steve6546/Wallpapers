@@ -182,7 +182,7 @@ def test_file_edit_observation_new_file_serialization():
     serialization_deserialization(original_observation_dict, FileEditObservation)
 
 
-def test_file_edit_observation_oh_aci_serialization():
+def test_file_edit_observation_azm_aci_serialization():
     original_observation_dict = {
         'observation': 'edit',
         'content': 'The file /path/to/file.txt is edited with the provided content.',

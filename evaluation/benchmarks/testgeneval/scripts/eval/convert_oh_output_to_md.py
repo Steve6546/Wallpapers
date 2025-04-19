@@ -13,14 +13,14 @@ from azm_ai.events.serialization import event_from_dict
 tqdm.pandas()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('oh_output_file', type=str)
+parser.add_argument('azm_output_file', type=str)
 args = parser.parse_args()
-output_md_folder = args.oh_output_file.replace('.jsonl', '.viz')
-print(f'Converting {args.oh_output_file} to markdown files in {output_md_folder}')
+output_md_folder = args.azm_output_file.replace('.jsonl', '.viz')
+print(f'Converting {args.azm_output_file} to markdown files in {output_md_folder}')
 
-oh_format = pd.read_json(args.oh_output_file, orient='records', lines=True)
-# model name is the folder name of oh_output_file
-model_name = os.path.basename(os.path.dirname(args.oh_output_file))
+azm_format = pd.read_json(args.azm_output_file, orient='records', lines=True)
+# model name is the folder name of azm_output_file
+model_name = os.path.basename(os.path.dirname(args.azm_output_file))
 
 
 def convert_history_to_str(history):
@@ -87,4 +87,4 @@ def write_row_to_md_file(row):
         f.write(f'{test_suite}\n')
 
 
-oh_format.progress_apply(write_row_to_md_file, axis=1)
+azm_format.progress_apply(write_row_to_md_file, axis=1)
