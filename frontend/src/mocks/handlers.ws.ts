@@ -30,20 +30,20 @@ export const handlers: WebSocketHandler[] = [
       emitMessages(io, SESSION_HISTORY["1"]);
 
       io.client.emit(
-        "oh_event",
+        "azm_event",
         generateAgentStateChangeObservation(AgentState.AWAITING_USER_INPUT),
       );
     }
 
-    io.client.on("oh_user_action", async (_, data) => {
+    io.client.on("azm_user_action", async (_, data) => {
       if (isInitConfig(data)) {
         io.client.emit(
-          "oh_event",
+          "azm_event",
           generateAgentStateChangeObservation(AgentState.INIT),
         );
       } else {
         io.client.emit(
-          "oh_event",
+          "azm_event",
           generateAgentStateChangeObservation(AgentState.RUNNING),
         );
 
@@ -51,7 +51,7 @@ export const handlers: WebSocketHandler[] = [
         emitAssistantMessage(io, "Hello!");
 
         io.client.emit(
-          "oh_event",
+          "azm_event",
           generateAgentStateChangeObservation(AgentState.AWAITING_USER_INPUT),
         );
       }
