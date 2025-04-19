@@ -5,7 +5,7 @@ import time
 
 import docker
 
-from azm_ai import __version__ as oh_version
+from azm_ai import __version__ as azm_version
 from azm_ai.core.exceptions import AgentRuntimeBuildError
 from azm_ai.core.logger import RollingLogger
 from azm_ai.core.logger import azm_ai_logger as logger
@@ -181,7 +181,7 @@ class DockerRuntimeBuilder(RuntimeBuilder):
             'buildx',
             'build',
             '--progress=plain',
-            f'--build-arg=AZM_AI_RUNTIME_VERSION={oh_version}',
+            f'--build-arg=AZM_AI_RUNTIME_VERSION={azm_version}',
             f'--build-arg=AZM_AI_RUNTIME_BUILD_TIME={datetime.datetime.now().isoformat()}',
             f'--tag={target_image_hash_name}',
             '--load',
