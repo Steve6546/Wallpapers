@@ -23,6 +23,15 @@ Welcome to AZM AI, an advanced platform for software development agents powered 
 AZM AI agents can do anything a human developer can: modify code, run commands, browse the web,
 call APIs, and yes—even copy code snippets from StackOverflow.
 
+## 🚀 Key Features
+
+- **Powerful AI Agents**: Leverage state-of-the-art LLMs to automate software development tasks
+- **Web Browsing**: Agents can search the web, read documentation, and find solutions online
+- **Code Editing**: Seamlessly modify code across multiple files and languages
+- **Command Execution**: Run terminal commands and interpret their outputs
+- **Flexible Deployment**: Run locally, in the cloud, or integrate with your existing tools
+- **Extensible Architecture**: Add custom tools and capabilities to meet your specific needs
+
 Learn more in our [GitHub Wiki](https://github.com/Steve6546/azm-ai/wiki) to get started.
 
 > [!IMPORTANT]
@@ -38,9 +47,17 @@ contact us to learn more about our cloud offerings.
 
 ## 💻 Running AZM AI Locally
 
-AZM AI can also run on your local system using Docker.
+AZM AI can run on your local system using Docker. Here's how to get started:
+
+### System Requirements
+- **Docker**: Latest stable version
+- **Memory**: At least 8GB RAM (16GB+ recommended)
+- **Disk Space**: 10GB+ free space
+- **CPU**: 4+ cores recommended
+- **Internet Connection**: Required for LLM API calls and web browsing
+
 See our [Wiki](https://github.com/Steve6546/azm-ai/wiki) for
-system requirements and more information.
+detailed system requirements and more information.
 
 > [!WARNING]
 > On a public network? See our [Security Guide](https://github.com/Steve6546/azm-ai/wiki/Security)
@@ -125,10 +142,36 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 
 AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! 
 
-This project is based on [AZM AI](https://github.com/AZM AIAI/azm_ai) under the MIT license. We've built upon their excellent foundation to create AZM AI with our own enhancements and modifications.
+This project is based on [OpenHands](https://github.com/OpenHandsAI/openhands) under the MIT license. We've built upon their excellent foundation to create AZM AI with our own enhancements and modifications.
 
 For a list of open source projects and licenses used in AZM AI, please see our [CREDITS.md](./CREDITS.md) file.
 
 ## 📚 References
 
 AZM AI is based on advanced AI research and development in the field of generalist agents for software development.
+
+## 🛠️ Project Structure
+
+The AZM AI project is organized into several key components:
+
+- **`azm_ai/`**: Core Python backend
+  - **`agenthub/`**: Agent implementations and tools
+  - **`core/`**: Core functionality and configuration
+  - **`events/`**: Event handling system
+  - **`integrations/`**: Integrations with external services
+  - **`llm/`**: Language model interfaces
+  - **`runtime/`**: Runtime environments for agent execution
+  - **`server/`**: API server implementation
+  - **`utils/`**: Utility functions and helpers
+
+- **`frontend/`**: React-based user interface
+  - **`src/`**: Source code
+  - **`public/`**: Static assets
+
+- **`tests/`**: Test suite
+  - **`unit/`**: Unit tests
+  - **`integration/`**: Integration tests
+
+## 🔧 Development
+
+For development setup and contribution guidelines, see [Development.md](https://github.com/Steve6546/azm-ai/blob/main/Development.md).
