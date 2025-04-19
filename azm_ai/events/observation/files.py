@@ -53,7 +53,7 @@ class FileEditObservation(Observation):
 
     The .content property can either be:
       - Git diff in LLM-based editing mode
-      - the rendered message sent to the LLM in OH_ACI mode (e.g., "The file /path/to/file.txt is created with the provided content.")
+      - the rendered message sent to the LLM in AZM_ACI mode (e.g., "The file /path/to/file.txt is created with the provided content.")
     """
 
     path: str = ''
@@ -63,7 +63,7 @@ class FileEditObservation(Observation):
     observation: str = ObservationType.EDIT
     impl_source: FileEditSource = FileEditSource.LLM_BASED_EDIT
     diff: str | None = (
-        None  # The raw diff between old and new content, used in OH_ACI mode
+        None  # The raw diff between old and new content, used in AZM_ACI mode
     )
     _diff_cache: str | None = (
         None  # Cache for the diff visualization, used in LLM-based editing mode
@@ -182,7 +182,7 @@ class FileEditObservation(Observation):
 
     def __str__(self) -> str:
         """Get a string representation of the file edit observation."""
-        if self.impl_source == FileEditSource.OH_ACI:
+        if self.impl_source == FileEditSource.AZM_ACI:
             return self.content
 
         if not self.prev_exist:

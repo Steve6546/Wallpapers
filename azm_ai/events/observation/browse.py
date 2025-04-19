@@ -70,13 +70,27 @@ class BrowserOutputObservation(Observation):
             try:
                 # We do not filter visible only here because we want to show the full content
                 # of the web page to the agent for simplicity.
-                # FIXME: handle the case when the web page is too large
-                cur_axtree_txt = self.get_axtree_str(filter_visible_only=False)
-                text += (
-                    f'============== BEGIN accessibility tree ==============\n'
-                    f'{cur_axtree_txt}\n'
-                    f'============== END accessibility tree ==============\n'
-                )
+                try:
+                    # Handle large web pages by limiting content size
+                    cur_axtree_txt = self.get_axtree_str(filter_visible_only=False)
+                    
+                    # If the accessibility tree is too large, truncate it and add a warning
+                    MAX_CHARS = 100000  # Limit to ~100K characters to avoid token limits
+                    if len(cur_axtree_txt) > MAX_CHARS:
+                        from azm_ai.core.logger import azm_ai_logger as logger
+                        logger.warning(f"Large accessibility tree detected: {len(cur_axtree_txt)} chars. Truncating to {MAX_CHARS} chars.")
+                        cur_axtree_txt = cur_axtree_txt[:MAX_CHARS] + "\n\n[... CONTENT TRUNCATED: Web page is too large to display completely ...]"
+                    
+                    text += (
+                        f'============== BEGIN accessibility tree ==============\n'
+                        f'{cur_axtree_txt}\n'
+                        f'============== END accessibility tree ==============\n'
+                    )
+                except MemoryError:
+                    # Handle out-of-memory situations
+                    from azm_ai.core.logger import azm_ai_logger as logger
+                    logger.error("Memory error when processing accessibility tree - page too large")
+                    text += "\n[ERROR: Web page is too large to process. Try a more specific selector or navigate to a simpler page.]\n"
             except Exception as e:
                 text += (
                     f'\n[Error encountered when processing the accessibility tree: {e}]'

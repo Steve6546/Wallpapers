@@ -21,8 +21,13 @@ from azm_ai.runtime.utils.runtime_build import (
 from azm_ai.utils.async_utils import call_sync_from_async
 from azm_ai.utils.tenacity_stop import stop_if_should_exit
 
-# FIXME: this will not work in HA mode. We need a better way to track IDs
+# Store runtime IDs with session information for better tracking
+# This implementation uses a dictionary for simplicity, but in a production HA environment,
+# this should be replaced with a distributed cache or database
 MODAL_RUNTIME_IDS: dict[str, str] = {}
+
+# Maximum number of retries for Modal operations
+MAX_MODAL_RETRIES = 5
 
 
 class ModalRuntime(ActionExecutionClient):
@@ -116,9 +121,18 @@ class ModalRuntime(ActionExecutionClient):
             if self.sid in MODAL_RUNTIME_IDS:
                 sandbox_id = MODAL_RUNTIME_IDS[self.sid]
                 self.log('debug', f'Attaching to existing Modal sandbox: {sandbox_id}')
-                self.sandbox = modal.Sandbox.from_id(
-                    sandbox_id, client=self.modal_client
-                )
+                try:
+                    self.sandbox = modal.Sandbox.from_id(
+                        sandbox_id, client=self.modal_client
+                    )
+                except modal.exception.NotFoundError:
+                    self.log('warning', f'Modal sandbox {sandbox_id} not found. Creating a new one.')
+                    # Remove the stale ID and create a new sandbox
+                    MODAL_RUNTIME_IDS.pop(self.sid, None)
+                    self.attach_to_existing = False
+                except Exception as e:
+                    self.log('error', f'Error attaching to Modal sandbox: {e}')
+                    raise
         else:
             self.send_status_message('STATUS$PREPARING_CONTAINER')
             await call_sync_from_async(
@@ -198,8 +212,10 @@ echo 'export INPUTRC=/etc/inputrc' >> /etc/bash.bashrc
         )
 
     @tenacity.retry(
-        stop=tenacity.stop_after_attempt(5),
+        stop=tenacity.stop_after_attempt(MAX_MODAL_RETRIES),
         wait=tenacity.wait_exponential(multiplier=1, min=4, max=60),
+        retry=tenacity.retry_if_exception_type((modal.exception.Error, httpx.HTTPError)),
+        reraise=True,
     )
     def _init_sandbox(
         self,
@@ -252,7 +268,16 @@ echo 'export INPUTRC=/etc/inputrc' >> /etc/bash.bashrc
         super().close()
 
         if not self.attach_to_existing and self.sandbox:
-            self.sandbox.terminate()
+            try:
+                self.sandbox.terminate()
+                # Clean up the runtime ID when explicitly closed
+                if self.sid in MODAL_RUNTIME_IDS:
+                    MODAL_RUNTIME_IDS.pop(self.sid, None)
+                    self.log('debug', f'Removed Modal runtime ID for session {self.sid}')
+            except Exception as e:
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.error(f"Error terminating Modal sandbox: {e}")
+                # Continue with cleanup even if termination fails
 
     @property
     def vscode_url(self) -> str | None:

@@ -157,7 +157,7 @@ def response_to_actions(response: ModelResponse) -> list[Action]:
                 if command == 'view':
                     action = FileReadAction(
                         path=path,
-                        impl_source=FileReadSource.OH_ACI,
+                        impl_source=FileReadSource.AZM_ACI,
                         view_range=other_kwargs.get('view_range', None),
                     )
                 else:
@@ -167,7 +167,7 @@ def response_to_actions(response: ModelResponse) -> list[Action]:
                     action = FileEditAction(
                         path=path,
                         command=command,
-                        impl_source=FileEditSource.OH_ACI,
+                        impl_source=FileEditSource.AZM_ACI,
                         **other_kwargs,
                     )
             # ================================================

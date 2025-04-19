@@ -61,5 +61,24 @@ class E2BRuntime(Runtime):
             self.file_store.write(action.path, ''.join(new_file))
             return FileWriteObservation('', path=action.path)
         else:
-            # FIXME: we should create a new file here
-            return ErrorObservation(f'File not found: {action.path}')
+            # Create a new file if it doesn't exist
+            try:
+                # Create parent directories if they don't exist
+                import os
+                parent_dir = os.path.dirname(action.path)
+                if parent_dir:
+                    # Check if parent directory exists in the file store
+                    parent_dirs = self.file_store.list(parent_dir)
+                    if not parent_dirs and parent_dir != '/':
+                        # Create parent directories recursively
+                        self.file_store.mkdir(parent_dir, recursive=True)
+                
+                # Write the content to the new file
+                self.file_store.write(action.path, action.content)
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.info(f"Created new file: {action.path}")
+                return FileWriteObservation('', path=action.path, created=True)
+            except Exception as e:
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.error(f"Failed to create file {action.path}: {e}")
+                return ErrorObservation(f'Failed to create file: {action.path}. Error: {str(e)}')

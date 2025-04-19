@@ -357,7 +357,14 @@ class GitHubService(GitService):
                 )
 
             return tasks
-        except Exception:
+        except httpx.HTTPError as e:
+            logger.warning(f"HTTP error while fetching suggested tasks: {e}")
+            return []
+        except (KeyError, TypeError, ValueError) as e:
+            logger.warning(f"Error parsing GitHub API response: {e}")
+            return []
+        except Exception as e:
+            logger.error(f"Unexpected error in get_suggested_tasks: {e}")
             return []
 
 

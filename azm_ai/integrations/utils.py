@@ -23,7 +23,13 @@ async def validate_provider_token(token: SecretStr) -> ProviderType | None:
         github_service = GitHubService(token=token)
         await github_service.get_user()
         return ProviderType.GITHUB
-    except Exception:
+    except (ValueError, KeyError, ConnectionError) as e:
+        # Specific errors that might occur during validation
+        pass
+    except Exception as e:
+        # Log unexpected errors but continue to try GitLab
+        from azm_ai.core.logger import azm_ai_logger as logger
+        logger.warning(f"Unexpected error validating GitHub token: {e}")
         pass
 
     # Try GitLab next
@@ -31,7 +37,13 @@ async def validate_provider_token(token: SecretStr) -> ProviderType | None:
         gitlab_service = GitLabService(token=token)
         await gitlab_service.get_user()
         return ProviderType.GITLAB
-    except Exception:
+    except (ValueError, KeyError, ConnectionError) as e:
+        # Specific errors that might occur during validation
+        pass
+    except Exception as e:
+        # Log unexpected errors
+        from azm_ai.core.logger import azm_ai_logger as logger
+        logger.warning(f"Unexpected error validating GitLab token: {e}")
         pass
 
     return None

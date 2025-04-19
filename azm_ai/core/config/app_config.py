@@ -5,8 +5,8 @@ from pydantic import BaseModel, Field, SecretStr
 from azm_ai.core import logger
 from azm_ai.core.config.agent_config import AgentConfig
 from azm_ai.core.config.config_utils import (
-    OH_DEFAULT_AGENT,
-    OH_MAX_ITERATIONS,
+    AZM_DEFAULT_AGENT,
+    AZM_MAX_ITERATIONS,
     model_defaults_to_dict,
 )
 from azm_ai.core.config.extended_config import ExtendedConfig
@@ -53,7 +53,7 @@ class AppConfig(BaseModel):
 
     llms: dict[str, LLMConfig] = Field(default_factory=dict)
     agents: dict[str, AgentConfig] = Field(default_factory=dict)
-    default_agent: str = Field(default=OH_DEFAULT_AGENT)
+    default_agent: str = Field(default=AZM_DEFAULT_AGENT)
     sandbox: SandboxConfig = Field(default_factory=SandboxConfig)
     security: SecurityConfig = Field(default_factory=SecurityConfig)
     extended: ExtendedConfig = Field(default_factory=lambda: ExtendedConfig({}))
@@ -69,7 +69,7 @@ class AppConfig(BaseModel):
     workspace_mount_rewrite: str | None = Field(default=None)
     cache_dir: str = Field(default='/tmp/cache')
     run_as_azm_ai: bool = Field(default=True)
-    max_iterations: int = Field(default=OH_MAX_ITERATIONS)
+    max_iterations: int = Field(default=AZM_MAX_ITERATIONS)
     max_budget_per_task: float | None = Field(default=None)
     e2b_api_key: SecretStr | None = Field(default=None)
     modal_api_token_id: SecretStr | None = Field(default=None)

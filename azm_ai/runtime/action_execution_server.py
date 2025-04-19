@@ -372,7 +372,7 @@ class ActionExecutor:
         if is_binary(action.path):
             return ErrorObservation('ERROR_BINARY_FILE')
 
-        if action.impl_source == FileReadSource.OH_ACI:
+        if action.impl_source == FileReadSource.AZM_ACI:
             result_str, _ = _execute_file_editor(
                 self.file_editor,
                 command='view',
@@ -383,7 +383,7 @@ class ActionExecutor:
             return FileReadObservation(
                 content=result_str,
                 path=action.path,
-                impl_source=FileReadSource.OH_ACI,
+                impl_source=FileReadSource.AZM_ACI,
             )
 
         # NOTE: the client code is running inside the sandbox,
@@ -489,7 +489,7 @@ class ActionExecutor:
         return FileWriteObservation(content='', path=filepath)
 
     async def edit(self, action: FileEditAction) -> Observation:
-        assert action.impl_source == FileEditSource.OH_ACI
+        assert action.impl_source == FileEditSource.AZM_ACI
         result_str, (old_content, new_content) = _execute_file_editor(
             self.file_editor,
             command=action.command,
@@ -506,7 +506,7 @@ class ActionExecutor:
             path=action.path,
             old_content=action.old_str,
             new_content=action.new_str,
-            impl_source=FileEditSource.OH_ACI,
+            impl_source=FileEditSource.AZM_ACI,
             diff=get_diff(
                 old_contents=old_content or '',
                 new_contents=new_content or '',

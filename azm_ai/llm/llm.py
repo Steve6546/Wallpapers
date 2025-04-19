@@ -411,16 +411,22 @@ class LLM(RetryMixin, DebugMixin):
                 self.model_info = litellm.get_model_info(
                     self.config.model.split(':')[0]
                 )
-            # noinspection PyBroadException
-            except Exception:
+            except (KeyError, ValueError) as e:
+                logger.debug(f"Error getting model info from split model name: {e}")
+                pass
+            except Exception as e:
+                logger.warning(f"Unexpected error getting model info: {e}")
                 pass
         if not self.model_info:
             try:
                 self.model_info = litellm.get_model_info(
                     self.config.model.split('/')[-1]
                 )
-            # noinspection PyBroadException
-            except Exception:
+            except (KeyError, ValueError) as e:
+                logger.debug(f"Error getting model info from split model path: {e}")
+                pass
+            except Exception as e:
+                logger.warning(f"Unexpected error getting model info: {e}")
                 pass
         from azm_ai.io import json
 
@@ -535,7 +541,11 @@ class LLM(RetryMixin, DebugMixin):
         """
         try:
             cur_cost = self._completion_cost(response)
-        except Exception:
+        except (KeyError, TypeError) as e:
+            logger.warning(f"Error calculating completion cost: {e}")
+            cur_cost = 0
+        except Exception as e:
+            logger.error(f"Unexpected error calculating completion cost: {e}")
             cur_cost = 0
 
         stats = ''

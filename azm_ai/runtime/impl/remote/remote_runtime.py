@@ -187,12 +187,12 @@ class RemoteRuntime(ActionExecutionClient):
         )
         response_json = response.json()
         registry_prefix = response_json['registry_prefix']
-        os.environ['OH_RUNTIME_RUNTIME_IMAGE_REPO'] = (
+        os.environ['AZM_RUNTIME_RUNTIME_IMAGE_REPO'] = (
             registry_prefix.rstrip('/') + '/runtime'
         )
         self.log(
             'debug',
-            f'Runtime image repo: {os.environ["OH_RUNTIME_RUNTIME_IMAGE_REPO"]}',
+            f'Runtime image repo: {os.environ["AZM_RUNTIME_RUNTIME_IMAGE_REPO"]}',
         )
 
         if self.config.sandbox.runtime_extra_deps:

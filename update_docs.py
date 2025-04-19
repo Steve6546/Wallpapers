@@ -17,6 +17,15 @@ def update_file(file_path):
     # Replace ".openhands" with ".azm_ai" (case-sensitive)
     updated_content = re.sub(r'\.openhands', '.azm_ai', updated_content)
     
+    # Replace "OH_" with "AZM_" (case-sensitive)
+    updated_content = re.sub(r'OH_', 'AZM_', updated_content)
+    
+    # Replace "oh_" with "azm_" (case-sensitive)
+    updated_content = re.sub(r'oh_', 'azm_', updated_content)
+    
+    # Replace "oh-" with "azm-" (case-sensitive)
+    updated_content = re.sub(r'oh-', 'azm-', updated_content)
+    
     if content != updated_content:
         with open(file_path, 'w', encoding='utf-8') as f:
             f.write(updated_content)

@@ -199,7 +199,18 @@ class ProviderHandler:
                 service = self._get_service(provider)
                 service_repos = await service.get_repositories(sort, app_mode)
                 all_repos.extend(service_repos)
-            except Exception:
+            except AuthenticationError:
+                # Skip this provider if authentication fails
+                continue
+            except ConnectionError as e:
+                # Network issues
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.warning(f"Connection error with {provider} API: {e}")
+                continue
+            except Exception as e:
+                # Log unexpected errors
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.error(f"Unexpected error getting repositories from {provider}: {e}")
                 continue
 
         return all_repos
@@ -219,7 +230,18 @@ class ProviderHandler:
                     query, per_page, sort, order
                 )
                 all_repos.extend(service_repos)
-            except Exception:
+            except AuthenticationError:
+                # Skip this provider if authentication fails
+                continue
+            except ConnectionError as e:
+                # Network issues
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.warning(f"Connection error with {provider} API during search: {e}")
+                continue
+            except Exception as e:
+                # Log unexpected errors
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.error(f"Unexpected error searching repositories from {provider}: {e}")
                 continue
 
         return all_repos
