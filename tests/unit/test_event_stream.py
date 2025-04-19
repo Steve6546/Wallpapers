@@ -7,27 +7,27 @@ import psutil
 import pytest
 from pytest import TempPathFactory
 
-from openhands.core.schema import ActionType, ObservationType
-from openhands.events import EventSource, EventStream
-from openhands.events.action import (
+from azm_ai.core.schema import ActionType, ObservationType
+from azm_ai.events import EventSource, EventStream
+from azm_ai.events.action import (
     NullAction,
 )
-from openhands.events.action.files import (
+from azm_ai.events.action.files import (
     FileEditAction,
     FileReadAction,
     FileWriteAction,
 )
-from openhands.events.action.message import MessageAction
-from openhands.events.event import FileEditSource, FileReadSource
-from openhands.events.observation import NullObservation
-from openhands.events.observation.files import (
+from azm_ai.events.action.message import MessageAction
+from azm_ai.events.event import FileEditSource, FileReadSource
+from azm_ai.events.observation import NullObservation
+from azm_ai.events.observation.files import (
     FileEditObservation,
     FileReadObservation,
     FileWriteObservation,
 )
-from openhands.events.serialization.event import event_to_dict
-from openhands.storage import get_file_store
-from openhands.storage.locations import (
+from azm_ai.events.serialization.event import event_to_dict
+from azm_ai.storage import get_file_store
+from azm_ai.storage.locations import (
     get_conversation_event_filename,
 )
 

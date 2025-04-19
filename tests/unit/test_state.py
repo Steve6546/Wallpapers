@@ -1,6 +1,6 @@
-from openhands.controller.state.state import State
-from openhands.events.event import Event
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.controller.state.state import State
+from azm_ai.events.event import Event
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 def example_event(index: int) -> Event:

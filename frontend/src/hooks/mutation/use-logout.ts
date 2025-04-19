@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useNavigate } from "react-router";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { useAuth } from "#/context/auth-context";
 import { useConfig } from "../query/use-config";
 
@@ -16,7 +16,7 @@ export const useLogout = () => {
       queryClient.setQueryData(["user"], null);
 
       // Call logout endpoint
-      await OpenHands.logout(config?.APP_MODE ?? "oss");
+      await AZM AI.logout(config?.APP_MODE ?? "oss");
 
       // Remove settings from cache so it will be refetched with new token state
       queryClient.removeQueries({ queryKey: ["settings"] });

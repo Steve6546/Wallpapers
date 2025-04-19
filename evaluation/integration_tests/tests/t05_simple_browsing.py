@@ -3,10 +3,10 @@ import tempfile
 
 from evaluation.integration_tests.tests.base import BaseIntegrationTest, TestResult
 from evaluation.utils.shared import assert_and_raise
-from openhands.events.action import AgentFinishAction, CmdRunAction, MessageAction
-from openhands.events.event import Event
-from openhands.events.observation import AgentDelegateObservation
-from openhands.runtime.base import Runtime
+from azm_ai.events.action import AgentFinishAction, CmdRunAction, MessageAction
+from azm_ai.events.event import Event
+from azm_ai.events.observation import AgentDelegateObservation
+from azm_ai.runtime.base import Runtime
 
 HTML_FILE = """
 <!DOCTYPE html>
@@ -70,7 +70,7 @@ HTML_FILE = """
     </div>
     <script>
         document.getElementById('showButton').addEventListener('click', function() {
-            document.getElementById('result').innerText = 'The answer is OpenHands is all you need!';
+            document.getElementById('result').innerText = 'The answer is AZM AI is all you need!';
         });
     </script>
 </body>
@@ -107,9 +107,9 @@ class Test(BaseIntegrationTest):
 
     @classmethod
     def verify_result(cls, runtime: Runtime, histories: list[Event]) -> TestResult:
-        from openhands.core.logger import openhands_logger as logger
+        from azm_ai.core.logger import azm_ai_logger as logger
 
-        # check if the "The answer is OpenHands is all you need!" is in any message
+        # check if the "The answer is AZM AI is all you need!" is in any message
         message_actions = [
             event
             for event in histories
@@ -131,7 +131,7 @@ class Test(BaseIntegrationTest):
                     logger.warning(f'Unexpected event type: {type(event)}')
                     continue
 
-                if 'OpenHands is all you need!' in content:
+                if 'AZM AI is all you need!' in content:
                     return TestResult(success=True)
             except Exception as e:
                 logger.error(f'Error processing event: {e}')

@@ -2,18 +2,18 @@ from unittest.mock import AsyncMock, MagicMock, patch
 
 import pytest
 
-from openhands.controller.agent import Agent
-from openhands.controller.agent_controller import AgentController
-from openhands.controller.state.state import State
-from openhands.core.config import AppConfig, LLMConfig
-from openhands.core.config.agent_config import AgentConfig
-from openhands.events import EventStream, EventStreamSubscriber
-from openhands.llm import LLM
-from openhands.llm.metrics import Metrics
-from openhands.memory.memory import Memory
-from openhands.runtime.base import Runtime
-from openhands.server.session.agent_session import AgentSession
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.controller.agent import Agent
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import AppConfig, LLMConfig
+from azm_ai.core.config.agent_config import AgentConfig
+from azm_ai.events import EventStream, EventStreamSubscriber
+from azm_ai.llm import LLM
+from azm_ai.llm.metrics import Metrics
+from azm_ai.memory.memory import Memory
+from azm_ai.runtime.base import Runtime
+from azm_ai.server.session.agent_session import AgentSession
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @pytest.fixture
@@ -92,14 +92,14 @@ async def test_agent_session_start_with_no_state(mock_agent):
 
     # Patch AgentController and State.restore_from_session to fail; patch Memory in AgentSession
     with patch(
-        'openhands.server.session.agent_session.AgentController', SpyAgentController
+        'azm_ai.server.session.agent_session.AgentController', SpyAgentController
     ), patch(
-        'openhands.server.session.agent_session.EventStream',
+        'azm_ai.server.session.agent_session.EventStream',
         return_value=mock_event_stream,
     ), patch(
-        'openhands.controller.state.state.State.restore_from_session',
+        'azm_ai.controller.state.state.State.restore_from_session',
         side_effect=Exception('No state found'),
-    ), patch('openhands.server.session.agent_session.Memory', return_value=memory):
+    ), patch('azm_ai.server.session.agent_session.Memory', return_value=memory):
         await session.start(
             runtime_name='test-runtime',
             config=AppConfig(),
@@ -180,14 +180,14 @@ async def test_agent_session_start_with_restored_state(mock_agent):
 
     # Patch AgentController and State.restore_from_session to succeed, patch Memory in AgentSession
     with patch(
-        'openhands.server.session.agent_session.AgentController', SpyAgentController
+        'azm_ai.server.session.agent_session.AgentController', SpyAgentController
     ), patch(
-        'openhands.server.session.agent_session.EventStream',
+        'azm_ai.server.session.agent_session.EventStream',
         return_value=mock_event_stream,
     ), patch(
-        'openhands.controller.state.state.State.restore_from_session',
+        'azm_ai.controller.state.state.State.restore_from_session',
         return_value=mock_restored_state,
-    ), patch('openhands.server.session.agent_session.Memory', mock_memory):
+    ), patch('azm_ai.server.session.agent_session.Memory', mock_memory):
         await session.start(
             runtime_name='test-runtime',
             config=AppConfig(),

@@ -2,33 +2,33 @@
 
 # Mode CLI
 
-OpenHands peut être exécuté en mode CLI interactif, ce qui permet aux utilisateurs de démarrer une session interactive via la ligne de commande.
+AZM AI peut être exécuté en mode CLI interactif, ce qui permet aux utilisateurs de démarrer une session interactive via la ligne de commande.
 
 Ce mode est différent du [mode headless](headless-mode), qui est non interactif et mieux adapté aux scripts.
 
 ## Avec Python
 
-Pour démarrer une session OpenHands interactive via la ligne de commande, suivez ces étapes :
+Pour démarrer une session AZM AI interactive via la ligne de commande, suivez ces étapes :
 
-1. Assurez-vous d'avoir suivi les [instructions de configuration de développement](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md).
+1. Assurez-vous d'avoir suivi les [instructions de configuration de développement](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md).
 
 2. Exécutez la commande suivante :
 
 ```bash
-poetry run python -m openhands.core.cli
+poetry run python -m azm_ai.core.cli
 ```
 
-Cette commande démarrera une session interactive où vous pourrez saisir des tâches et recevoir des réponses d'OpenHands.
+Cette commande démarrera une session interactive où vous pourrez saisir des tâches et recevoir des réponses d'AZM AI.
 
 Vous devrez vous assurer de définir votre modèle, votre clé API et d'autres paramètres via des variables d'environnement
-[ou le fichier `config.toml`](https://github.com/All-Hands-AI/OpenHands/blob/main/config.template.toml).
+[ou le fichier `config.toml`](https://github.com/All-Hands-AI/AZM AI/blob/main/config.template.toml).
 
 
 ## Avec Docker
 
-Pour exécuter OpenHands en mode CLI avec Docker, suivez ces étapes :
+Pour exécuter AZM AI en mode CLI avec Docker, suivez ces étapes :
 
-1. Définissez `WORKSPACE_BASE` sur le répertoire que vous voulez qu'OpenHands modifie :
+1. Définissez `WORKSPACE_BASE` sur le répertoire que vous voulez qu'AZM AI modifie :
 
 ```bash
 WORKSPACE_BASE=$(pwd)/workspace
@@ -60,12 +60,12 @@ docker run -it \
     -v $WORKSPACE_BASE:/opt/workspace_base \
     -v /var/run/docker.sock:/var/run/docker.sock \
     --add-host host.docker.internal:host-gateway \
-    --name openhands-app-$(date +%Y%m%d%H%M%S) \
-    docker.all-hands.dev/all-hands-ai/openhands:0.33 \
-    python -m openhands.core.cli
+    --name azm-ai-app-$(date +%Y%m%d%H%M%S) \
+    docker.all-hands.dev/all-hands-ai/azm_ai:0.33 \
+    python -m azm_ai.core.cli
 ```
 
-Cette commande démarrera une session interactive dans Docker où vous pourrez saisir des tâches et recevoir des réponses d'OpenHands.
+Cette commande démarrera une session interactive dans Docker où vous pourrez saisir des tâches et recevoir des réponses d'AZM AI.
 
 ## Exemples de commandes CLI et de sorties attendues
 

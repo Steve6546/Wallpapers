@@ -34,9 +34,9 @@ MAX_ITER=100
 
 # ===== Run inference =====
 source "evaluation/utils/version_control.sh"
-get_openhands_version
+get_azm_ai_version
 
-echo "OPENHANDS_VERSION: $OPENHANDS_VERSION"
+echo "AZM_AI_VERSION: $AZM_AI_VERSION"
 echo "MODEL_CONFIG: $MODEL_CONFIG"
 echo "DATASET: $DATASET"
 echo "SPLIT: $SPLIT"
@@ -46,7 +46,7 @@ export USE_INSTANCE_IMAGE=true
 export USE_HINT_TEXT=false
 export RUN_WITH_BROWSING=false
 echo "USE_HINT_TEXT: $USE_HINT_TEXT"
-EVAL_NOTE="$OPENHANDS_VERSION-no-hint-$EXP_NAME"
+EVAL_NOTE="$AZM_AI_VERSION-no-hint-$EXP_NAME"
 
 function run_eval() {
   local eval_note=$1

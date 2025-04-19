@@ -5,39 +5,39 @@ from unittest.mock import MagicMock, Mock
 import pytest
 from litellm import ChatCompletionMessageToolCall
 
-from openhands.controller.state.state import State
-from openhands.core.config.agent_config import AgentConfig
-from openhands.core.message import ImageContent, Message, TextContent
-from openhands.events.action import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config.agent_config import AgentConfig
+from azm_ai.core.message import ImageContent, Message, TextContent
+from azm_ai.events.action import (
     AgentFinishAction,
     CmdRunAction,
     MessageAction,
 )
-from openhands.events.action.message import SystemMessageAction
-from openhands.events.event import (
+from azm_ai.events.action.message import SystemMessageAction
+from azm_ai.events.event import (
     Event,
     EventSource,
     FileEditSource,
     FileReadSource,
     RecallType,
 )
-from openhands.events.observation import CmdOutputObservation
-from openhands.events.observation.agent import (
+from azm_ai.events.observation import CmdOutputObservation
+from azm_ai.events.observation.agent import (
     MicroagentKnowledge,
     RecallObservation,
 )
-from openhands.events.observation.browse import BrowserOutputObservation
-from openhands.events.observation.commands import (
+from azm_ai.events.observation.browse import BrowserOutputObservation
+from azm_ai.events.observation.commands import (
     CmdOutputMetadata,
     IPythonRunCellObservation,
 )
-from openhands.events.observation.delegate import AgentDelegateObservation
-from openhands.events.observation.error import ErrorObservation
-from openhands.events.observation.files import FileEditObservation, FileReadObservation
-from openhands.events.observation.reject import UserRejectObservation
-from openhands.events.tool import ToolCallMetadata
-from openhands.memory.conversation_memory import ConversationMemory
-from openhands.utils.prompt import PromptManager, RepositoryInfo, RuntimeInfo
+from azm_ai.events.observation.delegate import AgentDelegateObservation
+from azm_ai.events.observation.error import ErrorObservation
+from azm_ai.events.observation.files import FileEditObservation, FileReadObservation
+from azm_ai.events.observation.reject import UserRejectObservation
+from azm_ai.events.tool import ToolCallMetadata
+from azm_ai.memory.conversation_memory import ConversationMemory
+from azm_ai.utils.prompt import PromptManager, RepositoryInfo, RuntimeInfo
 
 
 @pytest.fixture
@@ -69,9 +69,9 @@ def conversation_memory(agent_config):
 
 @pytest.fixture
 def prompt_dir(tmp_path):
-    # Copy contents from "openhands/agenthub/codeact_agent" to the temp directory
+    # Copy contents from "azm_ai/agenthub/codeact_agent" to the temp directory
     shutil.copytree(
-        'openhands/agenthub/codeact_agent/prompts', tmp_path, dirs_exist_ok=True
+        'azm_ai/agenthub/codeact_agent/prompts', tmp_path, dirs_exist_ok=True
     )
 
     # Return the temporary directory path

@@ -1,88 +1,88 @@
-@startuml openhands
+@startuml azm_ai
 !pragma useIntermediatePackages false
 
-class openhands.action.agent.AgentEchoAction {
+class azm_ai.action.agent.AgentEchoAction {
   content: str
   runnable: bool
   action: str
 }
-class openhands.action.agent.AgentFinishAction {
+class azm_ai.action.agent.AgentFinishAction {
   runnable: bool
   action: str
 }
-class openhands.observation.AgentMessageObservation {
+class azm_ai.observation.AgentMessageObservation {
   role: str
   observation: str
 }
-class openhands.action.agent.AgentSummarizeAction {
+class azm_ai.action.agent.AgentSummarizeAction {
   summary: str
   action: str
 }
-class openhands.action.agent.AgentThinkAction {
+class azm_ai.action.agent.AgentThinkAction {
   thought: str
   runnable: bool
   action: str
 }
-class openhands.action.base.ExecutableAction {
+class azm_ai.action.base.ExecutableAction {
 }
-class openhands.action.base.NotExecutableAction {
+class azm_ai.action.base.NotExecutableAction {
 }
-class openhands.observation.Observation {
+class azm_ai.observation.Observation {
   content: str
 }
-class openhands.action.base.Action {
+class azm_ai.action.base.Action {
 }
-class openhands.action.base.NullAction {
+class azm_ai.action.base.NullAction {
   action: str
 }
-class openhands.action.bash.CmdRunAction {
+class azm_ai.action.bash.CmdRunAction {
   command: str
   action: str
 }
-class openhands.action.browse.BrowseURLAction {
+class azm_ai.action.browse.BrowseURLAction {
   url: str
   action: str
 }
-class openhands.observation.BrowserOutputObservation {
+class azm_ai.observation.BrowserOutputObservation {
   url: str
   status_code: int
   error: bool
   observation: str
 }
-class openhands.action.fileop.FileReadAction {
+class azm_ai.action.fileop.FileReadAction {
   path: str
   action: str
 }
-class openhands.observation.FileReadObservation {
+class azm_ai.observation.FileReadObservation {
   path: str
   observation: str
 }
-class openhands.action.fileop.FileWriteAction {
+class azm_ai.action.fileop.FileWriteAction {
   path: str
   contents: str
   action: str
 }
-class openhands.observation.FileWriteObservation {
+class azm_ai.observation.FileWriteObservation {
   path: str
   observation: str
 }
-class openhands.action.tasks.AddTaskAction {
+class azm_ai.action.tasks.AddTaskAction {
   parent: str
   goal: str
   subtasks: list
   action: str
 }
-class openhands.action.tasks.ModifyTaskAction {
+class azm_ai.action.tasks.ModifyTaskAction {
   id: str
   state: str
   action: str
 }
-abstract class openhands.agent.Agent {
+abstract class azm_ai.agent.Agent {
   _registry: Dict[str, Type[Agent]] {static}
   llm: LLM
   _complete: None
 }
-class openhands.llm.llm.LLM {
+class azm_ai.llm.llm.LLM {
   model: None
   api_key: None
   base_url: None
@@ -91,7 +91,7 @@ class openhands.llm.llm.LLM {
   _debug_id: None
   _completion: None
 }
-class openhands.controller.agent_controller.AgentController {
+class azm_ai.controller.agent_controller.AgentController {
   agent: Agent
   max_iterations: int
   workdir: str
@@ -100,34 +100,34 @@ class openhands.controller.agent_controller.AgentController {
   plan: Plan
   callbacks: List[Callable]
 }
-class openhands.observation.AgentErrorObservation {
+class azm_ai.observation.AgentErrorObservation {
   observation: str
 }
-class openhands.controller.command_manager.CommandManager {
+class azm_ai.controller.command_manager.CommandManager {
   directory: None
   shell: None
 }
-class openhands.observation.NullObservation {
+class azm_ai.observation.NullObservation {
   observation: str
 }
-class openhands.plan.Plan {
+class azm_ai.plan.Plan {
   main_goal: str {static}
   task: Task {static}
   main_goal: str
   task: None
 }
-class openhands.state.State {
+class azm_ai.state.State {
   plan: Plan
   iteration: int
   history: List[Tuple[Action, Observation]]
   updated_info: List[Tuple[Action, Observation]]
 }
-class openhands.observation.CmdOutputObservation {
+class azm_ai.observation.CmdOutputObservation {
   command: str
   exit_code: int
   observation: str
 }
-class openhands.sandbox.sandbox.DockerInteractive {
+class azm_ai.sandbox.sandbox.DockerInteractive {
   instance_id: None
   instance_id: None
   workspace_dir: None
@@ -137,11 +137,11 @@ class openhands.sandbox.sandbox.DockerInteractive {
   base_container_image: None
   container_name: None
 }
-class openhands.observation.UserMessageObservation {
+class azm_ai.observation.UserMessageObservation {
   role: str
   observation: str
 }
-class openhands.plan.Task {
+class azm_ai.plan.Task {
   id: str {static}
   goal: str {static}
   parent: Task | None {static}
@@ -153,49 +153,49 @@ class openhands.plan.Task {
   subtasks: None
 }
 
-class openhands.server.session.Session {
+class azm_ai.server.session.Session {
   websocket: None
   controller: Optional[AgentController]
   agent: Optional[Agent]
   agent_task: None
 }
 
-openhands.action.base.ExecutableAction <|-- openhands.action.agent.AgentEchoAction
-openhands.action.base.NotExecutableAction <|-- openhands.action.agent.AgentFinishAction
-openhands.observation.Observation <|-- openhands.observation.AgentMessageObservation
-openhands.action.base.NotExecutableAction <|-- openhands.action.agent.AgentSummarizeAction
-openhands.action.base.NotExecutableAction <|-- openhands.action.agent.AgentThinkAction
-openhands.action.base.Action <|-- openhands.action.base.ExecutableAction
-openhands.action.base.Action <|-- openhands.action.base.NotExecutableAction
-openhands.action.base.NotExecutableAction <|-- openhands.action.base.NullAction
-openhands.action.base.ExecutableAction <|-- openhands.action.bash.CmdRunAction
-openhands.action.base.ExecutableAction <|-- openhands.action.browse.BrowseURLAction
-openhands.observation.Observation <|-- openhands.observation.BrowserOutputObservation
-openhands.action.base.ExecutableAction <|-- openhands.action.fileop.FileReadAction
-openhands.observation.Observation <|-- openhands.observation.FileReadObservation
-openhands.action.base.ExecutableAction <|-- openhands.action.fileop.FileWriteAction
-openhands.observation.Observation <|-- openhands.observation.FileWriteObservation
-openhands.action.base.NotExecutableAction <|-- openhands.action.tasks.AddTaskAction
-openhands.action.base.NotExecutableAction <|-- openhands.action.tasks.ModifyTaskAction
-openhands.agent.Agent *-- openhands.agent.Agent
-openhands.agent.Agent *-- openhands.llm.llm.LLM
-openhands.controller.agent_controller.AgentController *-- openhands.agent.Agent
-openhands.observation.Observation <|-- openhands.observation.AgentErrorObservation
-openhands.observation.Observation <|-- openhands.observation.NullObservation
-openhands.plan.Plan *-- openhands.plan.Task
-openhands.state.State *-- openhands.plan.Plan
-openhands.state.State *-- openhands.observation.CmdOutputObservation
-openhands.state.State *-- openhands.action.base.Action
-openhands.state.State *-- openhands.observation.Observation
-openhands.observation.Observation <|-- openhands.observation.CmdOutputObservation
-openhands.observation.Observation <|-- openhands.observation.UserMessageObservation
-openhands.plan.Task *-- openhands.plan.Task
-openhands.server.session.Session *-- openhands.controller.agent_controller.AgentController
-openhands.server.session.Session *-- openhands.agent.Agent
-openhands.controller.agent_controller.AgentController -> openhands.state.State
-openhands.controller.agent_controller.AgentController -> openhands.plan.Plan
-openhands.controller.agent_controller.AgentController -> openhands.controller.command_manager.CommandManager
-openhands.controller.command_manager.CommandManager -> openhands.sandbox.sandbox.DockerInteractive
+azm_ai.action.base.ExecutableAction <|-- azm_ai.action.agent.AgentEchoAction
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.agent.AgentFinishAction
+azm_ai.observation.Observation <|-- azm_ai.observation.AgentMessageObservation
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.agent.AgentSummarizeAction
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.agent.AgentThinkAction
+azm_ai.action.base.Action <|-- azm_ai.action.base.ExecutableAction
+azm_ai.action.base.Action <|-- azm_ai.action.base.NotExecutableAction
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.base.NullAction
+azm_ai.action.base.ExecutableAction <|-- azm_ai.action.bash.CmdRunAction
+azm_ai.action.base.ExecutableAction <|-- azm_ai.action.browse.BrowseURLAction
+azm_ai.observation.Observation <|-- azm_ai.observation.BrowserOutputObservation
+azm_ai.action.base.ExecutableAction <|-- azm_ai.action.fileop.FileReadAction
+azm_ai.observation.Observation <|-- azm_ai.observation.FileReadObservation
+azm_ai.action.base.ExecutableAction <|-- azm_ai.action.fileop.FileWriteAction
+azm_ai.observation.Observation <|-- azm_ai.observation.FileWriteObservation
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.tasks.AddTaskAction
+azm_ai.action.base.NotExecutableAction <|-- azm_ai.action.tasks.ModifyTaskAction
+azm_ai.agent.Agent *-- azm_ai.agent.Agent
+azm_ai.agent.Agent *-- azm_ai.llm.llm.LLM
+azm_ai.controller.agent_controller.AgentController *-- azm_ai.agent.Agent
+azm_ai.observation.Observation <|-- azm_ai.observation.AgentErrorObservation
+azm_ai.observation.Observation <|-- azm_ai.observation.NullObservation
+azm_ai.plan.Plan *-- azm_ai.plan.Task
+azm_ai.state.State *-- azm_ai.plan.Plan
+azm_ai.state.State *-- azm_ai.observation.CmdOutputObservation
+azm_ai.state.State *-- azm_ai.action.base.Action
+azm_ai.state.State *-- azm_ai.observation.Observation
+azm_ai.observation.Observation <|-- azm_ai.observation.CmdOutputObservation
+azm_ai.observation.Observation <|-- azm_ai.observation.UserMessageObservation
+azm_ai.plan.Task *-- azm_ai.plan.Task
+azm_ai.server.session.Session *-- azm_ai.controller.agent_controller.AgentController
+azm_ai.server.session.Session *-- azm_ai.agent.Agent
+azm_ai.controller.agent_controller.AgentController -> azm_ai.state.State
+azm_ai.controller.agent_controller.AgentController -> azm_ai.plan.Plan
+azm_ai.controller.agent_controller.AgentController -> azm_ai.controller.command_manager.CommandManager
+azm_ai.controller.command_manager.CommandManager -> azm_ai.sandbox.sandbox.DockerInteractive
 
 footer Based on f3fda42; Generated by //py2puml//
 @enduml

@@ -4,8 +4,8 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from openhands.core.config import LLMConfig
-from openhands.utils.conversation_summary import generate_conversation_title
+from azm_ai.core.config import LLMConfig
+from azm_ai.utils.conversation_summary import generate_conversation_title
 
 
 @pytest.mark.asyncio
@@ -31,7 +31,7 @@ async def test_generate_conversation_title_success():
     mock_llm.completion = MagicMock(return_value=mock_response)
 
     # Patch the LLM class to return our mock
-    with patch('openhands.utils.conversation_summary.LLM', return_value=mock_llm):
+    with patch('azm_ai.utils.conversation_summary.LLM', return_value=mock_llm):
         result = await generate_conversation_title(
             'Can you help me with Python?', LLMConfig(model='test-model')
         )
@@ -56,7 +56,7 @@ async def test_generate_conversation_title_long_title():
     mock_llm.completion = MagicMock(return_value=mock_response)
 
     # Patch the LLM class to return our mock
-    with patch('openhands.utils.conversation_summary.LLM', return_value=mock_llm):
+    with patch('azm_ai.utils.conversation_summary.LLM', return_value=mock_llm):
         result = await generate_conversation_title(
             'Can you help me with Python?', LLMConfig(model='test-model'), max_length=30
         )
@@ -74,7 +74,7 @@ async def test_generate_conversation_title_exception():
     mock_llm.completion = MagicMock(side_effect=Exception('Test error'))
 
     # Patch the LLM class to return our mock
-    with patch('openhands.utils.conversation_summary.LLM', return_value=mock_llm):
+    with patch('azm_ai.utils.conversation_summary.LLM', return_value=mock_llm):
         result = await generate_conversation_title(
             'Can you help me with Python?', LLMConfig(model='test-model')
         )

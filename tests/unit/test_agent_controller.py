@@ -5,31 +5,31 @@ from uuid import uuid4
 import pytest
 from litellm import ContentPolicyViolationError, ContextWindowExceededError
 
-from openhands.controller.agent import Agent
-from openhands.controller.agent_controller import AgentController
-from openhands.controller.state.state import State, TrafficControlState
-from openhands.core.config import AppConfig
-from openhands.core.config.agent_config import AgentConfig
-from openhands.core.main import run_controller
-from openhands.core.schema import AgentState
-from openhands.events import Event, EventSource, EventStream, EventStreamSubscriber
-from openhands.events.action import ChangeAgentStateAction, CmdRunAction, MessageAction
-from openhands.events.action.agent import CondensationAction, RecallAction
-from openhands.events.action.message import SystemMessageAction
-from openhands.events.event import RecallType
-from openhands.events.observation import (
+from azm_ai.controller.agent import Agent
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.controller.state.state import State, TrafficControlState
+from azm_ai.core.config import AppConfig
+from azm_ai.core.config.agent_config import AgentConfig
+from azm_ai.core.main import run_controller
+from azm_ai.core.schema import AgentState
+from azm_ai.events import Event, EventSource, EventStream, EventStreamSubscriber
+from azm_ai.events.action import ChangeAgentStateAction, CmdRunAction, MessageAction
+from azm_ai.events.action.agent import CondensationAction, RecallAction
+from azm_ai.events.action.message import SystemMessageAction
+from azm_ai.events.event import RecallType
+from azm_ai.events.observation import (
     AgentStateChangedObservation,
     ErrorObservation,
 )
-from openhands.events.observation.agent import RecallObservation
-from openhands.events.observation.commands import CmdOutputObservation
-from openhands.events.observation.empty import NullObservation
-from openhands.events.serialization import event_to_dict
-from openhands.llm import LLM
-from openhands.llm.metrics import Metrics, TokenUsage
-from openhands.memory.memory import Memory
-from openhands.runtime.base import Runtime
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.events.observation.agent import RecallObservation
+from azm_ai.events.observation.commands import CmdOutputObservation
+from azm_ai.events.observation.empty import NullObservation
+from azm_ai.events.serialization import event_to_dict
+from azm_ai.llm import LLM
+from azm_ai.llm.metrics import Metrics, TokenUsage
+from azm_ai.memory.memory import Memory
+from azm_ai.runtime.base import Runtime
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @pytest.fixture

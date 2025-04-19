@@ -4,21 +4,21 @@ from unittest.mock import Mock, patch
 import pytest
 from pytest import TempPathFactory
 
-from openhands.controller.agent_controller import AgentController
-from openhands.controller.state.state import State
-from openhands.controller.stuck import StuckDetector
-from openhands.events.action import CmdRunAction, FileReadAction, MessageAction
-from openhands.events.action.commands import IPythonRunCellAction
-from openhands.events.observation import (
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.controller.state.state import State
+from azm_ai.controller.stuck import StuckDetector
+from azm_ai.events.action import CmdRunAction, FileReadAction, MessageAction
+from azm_ai.events.action.commands import IPythonRunCellAction
+from azm_ai.events.observation import (
     CmdOutputObservation,
     FileReadObservation,
 )
-from openhands.events.observation.agent import AgentCondensationObservation
-from openhands.events.observation.commands import IPythonRunCellObservation
-from openhands.events.observation.empty import NullObservation
-from openhands.events.observation.error import ErrorObservation
-from openhands.events.stream import EventSource, EventStream
-from openhands.storage import get_file_store
+from azm_ai.events.observation.agent import AgentCondensationObservation
+from azm_ai.events.observation.commands import IPythonRunCellObservation
+from azm_ai.events.observation.empty import NullObservation
+from azm_ai.events.observation.error import ErrorObservation
+from azm_ai.events.stream import EventSource, EventStream
+from azm_ai.storage import get_file_store
 
 
 def collect_events(stream):

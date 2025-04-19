@@ -3,7 +3,7 @@ import { createRoutesStub } from "react-router";
 import { afterEach, beforeEach, describe, expect, it, test, vi } from "vitest";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import userEvent, { UserEvent } from "@testing-library/user-event";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { AuthProvider } from "#/context/auth-context";
 import SettingsScreen from "#/routes/settings";
 import * as AdvancedSettingsUtlls from "#/utils/has-advanced-settings-set";
@@ -23,10 +23,10 @@ const mock_provider_tokens_are_set: Record<Provider, boolean> = {
 };
 
 describe("Settings Screen", () => {
-  const getSettingsSpy = vi.spyOn(OpenHands, "getSettings");
-  const saveSettingsSpy = vi.spyOn(OpenHands, "saveSettings");
-  const resetSettingsSpy = vi.spyOn(OpenHands, "resetSettings");
-  const getConfigSpy = vi.spyOn(OpenHands, "getConfig");
+  const getSettingsSpy = vi.spyOn(AZM AI, "getSettings");
+  const saveSettingsSpy = vi.spyOn(AZM AI, "saveSettings");
+  const resetSettingsSpy = vi.spyOn(AZM AI, "resetSettings");
+  const getConfigSpy = vi.spyOn(AZM AI, "getConfig");
 
   const { handleLogoutMock } = vi.hoisted(() => ({
     handleLogoutMock: vi.fn(),

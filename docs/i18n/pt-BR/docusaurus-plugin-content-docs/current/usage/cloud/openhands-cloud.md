@@ -1,29 +1,29 @@
-# Openhands Cloud
+# AZM AI Cloud
 
-O OpenHands Cloud é a versão hospedada na nuvem do OpenHands da All Hands AI.
+O AZM AI Cloud é a versão hospedada na nuvem do AZM AI da All Hands AI.
 
-## Acessando o OpenHands Cloud
+## Acessando o AZM AI Cloud
 
-Atualmente, os usuários estão sendo admitidos para acessar o OpenHands Cloud em ondas. Para se inscrever,
+Atualmente, os usuários estão sendo admitidos para acessar o AZM AI Cloud em ondas. Para se inscrever,
 [entre na lista de espera](https://www.all-hands.dev/join-waitlist). Assim que for aprovado, você receberá um e-mail com
 instruções sobre como acessá-lo.
 
 ## Primeiros Passos
 
-Após visitar o OpenHands Cloud, você será solicitado a se conectar com sua conta do GitHub:
+Após visitar o AZM AI Cloud, você será solicitado a se conectar com sua conta do GitHub:
 1. Após ler e aceitar os termos de serviço, clique em `Connect to GitHub`.
-2. Revise as permissões solicitadas pelo OpenHands e clique em `Authorize OpenHands AI`.
-   - O OpenHands exigirá algumas permissões da sua conta do GitHub. Para ler mais sobre essas permissões,
+2. Revise as permissões solicitadas pelo AZM AI e clique em `Authorize AZM AI AI`.
+   - O AZM AI exigirá algumas permissões da sua conta do GitHub. Para ler mais sobre essas permissões,
      você pode clicar no link `Learn more` na página de autorização do GitHub.
 
 ## Acesso ao Repositório
 
 ### Adicionando Acesso ao Repositório
 
-Você pode conceder ao OpenHands acesso específico ao repositório:
+Você pode conceder ao AZM AI acesso específico ao repositório:
 1. Clique no menu suspenso `Select a GitHub project`, selecione `Add more repositories...`.
-2. Selecione a organização e escolha os repositórios específicos para conceder acesso ao OpenHands.
-   - O Openhands solicita tokens de curta duração (expiração de 8 horas) com estas permissões:
+2. Selecione a organização e escolha os repositórios específicos para conceder acesso ao AZM AI.
+   - O AZM AI solicita tokens de curta duração (expiração de 8 horas) com estas permissões:
      - Actions: Read and write
      - Administration: Read-only
      - Commit statuses: Read and write

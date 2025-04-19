@@ -2,13 +2,13 @@
 
 ## 简介
 
-OpenHands 提供了一个用户友好的图形用户界面（GUI）模式，用于与 AI 助手交互。这种模式提供了一种直观的方式来设置环境、管理设置和与 AI 通信。
+AZM AI 提供了一个用户友好的图形用户界面（GUI）模式，用于与 AI 助手交互。这种模式提供了一种直观的方式来设置环境、管理设置和与 AI 通信。
 
 ## 安装和设置
 
-1. 按照[安装](../installation)指南中的说明安装 OpenHands。
+1. 按照[安装](../installation)指南中的说明安装 AZM AI。
 
-2. 运行命令后，通过 [http://localhost:3000](http://localhost:3000) 访问 OpenHands。
+2. 运行命令后，通过 [http://localhost:3000](http://localhost:3000) 访问 AZM AI。
 
 ## 与 GUI 交互
 
@@ -21,11 +21,11 @@ OpenHands 提供了一个用户友好的图形用户界面（GUI）模式，用�
 
 ### 版本控制令牌
 
-OpenHands 支持多个版本控制提供商。您可以同时配置多个提供商的令牌。
+AZM AI 支持多个版本控制提供商。您可以同时配置多个提供商的令牌。
 
 #### GitHub Token 设置
 
-如果可用，OpenHands 会自动将 `GITHUB_TOKEN` 导出到 shell 环境中。这可以通过两种方式实现：
+如果可用，AZM AI 会自动将 `GITHUB_TOKEN` 导出到 shell 环境中。这可以通过两种方式实现：
 
 1. **本地（OSS）**：用户直接输入他们的 GitHub token
 2. **在线（SaaS）**：通过 GitHub OAuth 身份验证获取 token
@@ -40,7 +40,7 @@ OpenHands 支持多个版本控制提供商。您可以同时配置多个提供�
      - `workflow`（更新 GitHub Action 工作流）
      - `read:org`（读取组织数据）
 
-2. **在 OpenHands 中输入令牌**：
+2. **在 AZM AI 中输入令牌**：
    - 点击右上角的设置按钮（齿轮图标）
    - 导航到"Git Provider Settings"部分
    - 将令牌粘贴到"GitHub Token"字段中
@@ -63,7 +63,7 @@ OpenHands 支持多个版本控制提供商。您可以同时配置多个提供�
 
 ##### OAuth 身份验证（在线模式）
 
-在在线模式下使用 OpenHands 时，GitHub OAuth 流程：
+在在线模式下使用 AZM AI 时，GitHub OAuth 流程：
 
 1. 请求以下权限：
    - 仓库访问（读/写）
@@ -73,7 +73,7 @@ OpenHands 支持多个版本控制提供商。您可以同时配置多个提供�
 2. 身份验证步骤：
    - 出现提示时，点击"使用 GitHub 登录"
    - 查看请求的权限
-   - 授权 OpenHands 访问您的 GitHub 帐户
+   - 授权 AZM AI 访问您的 GitHub 帐户
    - 如果使用组织，在出现提示时授权组织访问
 
 ##### 故障排除
@@ -99,7 +99,7 @@ OpenHands 支持多个版本控制提供商。您可以同时配置多个提供�
 
 #### GitLab Token 设置
 
-OpenHands 会自动将 `GITLAB_TOKEN` 导出到 shell 环境中，仅适用于本地安装，如果它可用的话。
+AZM AI 会自动将 `GITLAB_TOKEN` 导出到 shell 环境中，仅适用于本地安装，如果它可用的话。
 
 ##### 设置 GitLab Token
 
@@ -112,7 +112,7 @@ OpenHands 会自动将 `GITLAB_TOKEN` 导出到 shell 环境中，仅适用于�
      - `write_repository`（写入仓库）
    - 设置过期日期或留空以获取永不过期的令牌
 
-2. **在 OpenHands 中输入令牌**：
+2. **在 AZM AI 中输入令牌**：
    - 点击设置按钮（齿轮图标）
    - 导航到 `Git Provider Settings` 部分
    - 将令牌粘贴到 `GitLab Token` 字段中
@@ -163,4 +163,4 @@ OpenHands 会自动将 `GITLAB_TOKEN` 导出到 shell 环境中，仅适用于�
 2. 使用工作区面板探索项目结构。
 3. 使用[LLMs 部分](usage/llms/llms.md)中描述的推荐模型之一。
 
-请记住，OpenHands 的 GUI 模式旨在使您与 AI 助手的交互尽可能流畅和直观。不要犹豫探索其功能以最大限度地提高您的工作效率。
+请记住，AZM AI 的 GUI 模式旨在使您与 AI 助手的交互尽可能流畅和直观。不要犹豫探索其功能以最大限度地提高您的工作效率。

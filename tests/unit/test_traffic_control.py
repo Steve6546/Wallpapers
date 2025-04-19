@@ -2,11 +2,11 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from openhands.controller.agent_controller import AgentController
-from openhands.core.config import AgentConfig, LLMConfig
-from openhands.events import EventStream
-from openhands.llm.llm import LLM
-from openhands.storage import InMemoryFileStore
+from azm_ai.controller.agent_controller import AgentController
+from azm_ai.core.config import AgentConfig, LLMConfig
+from azm_ai.events import EventStream
+from azm_ai.llm.llm import LLM
+from azm_ai.storage import InMemoryFileStore
 
 
 @pytest.fixture
@@ -18,8 +18,8 @@ def agent_controller():
     agent.config = AgentConfig()
 
     # Add a proper system message mock
-    from openhands.events import EventSource
-    from openhands.events.action.message import SystemMessageAction
+    from azm_ai.events import EventSource
+    from azm_ai.events.action.message import SystemMessageAction
 
     system_message = SystemMessageAction(content='Test system message')
     system_message._source = EventSource.AGENT

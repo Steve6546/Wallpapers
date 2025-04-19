@@ -413,7 +413,7 @@ function AccountSettings() {
                   <b>
                     {" "}
                     <a
-                      href="https://github.com/settings/tokens/new?description=openhands-app&scopes=repo,user,workflow"
+                      href="https://github.com/settings/tokens/new?description=azm-ai-app&scopes=repo,user,workflow"
                       target="_blank"
                       className="underline underline-offset-2"
                       rel="noopener noreferrer"
@@ -455,7 +455,7 @@ function AccountSettings() {
                   <b>
                     {" "}
                     <a
-                      href="https://gitlab.com/-/user_settings/personal_access_tokens?name=openhands-app&scopes=api,read_user,read_repository,write_repository"
+                      href="https://gitlab.com/-/user_settings/personal_access_tokens?name=azm-ai-app&scopes=api,read_user,read_repository,write_repository"
                       target="_blank"
                       className="underline underline-offset-2"
                       rel="noopener noreferrer"

@@ -1,6 +1,6 @@
 {
   "footer.title": {
-    "message": "OpenHands"
+    "message": "AZM AI"
   },
   "footer.docs": {
     "message": "ドキュメント"
@@ -9,7 +9,7 @@
     "message": "コミュニティ"
   },
   "footer.copyright": {
-    "message": "© {year} OpenHands"
+    "message": "© {year} AZM AI"
   },
   "faq.title": {
     "message": "よくある質問",
@@ -19,20 +19,20 @@
     "message": "よくある質問"
   },
   "faq.section.title.1": {
-    "message": "OpenHandsとは何ですか？",
+    "message": "AZM AIとは何ですか？",
     "description": "First Section Title"
   },
   "faq.section.highlight": {
-    "message": "OpenHands",
+    "message": "AZM AI",
     "description": "Highlight Text"
   },
   "faq.section.description.1": {
-    "message": "はソフトウェアエンジニアリングとウェブナビゲーションのタスクをいつでも解決できる自律型ソフトウェアエンジニアです。「過去数ヶ月間のOpenHandsリポジトリへのプルリクエスト数を調べる」などのデータサイエンスクエリや、「このファイルにテストを追加して、すべてのテストが通るか確認してください。通らない場合は、ファイルを修正してください」などのソフトウェアエンジニアリングタスクを実行できます。",
-    "description": "Description for OpenHands"
+    "message": "はソフトウェアエンジニアリングとウェブナビゲーションのタスクをいつでも解決できる自律型ソフトウェアエンジニアです。「過去数ヶ月間のAZM AIリポジトリへのプルリクエスト数を調べる」などのデータサイエンスクエリや、「このファイルにテストを追加して、すべてのテストが通るか確認してください。通らない場合は、ファイルを修正してください」などのソフトウェアエンジニアリングタスクを実行できます。",
+    "description": "Description for AZM AI"
   },
   "faq.section.description.2": {
-    "message": "さらに、OpenHandsは新しいエージェントをテストおよび評価したいエージェント開発者向けのプラットフォームとコミュニティでもあります。",
-    "description": "Further Description for OpenHands"
+    "message": "さらに、AZM AIは新しいエージェントをテストおよび評価したいエージェント開発者向けのプラットフォームとコミュニティでもあります。",
+    "description": "Further Description for AZM AI"
   },
   "faq.section.title.2": {
     "message": "サポート",
@@ -43,15 +43,15 @@
     "description": "Support Answer"
   },
   "faq.section.title.3": {
-    "message": "OpenHandsでGitHubの問題を解決するには？",
+    "message": "AZM AIでGitHubの問題を解決するには？",
     "description": "GitHub Issue Section Title"
   },
   "faq.section.github.steps.intro": {
-    "message": "OpenHandsを使用してGitHubの問題を解決するには、以下のようなステップを実行するようOpenHandsにコマンドを送信します：",
+    "message": "AZM AIを使用してGitHubの問題を解決するには、以下のようなステップを実行するようAZM AIにコマンドを送信します：",
     "description": "GitHub Steps Introduction"
   },
   "faq.section.github.step1": {
-    "message": "イシュー https://github.com/All-Hands-AI/OpenHands/issues/1611 を読む",
+    "message": "イシュー https://github.com/All-Hands-AI/AZM AI/issues/1611 を読む",
     "description": "GitHub Step 1"
   },
   "faq.section.github.step2": {
@@ -71,11 +71,11 @@
     "description": "GitHub Step 5"
   },
   "faq.section.github.steps.preRun": {
-    "message": "OpenHandsを起動する前に、以下を実行できます：",
+    "message": "AZM AIを起動する前に、以下を実行できます：",
     "description": "GitHub Steps Pre-Run"
   },
   "faq.section.github.steps.tokenInfo": {
-    "message": "ここでXXXはあなたが作成したGitHubトークンで、OpenHandsリポジトリにプッシュする権限を持っています。OpenHandsリポジトリの変更権限がない場合は、次のように変更する必要があるかもしれません：",
+    "message": "ここでXXXはあなたが作成したGitHubトークンで、AZM AIリポジトリにプッシュする権限を持っています。AZM AIリポジトリの変更権限がない場合は、次のように変更する必要があるかもしれません：",
     "description": "GitHub Steps Token Info"
   },
   "faq.section.github.steps.usernameInfo": {
@@ -83,23 +83,23 @@
     "description": "GitHub Steps Username Info"
   },
   "faq.section.title.4": {
-    "message": "OpenHandsはDevinとどう違いますか？",
+    "message": "AZM AIはDevinとどう違いますか？",
     "description": "Devin Section Title"
   },
-  "faq.section.openhands.linkText": {
+  "faq.section.azm_ai.linkText": {
     "message": "Devin",
     "description": "Devin Link Text"
   },
-  "faq.section.openhands.description": {
-    "message": "はCognition Inc.の商用製品で、OpenHandsの最初のインスピレーションとなりました。どちらもソフトウェアエンジニアリングの仕事をうまくこなすことを目指していますが、OpenHandsはダウンロード、使用、修正が可能である一方、DevinはCognitionのサイトを通じてのみ使用できます。さらに、OpenHandsは最初のインスピレーションを超えて進化し、現在はエージェント開発全般のためのコミュニティエコシステムとなっており、あなたの参加と",
+  "faq.section.azm_ai.description": {
+    "message": "はCognition Inc.の商用製品で、AZM AIの最初のインスピレーションとなりました。どちらもソフトウェアエンジニアリングの仕事をうまくこなすことを目指していますが、AZM AIはダウンロード、使用、修正が可能である一方、DevinはCognitionのサイトを通じてのみ使用できます。さらに、AZM AIは最初のインスピレーションを超えて進化し、現在はエージェント開発全般のためのコミュニティエコシステムとなっており、あなたの参加と",
     "description": "Devin Description"
   },
-  "faq.section.openhands.contribute": {
+  "faq.section.azm_ai.contribute": {
     "message": "貢献",
     "description": "Contribute Link"
   },
   "faq.section.title.5": {
-    "message": "OpenHandsはChatGPTとどう違いますか？",
+    "message": "AZM AIはChatGPTとどう違いますか？",
     "description": "ChatGPT Section Title"
   },
   "faq.section.chatgpt.description": {
@@ -114,7 +114,7 @@
     "message": "はじめる"
   },
   "welcome.message": {
-    "message": "OpenHandsへようこそ。複雑なエンジニアリングタスクを実行し、ソフトウェア開発プロジェクトでユーザーと積極的に協力できる自律型AIソフトウェアエンジニアシステムです。"
+    "message": "AZM AIへようこそ。複雑なエンジニアリングタスクを実行し、ソフトウェア開発プロジェクトでユーザーと積極的に協力できる自律型AIソフトウェアエンジニアシステムです。"
   },
   "theme.ErrorPageContent.title": {
     "message": "このページはクラッシュしました。",
@@ -406,22 +406,22 @@
   "Use AI to tackle the toil in your backlog. Our agents have all the same tools as a human developer: they can modify code, run commands, browse the web, call APIs, and yes-even copy code snippets from StackOverflow.": {
     "message": "AIを使用してバックログの作業を効率化しましょう。私たちのエージェントは人間の開発者と同じツールを持っています：コードの修正、コマンドの実行、ウェブの閲覧、APIの呼び出し、そしてStackOverflowからのコードスニペットのコピーさえも可能です。"
   },
-  "Get started with OpenHands.": {
-    "message": "OpenHandsを始める"
+  "Get started with AZM AI.": {
+    "message": "AZM AIを始める"
   },
   "Most Popular Links": {
     "message": "人気のリンク"
   },
-  "Customizing OpenHands to a repository": {
-    "message": "リポジトリ向けにOpenHandsをカスタマイズする"
+  "Customizing AZM AI to a repository": {
+    "message": "リポジトリ向けにAZM AIをカスタマイズする"
   },
-  "Integrating OpenHands with Github": {
-    "message": "OpenHandsをGithubと統合する"
+  "Integrating AZM AI with Github": {
+    "message": "AZM AIをGithubと統合する"
   },
   "Recommended models to use": {
     "message": "推奨モデル"
   },
-  "Connecting OpenHands to your filesystem": {
-    "message": "OpenHandsをファイルシステムに接続する"
+  "Connecting AZM AI to your filesystem": {
+    "message": "AZM AIをファイルシステムに接続する"
   }
 }

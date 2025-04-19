@@ -2,47 +2,47 @@
 sidebar_position: 1
 ---
 
-# 💻 OpenHands
+# 💻 AZM AI
 
-OpenHands est un **ingénieur logiciel IA autonome** capable d'exécuter des tâches d'ingénierie complexes et de collaborer activement avec les utilisateurs sur des projets de développement logiciel.
+AZM AI est un **ingénieur logiciel IA autonome** capable d'exécuter des tâches d'ingénierie complexes et de collaborer activement avec les utilisateurs sur des projets de développement logiciel.
 Ce projet est entièrement open-source, vous pouvez donc l'utiliser et le modifier comme bon vous semble.
 
 :::tip
-Explorez le code source d'OpenHands sur [GitHub](https://github.com/All-Hands-AI/OpenHands) ou rejoignez l'une de nos communautés !
+Explorez le code source d'AZM AI sur [GitHub](https://github.com/All-Hands-AI/AZM AI) ou rejoignez l'une de nos communautés !
 
-<a href="https://github.com/All-Hands-AI/OpenHands/graphs/contributors">
+<a href="https://github.com/All-Hands-AI/AZM AI/graphs/contributors">
   <img
-    src="https://img.shields.io/github/contributors/All-Hands-AI/OpenHands?style=for-the-badge"
+    src="https://img.shields.io/github/contributors/All-Hands-AI/AZM AI?style=for-the-badge"
     alt="Contributors"
   />
 </a>
-<a href="https://github.com/All-Hands-AI/OpenHands/network/members">
+<a href="https://github.com/All-Hands-AI/AZM AI/network/members">
   <img
-    src="https://img.shields.io/github/forks/All-Hands-AI/OpenHands?style=for-the-badge"
+    src="https://img.shields.io/github/forks/All-Hands-AI/AZM AI?style=for-the-badge"
     alt="Forks"
   />
 </a>
-<a href="https://github.com/All-Hands-AI/OpenHands/stargazers">
+<a href="https://github.com/All-Hands-AI/AZM AI/stargazers">
   <img
-    src="https://img.shields.io/github/stars/All-Hands-AI/OpenHands?style=for-the-badge"
+    src="https://img.shields.io/github/stars/All-Hands-AI/AZM AI?style=for-the-badge"
     alt="Stargazers"
   />
 </a>
-<a href="https://github.com/All-Hands-AI/OpenHands/issues">
+<a href="https://github.com/All-Hands-AI/AZM AI/issues">
   <img
-    src="https://img.shields.io/github/issues/All-Hands-AI/OpenHands?style=for-the-badge"
+    src="https://img.shields.io/github/issues/All-Hands-AI/AZM AI?style=for-the-badge"
     alt="Issues"
   />
 </a>
 <br></br>
-<a href="https://github.com/All-Hands-AI/OpenHands/blob/main/LICENSE">
+<a href="https://github.com/All-Hands-AI/AZM AI/blob/main/LICENSE">
   <img
-    src="https://img.shields.io/github/license/All-Hands-AI/OpenHands?style=for-the-badge"
+    src="https://img.shields.io/github/license/All-Hands-AI/AZM AI?style=for-the-badge"
     alt="MIT License"
   />
 </a>
 <br></br>
-<a href="https://join.slack.com/t/openhands-ai/shared_invite/zt-2ngejmfw6-9gW4APWOC9XUp1n~SiQ6iw">
+<a href="https://join.slack.com/t/azm_ai-ai/shared_invite/zt-2ngejmfw6-9gW4APWOC9XUp1n~SiQ6iw">
   <img
     src="https://img.shields.io/badge/Slack-Join%20Us-red?logo=slack&logoColor=white&style=for-the-badge"
     alt="Join our Slack community"
@@ -58,10 +58,10 @@ Explorez le code source d'OpenHands sur [GitHub](https://github.com/All-Hands-AI
 
 ## 🛠️ Pour commencer
 
-La manière la plus simple d'exécuter OpenHands est à l'intérieur d'un conteneur Docker. Il fonctionne mieux avec la version la plus récente de Docker, `26.0.0`.
+La manière la plus simple d'exécuter AZM AI est à l'intérieur d'un conteneur Docker. Il fonctionne mieux avec la version la plus récente de Docker, `26.0.0`.
 Vous devez utiliser Linux, Mac OS ou WSL sur Windows.
 
-Pour démarrer OpenHands dans un conteneur docker, exécutez les commandes suivantes dans votre terminal :
+Pour démarrer AZM AI dans un conteneur docker, exécutez les commandes suivantes dans votre terminal :
 
 :::warning
 Lorsque vous exécutez la commande suivante, les fichiers dans `./workspace` peuvent être modifiés ou supprimés.
@@ -77,33 +77,33 @@ docker run -it \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 3000:3000 \
     --add-host host.docker.internal:host-gateway \
-    --name openhands-app-$(date +%Y%m%d%H%M%S) \
-    ghcr.io/all-hands-ai/openhands:main
+    --name azm_ai-app-$(date +%Y%m%d%H%M%S) \
+    ghcr.io/all-hands-ai/azm_ai:main
 ```
 
-Vous trouverez OpenHands fonctionnant à l'adresse [http://localhost:3000](http://localhost:3000) avec accès à `./workspace`. Pour qu'OpenHands fonctionne sur votre code, placez-le dans `./workspace`.
+Vous trouverez AZM AI fonctionnant à l'adresse [http://localhost:3000](http://localhost:3000) avec accès à `./workspace`. Pour qu'AZM AI fonctionne sur votre code, placez-le dans `./workspace`.
 
-OpenHands n'aura accès qu'à ce dossier de workspace. Le reste de votre système ne sera pas affecté car il s'exécute dans un bac à sable sécurisé de docker.
+AZM AI n'aura accès qu'à ce dossier de workspace. Le reste de votre système ne sera pas affecté car il s'exécute dans un bac à sable sécurisé de docker.
 
 :::tip
-Si vous souhaitez utiliser la version **(instable !)** la plus récente, vous pouvez utiliser `ghcr.io/all-hands-ai/openhands:main` comme image (dernière ligne).
+Si vous souhaitez utiliser la version **(instable !)** la plus récente, vous pouvez utiliser `ghcr.io/all-hands-ai/azm_ai:main` comme image (dernière ligne).
 :::
 
-Pour le workflow de développement, consultez [Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md).
+Pour le workflow de développement, consultez [Development.md](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md).
 
 Avez-vous des problèmes ? Consultez notre [Guide de dépannage](https://docs.all-hands.dev/modules/usage/troubleshooting).
 
 :::warning
-OpenHands est actuellement en cours de développement, mais vous pouvez déjà exécuter la version alpha pour voir le système de bout en bout en action.
+AZM AI est actuellement en cours de développement, mais vous pouvez déjà exécuter la version alpha pour voir le système de bout en bout en action.
 :::
 
-[contributors-shield]: https://img.shields.io/github/contributors/All-Hands-AI/OpenHands?style=for-the-badge
-[contributors-url]: https://github.com/All-Hands-AI/OpenHands/graphs/contributors
-[forks-shield]: https://img.shields.io/github/forks/All-Hands-AI/OpenHands?style=for-the-badge
-[forks-url]: https://github.com/All-Hands-AI/OpenHands/network/members
-[stars-shield]: https://img.shields.io/github/stars/All-Hands-AI/OpenHands?style=for-the-badge
-[stars-url]: https://github.com/All-Hands-AI/OpenHands/stargazers
-[issues-shield]: https://img.shields.io/github/issues/All-Hands-AI/OpenHands?style=for-the-badge
-[issues-url]: https://github.com/All-Hands-AI/OpenHands/issues
-[license-shield]: https://img.shields.io/github/license/All-Hands-AI/OpenHands?style=for-the-badge
-[license-url]: https://github.com/All-Hands-AI/OpenHands/blob/main/LICENSE
+[contributors-shield]: https://img.shields.io/github/contributors/All-Hands-AI/AZM AI?style=for-the-badge
+[contributors-url]: https://github.com/All-Hands-AI/AZM AI/graphs/contributors
+[forks-shield]: https://img.shields.io/github/forks/All-Hands-AI/AZM AI?style=for-the-badge
+[forks-url]: https://github.com/All-Hands-AI/AZM AI/network/members
+[stars-shield]: https://img.shields.io/github/stars/All-Hands-AI/AZM AI?style=for-the-badge
+[stars-url]: https://github.com/All-Hands-AI/AZM AI/stargazers
+[issues-shield]: https://img.shields.io/github/issues/All-Hands-AI/AZM AI?style=for-the-badge
+[issues-url]: https://github.com/All-Hands-AI/AZM AI/issues
+[license-shield]: https://img.shields.io/github/license/All-Hands-AI/AZM AI?style=for-the-badge
+[license-url]: https://github.com/All-Hands-AI/AZM AI/blob/main/LICENSE

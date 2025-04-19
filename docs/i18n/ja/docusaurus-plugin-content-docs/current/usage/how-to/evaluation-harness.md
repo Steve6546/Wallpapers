@@ -1,11 +1,11 @@
 # 評価
 
-このガイドでは、独自の評価ベンチマークをOpenHandsフレームワークに統合する方法の概要を説明します。
+このガイドでは、独自の評価ベンチマークをAZM AIフレームワークに統合する方法の概要を説明します。
 
 ## 環境のセットアップとLLMの設定
 
-ローカル開発環境のセットアップ方法については、[こちら](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md)の手順に従ってください。
-開発モードのOpenHandsは、ほとんどの設定を追跡するために`config.toml`を使用します。
+ローカル開発環境のセットアップ方法については、[こちら](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md)の手順に従ってください。
+開発モードのAZM AIは、ほとんどの設定を追跡するために`config.toml`を使用します。
 
 複数のLLMを定義して使用するために使用できる設定ファイルの例を以下に示します。
 
@@ -28,12 +28,12 @@ temperature = 0.0
 ```
 
 
-## コマンドラインでOpenHandsを使用する方法
+## コマンドラインでAZM AIを使用する方法
 
-OpenHandsは、以下の形式でコマンドラインから実行できます。
+AZM AIは、以下の形式でコマンドラインから実行できます。
 
 ```bash
-poetry run python ./openhands/core/main.py \
+poetry run python ./azm_ai/core/main.py \
         -i <max_iterations> \
         -t "<task_description>" \
         -c <agent_class> \
@@ -43,22 +43,22 @@ poetry run python ./openhands/core/main.py \
 例:
 
 ```bash
-poetry run python ./openhands/core/main.py \
+poetry run python ./azm_ai/core/main.py \
         -i 10 \
         -t "Write me a bash script that prints hello world." \
         -c CodeActAgent \
         -l llm
 ```
 
-このコマンドは、以下の設定でOpenHandsを実行します:
+このコマンドは、以下の設定でAZM AIを実行します:
 - 最大10回の反復
 - 指定されたタスクの説明
 - CodeActAgentを使用
 - `config.toml`ファイルの`llm`セクションで定義されたLLM設定
 
-## OpenHandsの動作原理
+## AZM AIの動作原理
 
-OpenHandsのメインエントリーポイントは`openhands/core/main.py`にあります。簡略化された動作の流れは次のとおりです。
+AZM AIのメインエントリーポイントは`azm_ai/core/main.py`にあります。簡略化された動作の流れは次のとおりです。
 
 1. コマンドライン引数を解析し、設定を読み込む
 2. `create_runtime()`を使用して実行時環境を作成する
@@ -68,12 +68,12 @@ OpenHandsのメインエントリーポイントは`openhands/core/main.py`に�
    - エージェントのタスクを実行する
    - 完了時に最終状態を返す
 
-`run_controller()`関数は、OpenHandsの実行の中核です。エージェント、実行時環境、およびタスク間の相互作用を管理し、ユーザー入力シミュレーションやイベント処理などを処理します。
+`run_controller()`関数は、AZM AIの実行の中核です。エージェント、実行時環境、およびタスク間の相互作用を管理し、ユーザー入力シミュレーションやイベント処理などを処理します。
 
 
 ## 最も簡単な開始方法: 既存のベンチマークの探索
 
-リポジトリの[`evaluation/benchmarks/`ディレクトリ](https://github.com/All-Hands-AI/OpenHands/blob/main/evaluation/benchmarks)にある様々な評価ベンチマークを確認することをお勧めします。
+リポジトリの[`evaluation/benchmarks/`ディレクトリ](https://github.com/All-Hands-AI/AZM AI/blob/main/evaluation/benchmarks)にある様々な評価ベンチマークを確認することをお勧めします。
 
 独自のベンチマークを統合するには、ニーズに最も近いものから始めることをお勧めします。このアプローチは、既存の構造を基にして特定の要件に適応させることで、統合プロセスを大幅に合理化できます。
 
@@ -81,9 +81,9 @@ OpenHandsのメインエントリーポイントは`openhands/core/main.py`に�
 
 ベンチマークの評価ワークフローを作成するには、次の手順に従います。
 
-1. 関連するOpenHandsユーティリティをインポートします:
+1. 関連するAZM AIユーティリティをインポートします:
    ```python
-    import openhands.agenthub
+    import azm_ai.agenthub
     from evaluation.utils.shared import (
         EvalMetadata,
         EvalOutput,
@@ -92,18 +92,18 @@ OpenHandsのメインエントリーポイントは`openhands/core/main.py`に�
         reset_logger_for_multiprocessing,
         run_evaluation,
     )
-    from openhands.controller.state.state import State
-    from openhands.core.config import (
+    from azm_ai.controller.state.state import State
+    from azm_ai.core.config import (
         AppConfig,
         SandboxConfig,
         get_llm_config_arg,
         parse_arguments,
     )
-    from openhands.core.logger import openhands_logger as logger
-    from openhands.core.main import create_runtime, run_controller
-    from openhands.events.action import CmdRunAction
-    from openhands.events.observation import CmdOutputObservation, ErrorObservation
-    from openhands.runtime.runtime import Runtime
+    from azm_ai.core.logger import azm_ai_logger as logger
+    from azm_ai.core.main import create_runtime, run_controller
+    from azm_ai.events.action import CmdRunAction
+    from azm_ai.events.observation import CmdOutputObservation, ErrorObservation
+    from azm_ai.runtime.runtime import Runtime
    ```
 
 2. 設定を作成します:
@@ -133,7 +133,7 @@ OpenHandsのメインエントリーポイントは`openhands/core/main.py`に�
 
 4. 各インスタンスを処理する関数を作成します:
    ```python
-   from openhands.utils.async_utils import call_async_from_sync
+   from azm_ai.utils.async_utils import call_async_from_sync
    def process_instance(instance: pd.Series, metadata: EvalMetadata) -> EvalOutput:
        config = get_config(instance, metadata)
        runtime = create_runtime(config)
@@ -182,12 +182,12 @@ OpenHandsのメインエントリーポイントは`openhands/core/main.py`に�
 
 `get_instruction`、`your_user_response_function`、および`evaluate_agent_actions`関数は、特定のベンチマークの要件に応じてカスタマイズすることを忘れないでください。
 
-この構造に従うことで、OpenHandsフレームワーク内で独自のベンチマークの堅牢な評価ワークフローを作成できます。
+この構造に従うことで、AZM AIフレームワーク内で独自のベンチマークの堅牢な評価ワークフローを作成できます。
 
 
 ## `user_response_fn`の理解
 
-`user_response_fn`は、OpenHandsの評価ワークフローにおいて重要な役割を果たします。これは、評価プロセス中にエージェントとのユーザー対話をシミュレートし、自動化された応答を可能にします。この関数は、エージェントのクエリやアクションに対して一貫性のある事前定義された応答を提供したい場合に特に役立ちます。
+`user_response_fn`は、AZM AIの評価ワークフローにおいて重要な役割を果たします。これは、評価プロセス中にエージェントとのユーザー対話をシミュレートし、自動化された応答を可能にします。この関数は、エージェントのクエリやアクションに対して一貫性のある事前定義された応答を提供したい場合に特に役立ちます。
 
 
 ### ワークフローと相互作用

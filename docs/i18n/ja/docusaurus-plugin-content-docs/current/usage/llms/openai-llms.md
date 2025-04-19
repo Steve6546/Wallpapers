@@ -1,10 +1,10 @@
 # OpenAI
 
-OpenHandsは、OpenAIのチャットモデルへのAPIコールにLiteLLMを使用します。OpenAIをプロバイダーとして使用する方法については、[こちら](https://docs.litellm.ai/docs/providers/openai)のドキュメントを参照してください。
+AZM AIは、OpenAIのチャットモデルへのAPIコールにLiteLLMを使用します。OpenAIをプロバイダーとして使用する方法については、[こちら](https://docs.litellm.ai/docs/providers/openai)のドキュメントを参照してください。
 
 ## 設定
 
-OpenHandsを実行する際、OpenHandsのUIで設定メニューから以下の項目を設定する必要があります：
+AZM AIを実行する際、AZM AIのUIで設定メニューから以下の項目を設定する必要があります：
 
 * `LLMプロバイダー`を`OpenAI`に設定
 * `LLMモデル`を使用するモデルに設定。
@@ -18,7 +18,7 @@ OpenAIのチャット補完と同様に、OpenAI互換エンドポイントに�
 
 ## OpenAIプロキシの使用
 
-OpenAIプロキシを使用する場合、OpenHandsのUIで設定メニューから以下の項目を設定する必要があります：
+OpenAIプロキシを使用する場合、AZM AIのUIで設定メニューから以下の項目を設定する必要があります：
 
 * `詳細設定`を有効にする
 * `カスタムモデル`をopenai/&lt;model-name&gt;に設定（例：`openai/gpt-4o`またはopenai/&lt;proxy-prefix&gt;/&lt;model-name&gt;）

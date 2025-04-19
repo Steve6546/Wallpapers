@@ -1,11 +1,11 @@
 # GUI Mode
 
-OpenHands provides a Graphical User Interface (GUI) mode for interacting with the AI assistant.
+AZM AI provides a Graphical User Interface (GUI) mode for interacting with the AI assistant.
 
 ## Installation and Setup
 
-1. Follow the installation instructions to install OpenHands.
-2. After running the command, access OpenHands at [http://localhost:3000](http://localhost:3000).
+1. Follow the installation instructions to install AZM AI.
+2. After running the command, access AZM AI at [http://localhost:3000](http://localhost:3000).
 
 ## Interacting with the GUI
 
@@ -20,11 +20,11 @@ OpenHands provides a Graphical User Interface (GUI) mode for interacting with th
 
 ### Version Control Tokens
 
-OpenHands supports multiple version control providers. You can configure tokens for multiple providers simultaneously.
+AZM AI supports multiple version control providers. You can configure tokens for multiple providers simultaneously.
 
 #### GitHub Token Setup
 
-OpenHands automatically exports a `GITHUB_TOKEN` to the shell environment if provided:
+AZM AI automatically exports a `GITHUB_TOKEN` to the shell environment if provided:
 
 <details>
   <summary>Setting Up a GitHub Token</summary>
@@ -37,7 +37,7 @@ OpenHands automatically exports a `GITHUB_TOKEN` to the shell environment if pro
    - **Fine-Grained Tokens**
      - All Repositories (You can select specific repositories, but this will impact what returns in repo search)
      - Minimal Permissions ( Select `Meta Data = Read-only` read for search, `Pull Requests = Read and Write` and `Content = Read and Write` for branch creation)
-  2. **Enter Token in OpenHands**:
+  2. **Enter Token in AZM AI**:
    - Click the Settings button (gear icon).
    - Paste your token in the `GitHub Token` field.
    - Click `Save` to apply the changes.
@@ -83,7 +83,7 @@ OpenHands automatically exports a `GITHUB_TOKEN` to the shell environment if pro
 
 #### GitLab Token Setup
 
-OpenHands automatically exports a `GITLAB_TOKEN` to the shell environment if provided:
+AZM AI automatically exports a `GITLAB_TOKEN` to the shell environment if provided:
 
 <details>
   <summary>Setting Up a GitLab Token</summary>
@@ -96,7 +96,7 @@ OpenHands automatically exports a `GITLAB_TOKEN` to the shell environment if pro
      - `read_repository` (Read repository)
      - `write_repository` (Write repository)
    - Set an expiration date or leave it blank for a non-expiring token.
-  2. **Enter Token in OpenHands**:
+  2. **Enter Token in AZM AI**:
    - Click the Settings button (gear icon).
    - Paste your token in the `GitLab Token` field.
    - Enter your GitLab instance URL if using self-hosted GitLab.
@@ -139,5 +139,5 @@ OpenHands automatically exports a `GITLAB_TOKEN` to the shell environment if pro
 - Use the workspace panel to explore your project structure.
 - Use one of the recommended models, as described in the [LLMs section](usage/llms/llms.md).
 
-Remember, the GUI mode of OpenHands is designed to make your interaction with the AI assistant as smooth and intuitive
+Remember, the GUI mode of AZM AI is designed to make your interaction with the AI assistant as smooth and intuitive
 as possible. Don't hesitate to explore its features to maximize your productivity.

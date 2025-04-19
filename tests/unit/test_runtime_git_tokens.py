@@ -3,14 +3,14 @@ from types import MappingProxyType
 import pytest
 from pydantic import SecretStr
 
-from openhands.core.config import AppConfig
-from openhands.events.action import Action
-from openhands.events.action.commands import CmdRunAction
-from openhands.events.observation import NullObservation, Observation
-from openhands.events.stream import EventStream
-from openhands.integrations.provider import ProviderToken, ProviderType
-from openhands.runtime.base import Runtime
-from openhands.storage import get_file_store
+from azm_ai.core.config import AppConfig
+from azm_ai.events.action import Action
+from azm_ai.events.action.commands import CmdRunAction
+from azm_ai.events.observation import NullObservation, Observation
+from azm_ai.events.stream import EventStream
+from azm_ai.integrations.provider import ProviderToken, ProviderType
+from azm_ai.runtime.base import Runtime
+from azm_ai.storage import get_file_store
 
 
 class TestRuntime(Runtime):

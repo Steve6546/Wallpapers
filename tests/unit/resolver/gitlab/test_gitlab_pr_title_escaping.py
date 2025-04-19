@@ -2,10 +2,10 @@ import os
 import subprocess
 import tempfile
 
-from openhands.core.logger import openhands_logger as logger
-from openhands.resolver.interfaces.issue import Issue
-from openhands.resolver.send_pull_request import make_commit
-from openhands.resolver.utils import Platform
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.resolver.interfaces.issue import Issue
+from azm_ai.resolver.send_pull_request import make_commit
+from azm_ai.resolver.utils import Platform
 
 
 def test_commit_message_with_quotes():
@@ -91,7 +91,7 @@ def test_pr_title_with_quotes(monkeypatch):
     monkeypatch.setattr('httpx.post', mock_post)
     monkeypatch.setattr('httpx.get', lambda *args, **kwargs: MockGetResponse())
     monkeypatch.setattr(
-        'openhands.resolver.interfaces.github.GithubIssueHandler.branch_exists',
+        'azm_ai.resolver.interfaces.github.GithubIssueHandler.branch_exists',
         lambda *args, **kwargs: False,
     )
 
@@ -155,7 +155,7 @@ def test_pr_title_with_quotes(monkeypatch):
 
         # Try to send a PR - this will fail if the title is incorrectly escaped
         logger.info('Sending PR...')
-        from openhands.resolver.send_pull_request import send_pull_request
+        from azm_ai.resolver.send_pull_request import send_pull_request
 
         send_pull_request(
             issue=issue,

@@ -1,6 +1,6 @@
 import pytest
 
-from openhands.core.config.mcp_config import MCPConfig
+from azm_ai.core.config.mcp_config import MCPConfig
 
 
 def test_valid_sse_config():

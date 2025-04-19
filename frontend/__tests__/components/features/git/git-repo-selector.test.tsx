@@ -2,7 +2,7 @@ import { screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import { renderWithProviders } from "test-utils";
 import { GitRepositorySelector } from "#/components/features/git/git-repo-selector";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { Provider } from "#/types/settings";
 
 describe("GitRepositorySelector", () => {
@@ -25,10 +25,10 @@ describe("GitRepositorySelector", () => {
   });
 
   it("should show the GitHub login button in OSS mode", () => {
-    const getConfigSpy = vi.spyOn(OpenHands, "getConfig");
+    const getConfigSpy = vi.spyOn(AZM AI, "getConfig");
     getConfigSpy.mockResolvedValue({
       APP_MODE: "oss",
-      APP_SLUG: "openhands",
+      APP_SLUG: "azm_ai",
       GITHUB_CLIENT_ID: "test-client-id",
       POSTHOG_CLIENT_KEY: "test-posthog-key",
       FEATURE_FLAGS: {
@@ -66,7 +66,7 @@ describe("GitRepositorySelector", () => {
     ];
 
     const searchPublicRepositoriesSpy = vi.spyOn(
-      OpenHands,
+      AZM AI,
       "searchGitRepositories",
     );
     searchPublicRepositoriesSpy.mockResolvedValue(mockSearchedRepos);

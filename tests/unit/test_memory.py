@@ -6,23 +6,23 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from openhands.controller.agent import Agent
-from openhands.core.config import AppConfig
-from openhands.core.main import run_controller
-from openhands.core.schema.agent import AgentState
-from openhands.events.action.agent import RecallAction
-from openhands.events.action.message import MessageAction, SystemMessageAction
-from openhands.events.event import EventSource
-from openhands.events.observation.agent import (
+from azm_ai.controller.agent import Agent
+from azm_ai.core.config import AppConfig
+from azm_ai.core.main import run_controller
+from azm_ai.core.schema.agent import AgentState
+from azm_ai.events.action.agent import RecallAction
+from azm_ai.events.action.message import MessageAction, SystemMessageAction
+from azm_ai.events.event import EventSource
+from azm_ai.events.observation.agent import (
     RecallObservation,
     RecallType,
 )
-from openhands.events.stream import EventStream
-from openhands.llm import LLM
-from openhands.llm.metrics import Metrics
-from openhands.memory.memory import Memory
-from openhands.runtime.base import Runtime
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.events.stream import EventStream
+from azm_ai.llm import LLM
+from azm_ai.llm.metrics import Metrics
+from azm_ai.memory.memory import Memory
+from azm_ai.runtime.base import Runtime
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @pytest.fixture
@@ -49,9 +49,9 @@ def memory(event_stream):
 
 @pytest.fixture
 def prompt_dir(tmp_path):
-    # Copy contents from "openhands/agenthub/codeact_agent" to the temp directory
+    # Copy contents from "azm_ai/agenthub/codeact_agent" to the temp directory
     shutil.copytree(
-        'openhands/agenthub/codeact_agent/prompts', tmp_path, dirs_exist_ok=True
+        'azm_ai/agenthub/codeact_agent/prompts', tmp_path, dirs_exist_ok=True
     )
 
     # Return the temporary directory path
@@ -217,7 +217,7 @@ REPOSITORY INSTRUCTIONS: This is a test repository.
 
     # Patch the global microagents directory to use our test directory
     test_microagents_dir = os.path.join(prompt_dir, 'micro')
-    with patch('openhands.memory.memory.GLOBAL_MICROAGENTS_DIR', test_microagents_dir):
+    with patch('azm_ai.memory.memory.GLOBAL_MICROAGENTS_DIR', test_microagents_dir):
         # Initialize Memory
         memory = Memory(
             event_stream=event_stream,
@@ -355,7 +355,7 @@ REPOSITORY INSTRUCTIONS: This is the second test repository.
 
     # Patch the global microagents directory to use our test directory
     test_microagents_dir = os.path.join(prompt_dir, 'micro')
-    with patch('openhands.memory.memory.GLOBAL_MICROAGENTS_DIR', test_microagents_dir):
+    with patch('azm_ai.memory.memory.GLOBAL_MICROAGENTS_DIR', test_microagents_dir):
         # Initialize Memory
         memory = Memory(
             event_stream=event_stream,

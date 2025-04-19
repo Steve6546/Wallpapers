@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { DEFAULT_SETTINGS } from "#/services/settings";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { PostSettings, PostApiSettings } from "#/types/settings";
 import { useSettings } from "../query/use-settings";
 
@@ -9,7 +9,7 @@ const saveSettingsMutationFn = async (
 ) => {
   // If settings is null, we're resetting
   if (settings === null) {
-    await OpenHands.resetSettings();
+    await AZM AI.resetSettings();
     return;
   }
 
@@ -31,7 +31,7 @@ const saveSettingsMutationFn = async (
     provider_tokens: settings.provider_tokens,
   };
 
-  await OpenHands.saveSettings(apiSettings);
+  await AZM AI.saveSettings(apiSettings);
 };
 
 export const useSaveSettings = () => {

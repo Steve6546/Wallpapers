@@ -10,8 +10,8 @@ import ArrowDown from "#/icons/angle-down-solid.svg?react";
 import ArrowUp from "#/icons/angle-up-solid.svg?react";
 import CheckCircle from "#/icons/check-circle-solid.svg?react";
 import XCircle from "#/icons/x-circle-solid.svg?react";
-import { OpenHandsAction } from "#/types/core/actions";
-import { OpenHandsObservation } from "#/types/core/observations";
+import { AZM AIAction } from "#/types/core/actions";
+import { AZM AIObservation } from "#/types/core/observations";
 import { cn } from "#/utils/utils";
 import { code } from "../markdown/code";
 import { ol, ul } from "../markdown/list";
@@ -28,8 +28,8 @@ interface ExpandableMessageProps {
   message: string;
   type: string;
   success?: boolean;
-  observation?: PayloadAction<OpenHandsObservation>;
-  action?: PayloadAction<OpenHandsAction>;
+  observation?: PayloadAction<AZM AIObservation>;
+  action?: PayloadAction<AZM AIAction>;
 }
 
 export function ExpandableMessage({

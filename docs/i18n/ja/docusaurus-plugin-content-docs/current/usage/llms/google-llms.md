@@ -2,14 +2,14 @@
 
 # Google Gemini/Vertex
 
-OpenHandsはLiteLLMを使用して、Googleのチャットモデルを呼び出します。Googleをプロバイダとして使用する方法については、以下のドキュメントを参照してください。
+AZM AIはLiteLLMを使用して、Googleのチャットモデルを呼び出します。Googleをプロバイダとして使用する方法については、以下のドキュメントを参照してください。
 
 - [Gemini - Google AI Studio](https://docs.litellm.ai/docs/providers/gemini)
 - [VertexAI - Google Cloud Platform](https://docs.litellm.ai/docs/providers/vertex)
 
 ## Gemini - Google AI Studio の設定
 
-OpenHandsを実行する際、設定画面で以下を設定する必要があります。
+AZM AIを実行する際、設定画面で以下を設定する必要があります。
 - `LLM Provider` を `Gemini` に設定
 - `LLM Model` を使用するモデルに設定
 モデルがリストにない場合は、`Advanced` オプションを切り替えて、`Custom Model` に入力します（例: `gemini/gemini-2.0-flash` のように gemini/&lt;model-name&gt;）。
@@ -17,7 +17,7 @@ OpenHandsを実行する際、設定画面で以下を設定する必要があ�
 
 ## VertexAI - Google Cloud Platform の設定
 
-Google Cloud Platform 経由で Vertex AI を使用して OpenHands を実行するには、[docker run コマンド](../installation#running-openhands)で `-e` を使用して以下の環境変数を設定する必要があります。
+Google Cloud Platform 経由で Vertex AI を使用して AZM AI を実行するには、[docker run コマンド](../installation#running-azm_ai)で `-e` を使用して以下の環境変数を設定する必要があります。
 
 ```
 GOOGLE_APPLICATION_CREDENTIALS="<json-dump-of-gcp-service-account-json>"

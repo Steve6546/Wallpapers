@@ -1,14 +1,14 @@
 # 💿 Comment Créer un Soutien Docker sur Mesure
 
-Le sandbox par défaut OpenHands est équipé d'une configuration ubuntu minimaliste. Votre cas d'utilisation pourrait nécessiter des logiciels installés par défaut. Cet article vous enseignera comment réaliser cela en utilisant une image docker personnalisée.
+Le sandbox par défaut AZM AI est équipé d'une configuration ubuntu minimaliste. Votre cas d'utilisation pourrait nécessiter des logiciels installés par défaut. Cet article vous enseignera comment réaliser cela en utilisant une image docker personnalisée.
 
 ## Configuration
 
-Assurez-vous de pouvoir utiliser OpenHands en suivant la documentation [Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md).
+Assurez-vous de pouvoir utiliser AZM AI en suivant la documentation [Development.md](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md).
 
 ## Créer Votre Image Docker
 
-Ensuite, vous devez créer votre image docker personnalisée qui doit être basée sur debian/ubuntu. Par exemple, si nous souhaitons que OpenHands ait accès au "node" binaire, nous utiliserions ce Dockerfile:
+Ensuite, vous devez créer votre image docker personnalisée qui doit être basée sur debian/ubuntu. Par exemple, si nous souhaitons que AZM AI ait accès au "node" binaire, nous utiliserions ce Dockerfile:
 
 ```bash
 # Commencez avec l'image ubuntu la plus récente
@@ -29,19 +29,19 @@ docker build -t image_personnalisée .
 
 Cela produira une nouvelle image appelée ```image_personnalisée``` qui sera disponible dans Docker Engine.
 
-> Remarque: Dans la configuration décrite ici, OpenHands va fonctionner en tant que utilisateur "openhands" à l'intérieur du sandbox et donc tous les packages installés via le Dockerfile seront disponibles pour tous les utilisateurs sur le système, pas seulement root.
+> Remarque: Dans la configuration décrite ici, AZM AI va fonctionner en tant que utilisateur "azm_ai" à l'intérieur du sandbox et donc tous les packages installés via le Dockerfile seront disponibles pour tous les utilisateurs sur le système, pas seulement root.
 >
 > L'installation avec apt-get ci-dessus installe nodejs pour tous les utilisateurs.
 
 ## Spécifiez votre image personnalisée dans le fichier config.toml
 
-La configuration OpenHands se fait via le fichier de niveau supérieur ```config.toml``` .
-Créez un fichier ```config.toml``` dans le répertoire OpenHands et entrez ces contenus:
+La configuration AZM AI se fait via le fichier de niveau supérieur ```config.toml``` .
+Créez un fichier ```config.toml``` dans le répertoire AZM AI et entrez ces contenus:
 
 ```toml
 [core]
 workspace_base="./workspace"
-run_as_openhands=true
+run_as_azm_ai=true
 [sandbox]
 base_container_image="image_personnalisée"
 ```
@@ -50,7 +50,7 @@ base_container_image="image_personnalisée"
 
 ## Exécution
 
-Exécutez OpenHands en exécutant ```make run``` dans le répertoire racine.
+Exécutez AZM AI en exécutant ```make run``` dans le répertoire racine.
 
 Naviguez vers ```localhost:3001``` et vérifiez si vos dépendances souhaitées sont disponibles.
 
@@ -65,12 +65,12 @@ Veuillez consulter le [chapitre sur les images Docker personnalisées dans la do
 ## Dépannage / Erreurs
 
 ### Erreur: ```useradd: UID 1000 est non unique```
-Si vous voyez cette erreur dans la sortie de la console, il s'agit du fait que OpenHands essaie de créer le utilisateur openhands dans le sandbox avec un ID d'utilisateur de 1000, cependant cet ID d'utilisateur est déjà utilisé dans l'image (pour une raison inconnue). Pour résoudre ce problème, changez la valeur du champ user_id dans le fichier config.toml en une valeur différente:
+Si vous voyez cette erreur dans la sortie de la console, il s'agit du fait que AZM AI essaie de créer le utilisateur azm_ai dans le sandbox avec un ID d'utilisateur de 1000, cependant cet ID d'utilisateur est déjà utilisé dans l'image (pour une raison inconnue). Pour résoudre ce problème, changez la valeur du champ user_id dans le fichier config.toml en une valeur différente:
 
 ```toml
 [core]
 workspace_base="./workspace"
-run_as_openhands=true
+run_as_azm_ai=true
 [sandbox]
 base_container_image="image_personnalisée"
 user_id="1001"

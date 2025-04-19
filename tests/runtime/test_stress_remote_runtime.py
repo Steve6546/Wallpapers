@@ -33,27 +33,27 @@ from evaluation.utils.shared import (
     reset_logger_for_multiprocessing,
     run_evaluation,
 )
-from openhands.agenthub import Agent
-from openhands.controller.state.state import State
-from openhands.core.config import (
+from azm_ai.agenthub import Agent
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import (
     AgentConfig,
     AppConfig,
     LLMConfig,
     SandboxConfig,
 )
-from openhands.core.logger import openhands_logger as logger
-from openhands.core.main import create_runtime, run_controller
-from openhands.events.action import (
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.core.main import create_runtime, run_controller
+from azm_ai.events.action import (
     CmdRunAction,
     FileEditAction,
     FileWriteAction,
     MessageAction,
 )
-from openhands.events.observation import CmdOutputObservation
-from openhands.events.serialization.event import event_to_dict
-from openhands.llm import LLM
-from openhands.runtime.base import Runtime
-from openhands.utils.async_utils import call_async_from_sync
+from azm_ai.events.observation import CmdOutputObservation
+from azm_ai.events.serialization.event import event_to_dict
+from azm_ai.llm import LLM
+from azm_ai.runtime.base import Runtime
+from azm_ai.utils.async_utils import call_async_from_sync
 
 AGENT_CLS_TO_FAKE_USER_RESPONSE_FN = {
     'CodeActAgent': codeact_user_response,
@@ -62,7 +62,7 @@ AGENT_CLS_TO_FAKE_USER_RESPONSE_FN = {
 
 def get_config() -> AppConfig:
     config = AppConfig(
-        run_as_openhands=False,
+        run_as_azm_ai=False,
         runtime=os.environ.get('RUNTIME', 'remote'),
         sandbox=SandboxConfig(
             base_container_image='python:3.11-bookworm',
@@ -306,7 +306,7 @@ def test_stress_remote_runtime_long_output_with_soft_and_hard_timeout():
 
             # Check action_execution_server mem
             mem_action = CmdRunAction(
-                'ps aux | awk \'{printf "%8.1f MB  %s\\n", $6/1024, $0}\' | sort -nr | grep "action_execution_server" | grep "/openhands/poetry" | grep -v grep | awk \'{print $1}\''
+                'ps aux | awk \'{printf "%8.1f MB  %s\\n", $6/1024, $0}\' | sort -nr | grep "action_execution_server" | grep "/azm_ai/poetry" | grep -v grep | awk \'{print $1}\''
             )
             mem_obs = runtime.run_action(mem_action)
             assert mem_obs.exit_code == 0

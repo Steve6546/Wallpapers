@@ -8,8 +8,8 @@ from prompt_toolkit.application import create_app_session
 from prompt_toolkit.input import create_pipe_input
 from prompt_toolkit.output import create_output
 
-from openhands.core.cli import main
-from openhands.core.config import AppConfig
+from azm_ai.core.cli import main
+from azm_ai.core.config import AppConfig
 
 
 class MockEventStream:
@@ -42,7 +42,7 @@ class MockEventStream:
 
 @pytest.fixture
 def mock_agent():
-    with patch('openhands.core.cli.create_agent') as mock_create_agent:
+    with patch('azm_ai.core.cli.create_agent') as mock_create_agent:
         mock_agent_instance = AsyncMock()
         mock_agent_instance.name = 'test-agent'
         mock_agent_instance.llm = AsyncMock()
@@ -60,7 +60,7 @@ def mock_agent():
 
 @pytest.fixture
 def mock_controller():
-    with patch('openhands.core.cli.create_controller') as mock_create_controller:
+    with patch('azm_ai.core.cli.create_controller') as mock_create_controller:
         mock_controller_instance = AsyncMock()
         mock_controller_instance.state.agent_state = None
         # Mock run_until_done to finish immediately
@@ -71,13 +71,13 @@ def mock_controller():
 
 @pytest.fixture
 def mock_config():
-    with patch('openhands.core.cli.parse_arguments') as mock_parse_args:
+    with patch('azm_ai.core.cli.parse_arguments') as mock_parse_args:
         args = Mock()
         args.file = None
         args.task = None
         args.directory = None
         mock_parse_args.return_value = args
-        with patch('openhands.core.cli.setup_config_from_args') as mock_setup_config:
+        with patch('azm_ai.core.cli.setup_config_from_args') as mock_setup_config:
             mock_config = AppConfig()
             mock_config.cli_multiline_input = False
             mock_config.security = Mock()
@@ -91,7 +91,7 @@ def mock_config():
 
 @pytest.fixture
 def mock_memory():
-    with patch('openhands.core.cli.create_memory') as mock_create_memory:
+    with patch('azm_ai.core.cli.create_memory') as mock_create_memory:
         mock_memory_instance = AsyncMock()
         mock_create_memory.return_value = mock_memory_instance
         yield mock_memory_instance
@@ -99,14 +99,14 @@ def mock_memory():
 
 @pytest.fixture
 def mock_read_task():
-    with patch('openhands.core.cli.read_task') as mock_read_task:
+    with patch('azm_ai.core.cli.read_task') as mock_read_task:
         mock_read_task.return_value = None
         yield mock_read_task
 
 
 @pytest.fixture
 def mock_runtime():
-    with patch('openhands.core.cli.create_runtime') as mock_create_runtime:
+    with patch('azm_ai.core.cli.create_runtime') as mock_create_runtime:
         mock_runtime_instance = AsyncMock()
 
         mock_event_stream = MockEventStream()
@@ -129,10 +129,10 @@ async def test_cli_startup_folder_security_confirmation_agree(
     buffer = StringIO()
 
     with patch(
-        'openhands.core.cli.manage_openhands_file', return_value=False
-    ) as mock_manage_openhands_file:
+        'azm_ai.core.cli.manage_azm_ai_file', return_value=False
+    ) as mock_manage_azm_ai_file:
         with patch(
-            'openhands.core.cli.cli_confirm', return_value=True
+            'azm_ai.core.cli.cli_confirm', return_value=True
         ) as mock_cli_confirm:
             with create_app_session(
                 input=create_pipe_input(), output=create_output(stdout=buffer)
@@ -155,7 +155,7 @@ async def test_cli_startup_folder_security_confirmation_agree(
                 assert '___' in output
 
                 # Version information
-                assert 'OpenHands CLI v' in output
+                assert 'AZM AI CLI v' in output
 
                 # Session initialization
                 assert 'Initializing session' in output
@@ -164,16 +164,16 @@ async def test_cli_startup_folder_security_confirmation_agree(
                 assert 'Do you trust the files in this folder?' in output
                 assert '/test' in output
                 assert (
-                    'OpenHands may read and execute files in this folder with your permission.'
+                    'AZM AI may read and execute files in this folder with your permission.'
                     in output
                 )
 
                 # Confirmation prompt
-                mock_manage_openhands_file.assert_any_call('/test')
+                mock_manage_azm_ai_file.assert_any_call('/test')
                 mock_cli_confirm.assert_called_once_with(
                     'Do you wish to continue?', ['Yes, proceed', 'No, exit']
                 )
-                mock_manage_openhands_file.assert_any_call('/test', add_to_trusted=True)
+                mock_manage_azm_ai_file.assert_any_call('/test', add_to_trusted=True)
 
                 # Session initialization complete
                 assert 'Initialized session' in output
@@ -191,10 +191,10 @@ async def test_cli_startup_folder_security_confirmation_disagree(
     buffer = StringIO()
 
     with patch(
-        'openhands.core.cli.manage_openhands_file', return_value=False
-    ) as mock_manage_openhands_file:
+        'azm_ai.core.cli.manage_azm_ai_file', return_value=False
+    ) as mock_manage_azm_ai_file:
         with patch(
-            'openhands.core.cli.cli_confirm', return_value=False
+            'azm_ai.core.cli.cli_confirm', return_value=False
         ) as mock_cli_confirm:
             with create_app_session(
                 input=create_pipe_input(), output=create_output(stdout=buffer)
@@ -217,7 +217,7 @@ async def test_cli_startup_folder_security_confirmation_disagree(
                 assert '___' in output
 
                 # Version information
-                assert 'OpenHands CLI v' in output
+                assert 'AZM AI CLI v' in output
 
                 # Session initialization
                 assert 'Initializing session' in output
@@ -226,12 +226,12 @@ async def test_cli_startup_folder_security_confirmation_disagree(
                 assert 'Do you trust the files in this folder?' in output
                 assert '/test' in output
                 assert (
-                    'OpenHands may read and execute files in this folder with your permission.'
+                    'AZM AI may read and execute files in this folder with your permission.'
                     in output
                 )
 
                 # Confirmation prompt
-                mock_manage_openhands_file.assert_called_once_with('/test')
+                mock_manage_azm_ai_file.assert_called_once_with('/test')
                 mock_cli_confirm.assert_called_once_with(
                     'Do you wish to continue?', ['Yes, proceed', 'No, exit']
                 )
@@ -251,9 +251,9 @@ async def test_cli_startup_trusted_folder(
 ):
     buffer = StringIO()
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
+    with patch('azm_ai.core.cli.manage_azm_ai_file', return_value=True):
         with patch(
-            'openhands.core.cli.cli_confirm', return_value=True
+            'azm_ai.core.cli.cli_confirm', return_value=True
         ) as mock_cli_confirm:
             with create_app_session(
                 input=create_pipe_input(), output=create_output(stdout=buffer)
@@ -276,7 +276,7 @@ async def test_cli_startup_trusted_folder(
                 assert '___' in output
 
                 # Version information
-                assert 'OpenHands CLI v' in output
+                assert 'AZM AI CLI v' in output
 
                 # Session initialization
                 assert 'Initializing session' in output
@@ -285,7 +285,7 @@ async def test_cli_startup_trusted_folder(
                 assert 'Do you trust the files in this folder?' not in output
                 assert '/test' not in output
                 assert (
-                    'OpenHands may read and execute files in this folder with your permission.'
+                    'AZM AI may read and execute files in this folder with your permission.'
                     not in output
                 )
 

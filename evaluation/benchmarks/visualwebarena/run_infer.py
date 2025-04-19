@@ -18,26 +18,26 @@ from evaluation.utils.shared import (
     run_evaluation,
     update_llm_config_for_completions_logging,
 )
-from openhands.controller.state.state import State
-from openhands.core.config import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import (
     AppConfig,
     get_llm_config_arg,
     parse_arguments,
 )
-from openhands.core.logger import openhands_logger as logger
-from openhands.core.main import create_runtime, run_controller
-from openhands.events.action import (
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.core.main import create_runtime, run_controller
+from azm_ai.events.action import (
     BrowseInteractiveAction,
     CmdRunAction,
     MessageAction,
 )
-from openhands.events.observation import CmdOutputObservation
-from openhands.runtime.base import Runtime
-from openhands.runtime.browser.browser_env import (
+from azm_ai.events.observation import CmdOutputObservation
+from azm_ai.runtime.base import Runtime
+from azm_ai.runtime.browser.browser_env import (
     BROWSER_EVAL_GET_GOAL_ACTION,
     BROWSER_EVAL_GET_REWARDS_ACTION,
 )
-from openhands.utils.async_utils import call_async_from_sync
+from azm_ai.utils.async_utils import call_async_from_sync
 
 SUPPORTED_AGENT_CLS = {'VisualBrowsingAgent'}
 AGENT_CLS_TO_FAKE_USER_RESPONSE_FN = {
@@ -74,7 +74,7 @@ def get_config(
     }
     config = AppConfig(
         default_agent=metadata.agent_class,
-        run_as_openhands=False,
+        run_as_azm_ai=False,
         runtime='docker',
         max_iterations=metadata.max_iterations,
         sandbox=sandbox_config,

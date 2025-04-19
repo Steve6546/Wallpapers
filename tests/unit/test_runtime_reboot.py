@@ -3,12 +3,12 @@ from unittest.mock import MagicMock, Mock
 import httpx
 import pytest
 
-from openhands.core.exceptions import (
+from azm_ai.core.exceptions import (
     AgentRuntimeDisconnectedError,
     AgentRuntimeTimeoutError,
 )
-from openhands.events.action import CmdRunAction
-from openhands.runtime.base import Runtime
+from azm_ai.events.action import CmdRunAction
+from azm_ai.runtime.base import Runtime
 
 
 @pytest.fixture

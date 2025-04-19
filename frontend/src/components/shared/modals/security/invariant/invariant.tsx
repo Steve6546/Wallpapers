@@ -52,7 +52,7 @@ function SecurityInvariant() {
     onSuccess: (traces) => {
       toast.info(t(I18nKey.INVARIANT$TRACE_EXPORTED_MESSAGE));
 
-      const filename = `openhands-trace-${getFormattedDateTime()}.json`;
+      const filename = `azm_ai-trace-${getFormattedDateTime()}.json`;
       downloadJSON(traces, filename);
     },
   });

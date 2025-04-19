@@ -14,10 +14,10 @@
 - 任意の有効なLinux `bash`コマンドを実行する
 - [対話型Pythonインタープリター](https://ipython.org/)で任意の有効な`Python`コードを実行する。これは`bash`コマンドを通してシミュレートされます。詳細はプラグインシステムを参照してください。
 
-![image](https://github.com/All-Hands-AI/OpenHands/assets/38853559/92b622e3-72ad-4a61-8f41-8c040b6d5fb3)
+![image](https://github.com/All-Hands-AI/AZM AI/assets/38853559/92b622e3-72ad-4a61-8f41-8c040b6d5fb3)
 
 ### デモ
 
-https://github.com/All-Hands-AI/OpenHands/assets/38853559/f592a192-e86c-4f48-ad31-d69282d5f6ac
+https://github.com/All-Hands-AI/AZM AI/assets/38853559/f592a192-e86c-4f48-ad31-d69282d5f6ac
 
 _データサイエンスタスク（線形回帰）を実行する`gpt-4-turbo-2024-04-09`を使用したCodeActAgentの例_。

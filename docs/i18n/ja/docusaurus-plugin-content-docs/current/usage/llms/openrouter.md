@@ -1,10 +1,10 @@
 # OpenRouter
 
-OpenHandsは、OpenRouterのチャットモデルへのAPIコールにLiteLLMを使用します。OpenRouterをプロバイダーとして使用する方法については、[こちら](https://docs.litellm.ai/docs/providers/openrouter)のドキュメントを参照してください。
+AZM AIは、OpenRouterのチャットモデルへのAPIコールにLiteLLMを使用します。OpenRouterをプロバイダーとして使用する方法については、[こちら](https://docs.litellm.ai/docs/providers/openrouter)のドキュメントを参照してください。
 
 ## 設定
 
-OpenHandsを実行する際、OpenHandsのUIで設定メニューから以下の項目を設定する必要があります：
+AZM AIを実行する際、AZM AIのUIで設定メニューから以下の項目を設定する必要があります：
 
 * `LLMプロバイダー`を`OpenRouter`に設定
 * `LLMモデル`を使用するモデルに設定。

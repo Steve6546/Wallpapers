@@ -12,11 +12,11 @@ from unittest.mock import patch
 import botocore.exceptions
 from google.api_core.exceptions import NotFound
 
-from openhands.storage.files import FileStore
-from openhands.storage.google_cloud import GoogleCloudFileStore
-from openhands.storage.local import LocalFileStore
-from openhands.storage.memory import InMemoryFileStore
-from openhands.storage.s3 import S3FileStore
+from azm_ai.storage.files import FileStore
+from azm_ai.storage.google_cloud import GoogleCloudFileStore
+from azm_ai.storage.local import LocalFileStore
+from azm_ai.storage.memory import InMemoryFileStore
+from azm_ai.storage.s3 import S3FileStore
 
 
 class _StorageTest(ABC):

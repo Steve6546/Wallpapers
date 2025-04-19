@@ -14,19 +14,19 @@ Run the following command in your terminal, replacing `<your-api-key>` with the 
 export DAYTONA_API_KEY="<your-api-key>"
 ```
 
-This step ensures that OpenHands can authenticate with the Daytona platform when it runs.
+This step ensures that AZM AI can authenticate with the Daytona platform when it runs.
 
-## Step 3: Run OpenHands Locally Using Docker
-To start the latest version of OpenHands on your machine, execute the following command in your terminal:
+## Step 3: Run AZM AI Locally Using Docker
+To start the latest version of AZM AI on your machine, execute the following command in your terminal:
 ```bash
-bash -i <(curl -sL https://get.daytona.io/openhands)
+bash -i <(curl -sL https://get.daytona.io/azm_ai)
 ```
 
 ### What This Command Does:
-- Downloads the latest OpenHands release script.
+- Downloads the latest AZM AI release script.
 - Runs the script in an interactive Bash session.
-- Automatically pulls and runs the OpenHands container using Docker.
+- Automatically pulls and runs the AZM AI container using Docker.
 
-Once executed, OpenHands should be running locally and ready for use.
+Once executed, AZM AI should be running locally and ready for use.
 
-For more details and manual initialization, view the entire [README.md](https://github.com/All-Hands-AI/OpenHands/blob/main/openhands/runtime/impl/daytona/README.md)
+For more details and manual initialization, view the entire [README.md](https://github.com/All-Hands-AI/AZM AI/blob/main/azm_ai/runtime/impl/daytona/README.md)

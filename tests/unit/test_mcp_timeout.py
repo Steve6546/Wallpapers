@@ -3,8 +3,8 @@ from unittest import mock
 
 import pytest
 
-from openhands.core.config.mcp_config import MCPConfig
-from openhands.mcp import MCPClient, create_mcp_clients, fetch_mcp_tools_from_config
+from azm_ai.core.config.mcp_config import MCPConfig
+from azm_ai.mcp import MCPClient, create_mcp_clients, fetch_mcp_tools_from_config
 
 
 @pytest.mark.asyncio
@@ -22,7 +22,7 @@ async def test_sse_connection_timeout():
     mock_client.disconnect = mock.AsyncMock()
 
     # Mock the MCPClient constructor to return our mock
-    with mock.patch('openhands.mcp.utils.MCPClient', return_value=mock_client):
+    with mock.patch('azm_ai.mcp.utils.MCPClient', return_value=mock_client):
         # Create a list of server URLs to test
         servers = ['http://server1:8080', 'http://server2:8080']
 
@@ -49,7 +49,7 @@ async def test_fetch_mcp_tools_with_timeout():
     mock_config.mcp_servers = ['http://server1:8080']
 
     # Mock create_mcp_clients to return an empty list (simulating all connections failing)
-    with mock.patch('openhands.mcp.utils.create_mcp_clients', return_value=[]):
+    with mock.patch('azm_ai.mcp.utils.create_mcp_clients', return_value=[]):
         # Call fetch_mcp_tools_from_config
         tools = await fetch_mcp_tools_from_config(mock_config)
 
@@ -72,7 +72,7 @@ async def test_mixed_connection_results():
 
     # Mock create_mcp_clients to return our successful client
     with mock.patch(
-        'openhands.mcp.utils.create_mcp_clients', return_value=[successful_client]
+        'azm_ai.mcp.utils.create_mcp_clients', return_value=[successful_client]
     ):
         # Call fetch_mcp_tools_from_config
         tools = await fetch_mcp_tools_from_config(mock_config)

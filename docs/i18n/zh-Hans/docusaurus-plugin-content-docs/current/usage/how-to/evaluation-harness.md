@@ -1,11 +1,11 @@
 # 评估
 
-本指南概述了如何将您自己的评估基准集成到 OpenHands 框架中。
+本指南概述了如何将您自己的评估基准集成到 AZM AI 框架中。
 
 ## 设置环境和 LLM 配置
 
-请按照[此处](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md)的说明设置您的本地开发环境。
-开发模式下的 OpenHands 使用 `config.toml` 来跟踪大多数配置。
+请按照[此处](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md)的说明设置您的本地开发环境。
+开发模式下的 AZM AI 使用 `config.toml` 来跟踪大多数配置。
 
 以下是一个示例配置文件，您可以使用它来定义和使用多个 LLM：
 
@@ -28,12 +28,12 @@ temperature = 0.0
 ```
 
 
-## 如何在命令行中使用 OpenHands
+## 如何在命令行中使用 AZM AI
 
-可以使用以下格式从命令行运行 OpenHands：
+可以使用以下格式从命令行运行 AZM AI：
 
 ```bash
-poetry run python ./openhands/core/main.py \
+poetry run python ./azm_ai/core/main.py \
         -i <max_iterations> \
         -t "<task_description>" \
         -c <agent_class> \
@@ -43,22 +43,22 @@ poetry run python ./openhands/core/main.py \
 例如：
 
 ```bash
-poetry run python ./openhands/core/main.py \
+poetry run python ./azm_ai/core/main.py \
         -i 10 \
         -t "Write me a bash script that prints hello world." \
         -c CodeActAgent \
         -l llm
 ```
 
-此命令使用以下参数运行 OpenHands：
+此命令使用以下参数运行 AZM AI：
 - 最大迭代次数为 10
 - 指定的任务描述
 - 使用 CodeActAgent
 - 使用 `config.toml` 文件的 `llm` 部分中定义的 LLM 配置
 
-## OpenHands 如何工作
+## AZM AI 如何工作
 
-OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的简化工作流程：
+AZM AI 的主要入口点在 `azm_ai/core/main.py` 中。以下是它的简化工作流程：
 
 1. 解析命令行参数并加载配置
 2. 使用 `create_runtime()` 创建运行时环境
@@ -68,12 +68,12 @@ OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的�
    - 执行代理的任务
    - 完成后返回最终状态
 
-`run_controller()` 函数是 OpenHands 执行的核心。它管理代理、运行时和任务之间的交互，处理用户输入模拟和事件处理等事项。
+`run_controller()` 函数是 AZM AI 执行的核心。它管理代理、运行时和任务之间的交互，处理用户输入模拟和事件处理等事项。
 
 
 ## 入门最简单的方法：探索现有基准
 
-我们鼓励您查看我们仓库的 [`evaluation/benchmarks/` 目录](https://github.com/All-Hands-AI/OpenHands/blob/main/evaluation/benchmarks)中提供的各种评估基准。
+我们鼓励您查看我们仓库的 [`evaluation/benchmarks/` 目录](https://github.com/All-Hands-AI/AZM AI/blob/main/evaluation/benchmarks)中提供的各种评估基准。
 
 要集成您自己的基准，我们建议从最接近您需求的基准开始。这种方法可以显著简化您的集成过程，允许您在现有结构的基础上进行构建并使其适应您的特定要求。
 
@@ -82,9 +82,9 @@ OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的�
 
 要为您的基准创建评估工作流，请按照以下步骤操作：
 
-1. 导入相关的 OpenHands 实用程序：
+1. 导入相关的 AZM AI 实用程序：
    ```python
-    import openhands.agenthub
+    import azm_ai.agenthub
     from evaluation.utils.shared import (
         EvalMetadata,
         EvalOutput,
@@ -93,18 +93,18 @@ OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的�
         reset_logger_for_multiprocessing,
         run_evaluation,
     )
-    from openhands.controller.state.state import State
-    from openhands.core.config import (
+    from azm_ai.controller.state.state import State
+    from azm_ai.core.config import (
         AppConfig,
         SandboxConfig,
         get_llm_config_arg,
         parse_arguments,
     )
-    from openhands.core.logger import openhands_logger as logger
-    from openhands.core.main import create_runtime, run_controller
-    from openhands.events.action import CmdRunAction
-    from openhands.events.observation import CmdOutputObservation, ErrorObservation
-    from openhands.runtime.runtime import Runtime
+    from azm_ai.core.logger import azm_ai_logger as logger
+    from azm_ai.core.main import create_runtime, run_controller
+    from azm_ai.events.action import CmdRunAction
+    from azm_ai.events.observation import CmdOutputObservation, ErrorObservation
+    from azm_ai.runtime.runtime import Runtime
    ```
 
 2. 创建配置：
@@ -134,7 +134,7 @@ OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的�
 
 4. 创建一个函数来处理每个实例：
    ```python
-   from openhands.utils.async_utils import call_async_from_sync
+   from azm_ai.utils.async_utils import call_async_from_sync
    def process_instance(instance: pd.Series, metadata: EvalMetadata) -> EvalOutput:
        config = get_config(instance, metadata)
        runtime = create_runtime(config)
@@ -183,12 +183,12 @@ OpenHands 的主要入口点在 `openhands/core/main.py` 中。以下是它的�
 
 请记住根据您特定的基准要求自定义 `get_instruction`、`your_user_response_function` 和 `evaluate_agent_actions` 函数。
 
-通过遵循此结构，您可以在 OpenHands 框架内为您的基准创建强大的评估工作流。
+通过遵循此结构，您可以在 AZM AI 框架内为您的基准创建强大的评估工作流。
 
 
 ## 理解 `user_response_fn`
 
-`user_response_fn` 是 OpenHands 评估工作流中的关键组件。它模拟用户与代理的交互，允许在评估过程中自动响应。当您想要为代理的查询或操作提供一致的、预定义的响应时，此函数特别有用。
+`user_response_fn` 是 AZM AI 评估工作流中的关键组件。它模拟用户与代理的交互，允许在评估过程中自动响应。当您想要为代理的查询或操作提供一致的、预定义的响应时，此函数特别有用。
 
 
 ### 工作流和交互

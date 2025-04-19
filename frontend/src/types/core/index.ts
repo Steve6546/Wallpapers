@@ -1,8 +1,8 @@
-import { OpenHandsAction } from "./actions";
-import { OpenHandsObservation } from "./observations";
-import { OpenHandsVariance } from "./variances";
+import { AZM AIAction } from "./actions";
+import { AZM AIObservation } from "./observations";
+import { AZM AIVariance } from "./variances";
 
-export type OpenHandsParsedEvent =
-  | OpenHandsAction
-  | OpenHandsObservation
-  | OpenHandsVariance;
+export type AZM AIParsedEvent =
+  | AZM AIAction
+  | AZM AIObservation
+  | AZM AIVariance;

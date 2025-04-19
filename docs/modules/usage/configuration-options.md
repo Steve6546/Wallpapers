@@ -1,7 +1,7 @@
 # Configuration Options
 
 :::note
-This page outlines all available configuration options for OpenHands, allowing you to customize its behavior and
+This page outlines all available configuration options for AZM AI, allowing you to customize its behavior and
 integrate it with other services. In GUI Mode, any settings applied through the Settings UI will take precedence.
 :::
 
@@ -117,10 +117,10 @@ The core configuration options are defined in the `[core]` section of the `confi
   - Description: Path to rewrite the workspace mount path to. You can usually ignore this, it refers to special cases of running inside another container.
 
 ### Miscellaneous
-- `run_as_openhands`
+- `run_as_azm_ai`
   - Type: `bool`
   - Default: `true`
-  - Description: Run as OpenHands
+  - Description: Run as AZM AI
 
 - `runtime`
   - Type: `str`
@@ -405,4 +405,4 @@ To use these with the docker command, pass in `-e SECURITY_<option>`. Example: `
 ---
 
 > **Note**: Adjust configurations carefully, especially for memory, security, and network-related settings to ensure optimal performance and security.
-Please note that the configuration options may be subject to change in future versions of OpenHands. It's recommended to refer to the official documentation for the most up-to-date information.
+Please note that the configuration options may be subject to change in future versions of AZM AI. It's recommended to refer to the official documentation for the most up-to-date information.

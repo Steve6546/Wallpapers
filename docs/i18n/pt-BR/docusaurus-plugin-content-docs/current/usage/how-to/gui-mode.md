@@ -1,11 +1,11 @@
 # Modo GUI
 
-O OpenHands fornece um modo de Interface Gráfica do Usuário (GUI) para interagir com o assistente de IA.
+O AZM AI fornece um modo de Interface Gráfica do Usuário (GUI) para interagir com o assistente de IA.
 
 ## Instalação e Configuração
 
-1. Siga as instruções de instalação para instalar o OpenHands.
-2. Após executar o comando, acesse o OpenHands em [http://localhost:3000](http://localhost:3000).
+1. Siga as instruções de instalação para instalar o AZM AI.
+2. Após executar o comando, acesse o AZM AI em [http://localhost:3000](http://localhost:3000).
 
 ## Interagindo com a GUI
 
@@ -19,11 +19,11 @@ O OpenHands fornece um modo de Interface Gráfica do Usuário (GUI) para interag
 
 ### Tokens de Controle de Versão
 
-O OpenHands suporta múltiplos provedores de controle de versão. Você pode configurar tokens para vários provedores simultaneamente.
+O AZM AI suporta múltiplos provedores de controle de versão. Você pode configurar tokens para vários provedores simultaneamente.
 
 #### Configuração do Token do GitHub
 
-O OpenHands exporta automaticamente um `GITHUB_TOKEN` para o ambiente shell se ele estiver disponível. Isso pode acontecer de duas maneiras:
+O AZM AI exporta automaticamente um `GITHUB_TOKEN` para o ambiente shell se ele estiver disponível. Isso pode acontecer de duas maneiras:
 
 **Instalação Local**: O usuário insere diretamente seu token do GitHub.
 <details>
@@ -37,7 +37,7 @@ O OpenHands exporta automaticamente um `GITHUB_TOKEN` para o ambiente shell se e
    - **Fine-Grained Tokens**
      - All Repositories (Você pode selecionar repositórios específicos, mas isso afetará o que retorna na pesquisa de repositórios)
      - Minimal Permissions (Selecione **Meta Data = Read-only** para pesquisa, **Pull Requests = Read and Write**, **Content = Read and Write** para criação de branches)
-  2. **Insira o Token no OpenHands**:
+  2. **Insira o Token no AZM AI**:
    - Clique no botão Settings (ícone de engrenagem).
    - Navegue até a seção `Git Provider Settings`.
    - Cole seu token no campo `GitHub Token`.
@@ -82,26 +82,26 @@ O OpenHands exporta automaticamente um `GITHUB_TOKEN` para o ambiente shell se e
      - Verifique o console do navegador em busca de mensagens de erro.
 </details>
 
-**OpenHands Cloud**: O token é obtido por meio da autenticação OAuth do GitHub.
+**AZM AI Cloud**: O token é obtido por meio da autenticação OAuth do GitHub.
 
 <details>
   <summary>Autenticação OAuth</summary>
 
-  Ao usar o OpenHands Cloud, o fluxo OAuth do GitHub solicita as seguintes permissões:
+  Ao usar o AZM AI Cloud, o fluxo OAuth do GitHub solicita as seguintes permissões:
    - Acesso ao repositório (leitura/escrita)
    - Gerenciamento de fluxo de trabalho
    - Acesso de leitura à organização
 
-  Para autenticar o OpenHands:
+  Para autenticar o AZM AI:
    - Clique em `Sign in with GitHub` quando solicitado.
    - Revise as permissões solicitadas.
-   - Autorize o OpenHands a acessar sua conta do GitHub.
+   - Autorize o AZM AI a acessar sua conta do GitHub.
    - Se estiver usando uma organização, autorize o acesso à organização se solicitado.
 </details>
 
 #### Configuração do Token do GitLab
 
-O OpenHands exporta automaticamente um `GITLAB_TOKEN` para o ambiente shell, apenas para instalações locais, se ele estiver disponível.
+O AZM AI exporta automaticamente um `GITLAB_TOKEN` para o ambiente shell, apenas para instalações locais, se ele estiver disponível.
 
 <details>
   <summary>Configurando um Token do GitLab</summary>
@@ -114,7 +114,7 @@ O OpenHands exporta automaticamente um `GITLAB_TOKEN` para o ambiente shell, ape
      - `read_repository` (Leitura do repositório)
      - `write_repository` (Escrita no repositório)
    - Defina uma data de expiração ou deixe em branco para um token sem expiração.
-  2. **Insira o Token no OpenHands**:
+  2. **Insira o Token no AZM AI**:
    - Clique no botão Settings (ícone de engrenagem).
    - Navegue até a seção `Git Provider Settings`.
    - Cole seu token no campo `GitLab Token`.
@@ -158,5 +158,5 @@ O OpenHands exporta automaticamente um `GITLAB_TOKEN` para o ambiente shell, ape
 - Use o painel de workspace para explorar a estrutura do seu projeto.
 - Use um dos modelos recomendados, conforme descrito na seção [LLMs](usage/llms/llms.md).
 
-Lembre-se, o modo GUI do OpenHands é projetado para tornar sua interação com o assistente de IA o mais suave e intuitiva
+Lembre-se, o modo GUI do AZM AI é projetado para tornar sua interação com o assistente de IA o mais suave e intuitiva
 possível. Não hesite em explorar seus recursos para maximizar sua produtividade.

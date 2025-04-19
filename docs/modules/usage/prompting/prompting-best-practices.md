@@ -1,6 +1,6 @@
 # Prompting Best Practices
 
-When working with OpenHands AI software developer, providing clear and effective prompts is key to getting accurate
+When working with AZM AI AI software developer, providing clear and effective prompts is key to getting accurate
 and useful responses. This guide outlines best practices for crafting effective prompts.
 
 ## Characteristics of Good Prompts
@@ -33,6 +33,6 @@ Good prompts are:
 - Include relevant error messages or logs.
 - Specify the programming language or framework, if not obvious.
 
-The more precise and informative your prompt, the better OpenHands can assist you.
+The more precise and informative your prompt, the better AZM AI can assist you.
 
-See [Getting Started with OpenHands](../getting-started) for more examples of helpful prompts.
+See [Getting Started with AZM AI](../getting-started) for more examples of helpful prompts.

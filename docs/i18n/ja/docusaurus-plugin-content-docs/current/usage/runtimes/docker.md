@@ -1,6 +1,6 @@
 # Docker ランタイム
 
-これは、OpenHands を起動するときに使用されるデフォルトのランタイムです。
+これは、AZM AI を起動するときに使用されるデフォルトのランタイムです。
 
 ## イメージ
 nikolaik の `SANDBOX_RUNTIME_CONTAINER_IMAGE` は、ランタイムサーバーと Python および NodeJS の基本的なユーティリティを含む事前ビルドされたランタイムイメージです。
@@ -14,12 +14,12 @@ nikolaik の `SANDBOX_RUNTIME_CONTAINER_IMAGE` は、ランタイムサーバー
     export WORKSPACE_BASE=/path/to/your/code
 
     # Linux と Mac の例
-    # export WORKSPACE_BASE=$HOME/OpenHands
-    # $WORKSPACE_BASE を /home/<username>/OpenHands に設定します
+    # export WORKSPACE_BASE=$HOME/AZM AI
+    # $WORKSPACE_BASE を /home/<username>/AZM AI に設定します
     #
     # Windows の WSL の例
-    # export WORKSPACE_BASE=/mnt/c/dev/OpenHands
-    # $WORKSPACE_BASE を C:\dev\OpenHands に設定します
+    # export WORKSPACE_BASE=/mnt/c/dev/AZM AI
+    # $WORKSPACE_BASE を C:\dev\AZM AI に設定します
     ```
 2. 以下のオプションを `docker run` コマンドに追加します：
 
@@ -32,13 +32,13 @@ nikolaik の `SANDBOX_RUNTIME_CONTAINER_IMAGE` は、ランタイムサーバー
         # ...
     ```
 
-注意してください！OpenHands エージェントがワークスペースにマウントされたファイルを削除または変更することを妨げるものはありません。
+注意してください！AZM AI エージェントがワークスペースにマウントされたファイルを削除または変更することを妨げるものはありません。
 
 このセットアップはファイルのアクセス権に関する問題を引き起こす可能性がありますが（そのため `SANDBOX_USER_ID` 変数があります）、ほとんどのシステムでうまく機能します。
 
 ## 強化された Docker インストール
 
-セキュリティが優先される環境に OpenHands をデプロイする場合は、強化された Docker 構成の実装を検討する必要があります。このセクションでは、デフォルト構成を超えて OpenHands Docker デプロイメントを保護するための推奨事項を提供します。
+セキュリティが優先される環境に AZM AI をデプロイする場合は、強化された Docker 構成の実装を検討する必要があります。このセクションでは、デフォルト構成を超えて AZM AI Docker デプロイメントを保護するための推奨事項を提供します。
 
 ### セキュリティに関する考慮事項
 
@@ -46,11 +46,11 @@ README のデフォルトの Docker 構成は、ローカル開発マシンで�
 
 ### ネットワークバインディングのセキュリティ
 
-デフォルトでは、OpenHands はすべてのネットワークインターフェース（`0.0.0.0`）にバインドされ、ホストが接続しているすべてのネットワークにインスタンスが公開される可能性があります。より安全なセットアップのために：
+デフォルトでは、AZM AI はすべてのネットワークインターフェース（`0.0.0.0`）にバインドされ、ホストが接続しているすべてのネットワークにインスタンスが公開される可能性があります。より安全なセットアップのために：
 
 1. **ネットワークバインディングの制限**：
 
-   `runtime_binding_address` 構成を使用して、OpenHands がリッスンするネットワークインターフェースを制限します：
+   `runtime_binding_address` 構成を使用して、AZM AI がリッスンするネットワークインターフェースを制限します：
 
    ```bash
    docker run # ...
@@ -58,7 +58,7 @@ README のデフォルトの Docker 構成は、ローカル開発マシンで�
        # ...
    ```
 
-   この構成により、OpenHands はループバックインターフェース（`127.0.0.1`）でのみリッスンし、ローカルマシンからのみアクセス可能になります。
+   この構成により、AZM AI はループバックインターフェース（`127.0.0.1`）でのみリッスンし、ローカルマシンからのみアクセス可能になります。
 
 2. **ポートバインディングの保護**：
 
@@ -69,18 +69,18 @@ README のデフォルトの Docker 構成は、ローカル開発マシンで�
        -p 127.0.0.1:3000:3000 \
    ```
 
-   これにより、OpenHands ウェブインターフェースはローカルマシンからのみアクセス可能になり、ネットワーク上の他のマシンからはアクセスできなくなります。
+   これにより、AZM AI ウェブインターフェースはローカルマシンからのみアクセス可能になり、ネットワーク上の他のマシンからはアクセスできなくなります。
 
 ### ネットワーク分離
 
-Docker のネットワーク機能を使用して OpenHands を分離します：
+Docker のネットワーク機能を使用して AZM AI を分離します：
 
 ```bash
 # 分離されたネットワークを作成
-docker network create openhands-network
+docker network create azm_ai-network
 
-# 分離されたネットワークで OpenHands を実行
+# 分離されたネットワークで AZM AI を実行
 docker run # ... \
-    --network openhands-network \
-    docker.all-hands.dev/all-hands-ai/openhands:0.33
+    --network azm_ai-network \
+    docker.all-hands.dev/all-hands-ai/azm_ai:0.33
 ```

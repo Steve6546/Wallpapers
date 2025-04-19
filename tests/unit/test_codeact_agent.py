@@ -3,8 +3,8 @@ from unittest.mock import Mock
 import pytest
 from litellm import ChatCompletionMessageToolCall
 
-from openhands.agenthub.codeact_agent.codeact_agent import CodeActAgent
-from openhands.agenthub.codeact_agent.function_calling import (
+from azm_ai.agenthub.codeact_agent.codeact_agent import CodeActAgent
+from azm_ai.agenthub.codeact_agent.function_calling import (
     BrowserTool,
     IPythonTool,
     LLMBasedFileEditTool,
@@ -14,25 +14,25 @@ from openhands.agenthub.codeact_agent.function_calling import (
     get_tools,
     response_to_actions,
 )
-from openhands.agenthub.codeact_agent.tools.browser import (
+from azm_ai.agenthub.codeact_agent.tools.browser import (
     _BROWSER_DESCRIPTION,
     _BROWSER_TOOL_DESCRIPTION,
 )
-from openhands.controller.state.state import State
-from openhands.core.config import AgentConfig, LLMConfig
-from openhands.core.exceptions import FunctionCallNotExistsError
-from openhands.core.message import ImageContent, Message, TextContent
-from openhands.events.action import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import AgentConfig, LLMConfig
+from azm_ai.core.exceptions import FunctionCallNotExistsError
+from azm_ai.core.message import ImageContent, Message, TextContent
+from azm_ai.events.action import (
     CmdRunAction,
     MessageAction,
 )
-from openhands.events.action.message import SystemMessageAction
-from openhands.events.event import EventSource
-from openhands.events.observation.commands import (
+from azm_ai.events.action.message import SystemMessageAction
+from azm_ai.events.event import EventSource
+from azm_ai.events.observation.commands import (
     CmdOutputObservation,
 )
-from openhands.events.tool import ToolCallMetadata
-from openhands.llm.llm import LLM
+from azm_ai.events.tool import ToolCallMetadata
+from azm_ai.llm.llm import LLM
 
 
 @pytest.fixture
@@ -421,7 +421,7 @@ def test_get_system_message():
 
     # Check that the system message was created correctly
     assert isinstance(result, SystemMessageAction)
-    assert 'You are OpenHands agent' in result.content
+    assert 'You are AZM AI agent' in result.content
     assert len(result.tools) > 0
     assert any(tool['function']['name'] == 'execute_bash' for tool in result.tools)
     assert result._source == EventSource.AGENT

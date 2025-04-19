@@ -1,31 +1,31 @@
 # CLI モード
 
-OpenHands は対話型の CLI モードで実行できます。これにより、ユーザーはコマンドラインから対話型セッションを開始できます。
+AZM AI は対話型の CLI モードで実行できます。これにより、ユーザーはコマンドラインから対話型セッションを開始できます。
 
 このモードは、非対話型でスクリプティングに適した [ヘッドレスモード](headless-mode) とは異なります。
 
 ## Python を使用する場合
 
-コマンドラインから対話型の OpenHands セッションを開始するには:
+コマンドラインから対話型の AZM AI セッションを開始するには:
 
-1. [開発セットアップの手順](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md) に従っていることを確認してください。
+1. [開発セットアップの手順](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md) に従っていることを確認してください。
 2. 以下のコマンドを実行します:
 
 ```bash
-poetry run python -m openhands.core.cli
+poetry run python -m azm_ai.core.cli
 ```
 
-このコマンドを実行すると、タスクを入力して OpenHands からレスポンスを受け取ることができる対話型セッションが開始されます。
+このコマンドを実行すると、タスクを入力して AZM AI からレスポンスを受け取ることができる対話型セッションが開始されます。
 
-環境変数 [または `config.toml` ファイル](https://github.com/All-Hands-AI/OpenHands/blob/main/config.template.toml) を使用して、モデル、API キー、その他の設定を確実に設定する必要があります。
+環境変数 [または `config.toml` ファイル](https://github.com/All-Hands-AI/AZM AI/blob/main/config.template.toml) を使用して、モデル、API キー、その他の設定を確実に設定する必要があります。
 
 ## Docker を使用する場合
 
-Docker で OpenHands を CLI モードで実行するには:
+Docker で AZM AI を CLI モードで実行するには:
 
 1. ターミナルで以下の環境変数を設定します:
 
-- `WORKSPACE_BASE` を OpenHands に編集させたいディレクトリに設定 (例: `export WORKSPACE_BASE=$(pwd)/workspace`)。
+- `WORKSPACE_BASE` を AZM AI に編集させたいディレクトリに設定 (例: `export WORKSPACE_BASE=$(pwd)/workspace`)。
 - `LLM_MODEL` を使用するモデルに設定 (例: `export LLM_MODEL="anthropic/claude-3-5-sonnet-20241022"`)。
 - `LLM_API_KEY` を API キーに設定 (例: `export LLM_API_KEY="sk_test_12345"`)。
 
@@ -41,14 +41,14 @@ docker run -it \
     -e LLM_MODEL=$LLM_MODEL \
     -v $WORKSPACE_BASE:/opt/workspace_base \
     -v /var/run/docker.sock:/var/run/docker.sock \
-    -v ~/.openhands-state:/.openhands-state \
+    -v ~/.azm-ai-state:/.azm-ai-state \
     --add-host host.docker.internal:host-gateway \
-    --name openhands-app-$(date +%Y%m%d%H%M%S) \
-    docker.all-hands.dev/all-hands-ai/openhands:0.33 \
-    python -m openhands.core.cli
+    --name azm-ai-app-$(date +%Y%m%d%H%M%S) \
+    docker.all-hands.dev/all-hands-ai/azm_ai:0.33 \
+    python -m azm_ai.core.cli
 ```
 
-このコマンドを実行すると、Docker 内で対話型セッションが開始され、タスクを入力して OpenHands からレスポンスを受け取ることができます。
+このコマンドを実行すると、Docker 内で対話型セッションが開始され、タスクを入力して AZM AI からレスポンスを受け取ることができます。
 
 ## CLI コマンドと期待される出力の例
 

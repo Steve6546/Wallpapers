@@ -2,7 +2,7 @@
 
 サンドボックスは、エージェントがタスクを実行する場所です。コンピュータ上で直接コマンドを実行する（これはリスクがある可能性があります）代わりに、エージェントはDockerコンテナ内でそれらを実行します。
 
-デフォルトのOpenHandsサンドボックス（[nikolaik/python-nodejs](https://hub.docker.com/r/nikolaik/python-nodejs)の`python-nodejs:python3.12-nodejs22`）にはPythonやNode.jsなどのパッケージがインストールされていますが、デフォルトでインストールする必要のある他のソフトウェアがある場合があります。
+デフォルトのAZM AIサンドボックス（[nikolaik/python-nodejs](https://hub.docker.com/r/nikolaik/python-nodejs)の`python-nodejs:python3.12-nodejs22`）にはPythonやNode.jsなどのパッケージがインストールされていますが、デフォルトでインストールする必要のある他のソフトウェアがある場合があります。
 
 カスタマイズには2つのオプションがあります:
 
@@ -15,7 +15,7 @@
 
 カスタムDockerイメージを作成するには、Debianベースである必要があります。
 
-たとえば、OpenHandsに`ruby`をインストールしたい場合は、次の内容で`Dockerfile`を作成できます:
+たとえば、AZM AIに`ruby`をインストールしたい場合は、次の内容で`Dockerfile`を作成できます:
 
 ```dockerfile
 FROM nikolaik/python-nodejs:python3.12-nodejs22
@@ -40,7 +40,7 @@ docker build -t custom-image .
 
 ## Dockerコマンドの使用
 
-[dockerコマンド](/modules/usage/installation#start-the-app)を使用してOpenHandsを実行する場合は、`-e SANDBOX_RUNTIME_CONTAINER_IMAGE=...`を`-e SANDBOX_BASE_CONTAINER_IMAGE=<カスタムイメージ名>`に置き換えます:
+[dockerコマンド](/modules/usage/installation#start-the-app)を使用してAZM AIを実行する場合は、`-e SANDBOX_RUNTIME_CONTAINER_IMAGE=...`を`-e SANDBOX_BASE_CONTAINER_IMAGE=<カスタムイメージ名>`に置き換えます:
 
 ```commandline
 docker run -it --rm --pull=always \
@@ -52,11 +52,11 @@ docker run -it --rm --pull=always \
 
 ### セットアップ
 
-まず、[Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md)の手順に従って、OpenHandsを実行できることを確認してください。
+まず、[Development.md](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md)の手順に従って、AZM AIを実行できることを確認してください。
 
 ### ベースサンドボックスイメージの指定
 
-OpenHandsディレクトリ内の`config.toml`ファイルで、`base_container_image`を使用するイメージに設定します。これは、すでにプルしたイメージまたは構築したイメージにすることができます:
+AZM AIディレクトリ内の`config.toml`ファイルで、`base_container_image`を使用するイメージに設定します。これは、すでにプルしたイメージまたは構築したイメージにすることができます:
 
 ```bash
 [core]
@@ -89,4 +89,4 @@ platform = "linux/amd64"
 
 ### 実行
 
-トップレベルのディレクトリで```make run```を実行して、OpenHandsを実行します。
+トップレベルのディレクトリで```make run```を実行して、AZM AIを実行します。

@@ -18,18 +18,18 @@ from evaluation.utils.shared import (
     get_default_sandbox_config_for_eval,
     make_metadata,
 )
-from openhands.core.config import (
+from azm_ai.core.config import (
     AppConfig,
     LLMConfig,
     get_parser,
     load_app_config,
 )
-from openhands.core.logger import openhands_logger as logger
-from openhands.core.main import create_runtime
-from openhands.events.action import CmdRunAction
-from openhands.events.observation import CmdOutputObservation
-from openhands.runtime.base import Runtime
-from openhands.utils.async_utils import call_async_from_sync
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.core.main import create_runtime
+from azm_ai.events.action import CmdRunAction
+from azm_ai.events.observation import CmdOutputObservation
+from azm_ai.runtime.base import Runtime
+from azm_ai.utils.async_utils import call_async_from_sync
 
 
 def get_config(
@@ -39,7 +39,7 @@ def get_config(
     sandbox_config.base_container_image = 'python:3.12-bookworm'
     config = AppConfig(
         default_agent=metadata.agent_class,
-        run_as_openhands=False,
+        run_as_azm_ai=False,
         runtime='docker',
         max_iterations=metadata.max_iterations,
         sandbox=sandbox_config,

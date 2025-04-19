@@ -1,14 +1,14 @@
 # 🚧 故障排除
 
 :::tip
-OpenHands 仅通过 WSL 支持 Windows。请确保在 WSL 终端内运行所有命令。
+AZM AI 仅通过 WSL 支持 Windows。请确保在 WSL 终端内运行所有命令。
 :::
 
 ### 启动 Docker 客户端失败
 
 **描述**
 
-运行 OpenHands 时，出现以下错误：
+运行 AZM AI 时，出现以下错误：
 ```
 Launch docker client failed. Please make sure you have installed docker and started docker desktop/daemon.
 ```
@@ -35,9 +35,9 @@ InRelease At least one invalid signature was encountered.
 
 当现有外部库的哈希值发生变化且本地 Docker 实例缓存了先前版本时，似乎会发生这种情况。要解决此问题，请尝试以下操作：
 
-* 停止名称以 `openhands-runtime-` 为前缀的任何容器：
-  `docker ps --filter name=openhands-runtime- --filter status=running -aq | xargs docker stop`
-* 删除名称以 `openhands-runtime-` 为前缀的任何容器：
-  `docker rmi $(docker images --filter name=openhands-runtime- -q --no-trunc)`
-* 停止并删除名称以 `openhands-runtime-` 为前缀的任何容器/镜像
+* 停止名称以 `azm-ai-runtime-` 为前缀的任何容器：
+  `docker ps --filter name=azm-ai-runtime- --filter status=running -aq | xargs docker stop`
+* 删除名称以 `azm-ai-runtime-` 为前缀的任何容器：
+  `docker rmi $(docker images --filter name=azm-ai-runtime- -q --no-trunc)`
+* 停止并删除名称以 `azm-ai-runtime-` 为前缀的任何容器/镜像
 * 清理容器/镜像：`docker container prune -f && docker image prune -f`

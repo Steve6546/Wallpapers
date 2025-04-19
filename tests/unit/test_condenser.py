@@ -4,8 +4,8 @@ from unittest.mock import MagicMock
 
 import pytest
 
-from openhands.controller.state.state import State
-from openhands.core.config.condenser_config import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config.condenser_config import (
     AmortizedForgettingCondenserConfig,
     BrowserOutputCondenserConfig,
     CondenserPipelineConfig,
@@ -16,17 +16,17 @@ from openhands.core.config.condenser_config import (
     RecentEventsCondenserConfig,
     StructuredSummaryCondenserConfig,
 )
-from openhands.core.config.llm_config import LLMConfig
-from openhands.core.message import Message, TextContent
-from openhands.core.schema.action import ActionType
-from openhands.events.event import Event, EventSource
-from openhands.events.observation import BrowserOutputObservation
-from openhands.events.observation.agent import AgentCondensationObservation
-from openhands.events.observation.observation import Observation
-from openhands.llm import LLM
-from openhands.memory.condenser import Condenser
-from openhands.memory.condenser.condenser import Condensation, RollingCondenser, View
-from openhands.memory.condenser.impl import (
+from azm_ai.core.config.llm_config import LLMConfig
+from azm_ai.core.message import Message, TextContent
+from azm_ai.core.schema.action import ActionType
+from azm_ai.events.event import Event, EventSource
+from azm_ai.events.observation import BrowserOutputObservation
+from azm_ai.events.observation.agent import AgentCondensationObservation
+from azm_ai.events.observation.observation import Observation
+from azm_ai.llm import LLM
+from azm_ai.memory.condenser import Condenser
+from azm_ai.memory.condenser.condenser import Condensation, RollingCondenser, View
+from azm_ai.memory.condenser.impl import (
     AmortizedForgettingCondenser,
     BrowserOutputCondenser,
     ImportantEventSelection,
@@ -37,7 +37,7 @@ from openhands.memory.condenser.impl import (
     RecentEventsCondenser,
     StructuredSummaryCondenser,
 )
-from openhands.memory.condenser.impl.pipeline import CondenserPipeline
+from azm_ai.memory.condenser.impl.pipeline import CondenserPipeline
 
 
 def create_test_event(

@@ -3,14 +3,14 @@ from unittest.mock import AsyncMock, MagicMock, patch
 import pytest
 from pydantic import SecretStr
 
-from openhands.integrations.provider import ProviderToken, SecretStore
-from openhands.integrations.service_types import ProviderType
-from openhands.server.routes.settings import (
+from azm_ai.integrations.provider import ProviderToken, SecretStore
+from azm_ai.integrations.service_types import ProviderType
+from azm_ai.server.routes.settings import (
     check_provider_tokens,
     store_llm_settings,
     store_provider_tokens,
 )
-from openhands.server.settings import POSTSettingsModel, Settings
+from azm_ai.server.settings import POSTSettingsModel, Settings
 
 
 # Mock functions to simulate the actual functions in settings.py
@@ -28,7 +28,7 @@ async def test_check_provider_tokens_valid():
 
     # Mock the validate_provider_token function to return GITHUB for valid tokens
     with patch(
-        'openhands.server.routes.settings.validate_provider_token'
+        'azm_ai.server.routes.settings.validate_provider_token'
     ) as mock_validate:
         mock_validate.return_value = ProviderType.GITHUB
 
@@ -47,7 +47,7 @@ async def test_check_provider_tokens_invalid():
 
     # Mock the validate_provider_token function to return None for invalid tokens
     with patch(
-        'openhands.server.routes.settings.validate_provider_token'
+        'azm_ai.server.routes.settings.validate_provider_token'
     ) as mock_validate:
         mock_validate.return_value = None
 
@@ -95,7 +95,7 @@ async def test_store_llm_settings_new_settings():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
         mock_store.load = AsyncMock(return_value=None)  # No existing settings
@@ -121,7 +121,7 @@ async def test_store_llm_settings_update_existing():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
 
@@ -153,7 +153,7 @@ async def test_store_llm_settings_partial_update():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
 
@@ -185,7 +185,7 @@ async def test_store_provider_tokens_new_tokens():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
         mock_store.load = AsyncMock(return_value=None)  # No existing settings
@@ -205,7 +205,7 @@ async def test_store_provider_tokens_update_existing():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
 
@@ -238,7 +238,7 @@ async def test_store_provider_tokens_keep_existing():
 
     # Mock the settings store
     with patch(
-        'openhands.server.routes.settings.SettingsStoreImpl.get_instance'
+        'azm_ai.server.routes.settings.SettingsStoreImpl.get_instance'
     ) as mock_get_store:
         mock_store = MagicMock()
 

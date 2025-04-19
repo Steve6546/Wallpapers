@@ -78,21 +78,21 @@ works best, but you have many options available.
 > [contact us](https://github.com/Steve6546)
 > for advanced deployment options.
 
-You can also [connect AZM AI to your local filesystem](https://docs.all-hands.dev/modules/usage/runtimes/docker#connecting-to-your-filesystem),
-run AZM AI in a scriptable [headless mode](https://docs.all-hands.dev/modules/usage/how-to/headless-mode),
-interact with it via a [friendly CLI](https://docs.all-hands.dev/modules/usage/how-to/cli-mode),
-or run it on tagged issues with [a github action](https://docs.all-hands.dev/modules/usage/how-to/github-action).
+You can also connect AZM AI to your local filesystem,
+run AZM AI in a scriptable headless mode,
+interact with it via a friendly CLI,
+or run it on tagged issues with a github action.
 
-Visit [Running AZM AI](https://docs.all-hands.dev/modules/usage/installation) for more information and setup instructions.
+Visit our Wiki for more information and setup instructions.
 
 If you want to modify the AZM AI source code, check out [Development.md](https://github.com/Steve6546/azm-ai/blob/main/Development.md).
 
-Having issues? The [Troubleshooting Guide](https://docs.all-hands.dev/modules/usage/troubleshooting) can help.
+Having issues? Check our Troubleshooting Guide in the Wiki.
 
 ## 📖 Documentation
 
 To learn more about the project, and for tips on using AZM AI,
-check out our [documentation](https://docs.all-hands.dev/modules/usage/getting-started).
+check out our [documentation](https://github.com/Steve6546/azm-ai/wiki).
 
 There you'll find resources on how to use different LLM providers,
 troubleshooting resources, and advanced configuration options.
@@ -123,7 +123,9 @@ Distributed under the MIT License. See [`LICENSE`](./LICENSE) for more informati
 
 ## 🙏 Acknowledgements
 
-AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! We also build upon other open source projects, and we are deeply thankful for their work.
+AZM AI is built by a dedicated team of contributors, and every contribution is greatly appreciated! 
+
+This project is based on [AZM AI](https://github.com/AZM AIAI/azm_ai) under the MIT license. We've built upon their excellent foundation to create AZM AI with our own enhancements and modifications.
 
 For a list of open source projects and licenses used in AZM AI, please see our [CREDITS.md](./CREDITS.md) file.
 

@@ -19,9 +19,9 @@
     "message": "ユーザーガイド",
     "description": "The label for category User Guides in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.category.Running OpenHands": {
-    "message": "OpenHandsの実行",
-    "description": "The label for category Running OpenHands in sidebar docsSidebar"
+  "sidebar.docsSidebar.category.Running AZM AI": {
+    "message": "AZM AIの実行",
+    "description": "The label for category Running AZM AI in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.category.Prompting": {
     "message": "プロンプト",
@@ -31,9 +31,9 @@
     "message": "アーキテクチャ",
     "description": "The label for category Architecture in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.doc.Running OpenHands": {
-    "message": "OpenHandsの実行",
-    "description": "The label for document Running OpenHands in sidebar docsSidebar"
+  "sidebar.docsSidebar.doc.Running AZM AI": {
+    "message": "AZM AIの実行",
+    "description": "The label for document Running AZM AI in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.Getting Started": {
     "message": "はじめに",
@@ -63,9 +63,9 @@
     "message": "フィードバック",
     "description": "The label for document Feedback in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.category.For OpenHands Developers": {
-    "message": "OpenHands開発者向け",
-    "description": "The label for category For OpenHands Developers in sidebar docsSidebar"
+  "sidebar.docsSidebar.category.For AZM AI Developers": {
+    "message": "AZM AI開発者向け",
+    "description": "The label for category For AZM AI Developers in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.About": {
     "message": "概要",
@@ -115,9 +115,9 @@
     "message": "クラウド",
     "description": "The label for category Cloud in sidebar docsSidebar"
   },
-  "sidebar.docsSidebar.doc.Openhands Cloud": {
-    "message": "OpenHands クラウド",
-    "description": "The label for document Openhands Cloud in sidebar docsSidebar"
+  "sidebar.docsSidebar.doc.AZM AI Cloud": {
+    "message": "AZM AI クラウド",
+    "description": "The label for document AZM AI Cloud in sidebar docsSidebar"
   },
   "sidebar.docsSidebar.doc.Cloud GitHub Resolver": {
     "message": "クラウド GitHub リゾルバー",

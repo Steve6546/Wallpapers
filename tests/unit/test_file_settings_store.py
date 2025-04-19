@@ -2,10 +2,10 @@ from unittest.mock import MagicMock, patch
 
 import pytest
 
-from openhands.core.config.app_config import AppConfig
-from openhands.server.settings import Settings
-from openhands.storage.files import FileStore
-from openhands.storage.settings.file_settings_store import FileSettingsStore
+from azm_ai.core.config.app_config import AppConfig
+from azm_ai.server.settings import Settings
+from azm_ai.storage.files import FileStore
+from azm_ai.storage.settings.file_settings_store import FileSettingsStore
 
 
 @pytest.fixture
@@ -21,7 +21,7 @@ def file_settings_store(mock_file_store):
 @pytest.mark.asyncio
 async def test_load_nonexistent_data(file_settings_store):
     with patch(
-        'openhands.server.settings.load_app_config',
+        'azm_ai.server.settings.load_app_config',
         MagicMock(return_value=AppConfig()),
     ):
         file_settings_store.file_store.read.side_effect = FileNotFoundError()
@@ -77,7 +77,7 @@ async def test_get_instance():
     config = AppConfig(file_store='local', file_store_path='/test/path')
 
     with patch(
-        'openhands.storage.settings.file_settings_store.get_file_store'
+        'azm_ai.storage.settings.file_settings_store.get_file_store'
     ) as mock_get_store:
         mock_store = MagicMock(spec=FileStore)
         mock_get_store.return_value = mock_store

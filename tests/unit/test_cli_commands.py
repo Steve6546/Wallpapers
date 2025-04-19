@@ -7,12 +7,12 @@ from prompt_toolkit.application import create_app_session
 from prompt_toolkit.input import create_pipe_input
 from prompt_toolkit.output import create_output
 
-from openhands.core.cli import main
-from openhands.core.config import AppConfig
-from openhands.core.schema import AgentState
-from openhands.events.action import ChangeAgentStateAction, MessageAction
-from openhands.events.event import EventSource
-from openhands.events.observation import AgentStateChangedObservation
+from azm_ai.core.cli import main
+from azm_ai.core.config import AppConfig
+from azm_ai.core.schema import AgentState
+from azm_ai.events.action import ChangeAgentStateAction, MessageAction
+from azm_ai.events.event import EventSource
+from azm_ai.events.observation import AgentStateChangedObservation
 
 
 class MockEventStream:
@@ -51,7 +51,7 @@ class MockEventStream:
 
 @pytest.fixture
 def mock_agent():
-    with patch('openhands.core.cli.create_agent') as mock_create_agent:
+    with patch('azm_ai.core.cli.create_agent') as mock_create_agent:
         mock_agent_instance = AsyncMock()
         mock_agent_instance.name = 'test-agent'
         mock_agent_instance.llm = AsyncMock()
@@ -69,7 +69,7 @@ def mock_agent():
 
 @pytest.fixture
 def mock_controller():
-    with patch('openhands.core.cli.create_controller') as mock_create_controller:
+    with patch('azm_ai.core.cli.create_controller') as mock_create_controller:
         mock_controller_instance = AsyncMock()
         mock_controller_instance.state.agent_state = None
         # Mock run_until_done to finish immediately
@@ -80,13 +80,13 @@ def mock_controller():
 
 @pytest.fixture
 def mock_config():
-    with patch('openhands.core.cli.parse_arguments') as mock_parse_args:
+    with patch('azm_ai.core.cli.parse_arguments') as mock_parse_args:
         args = Mock()
         args.file = None
         args.task = None
         args.directory = None
         mock_parse_args.return_value = args
-        with patch('openhands.core.cli.setup_config_from_args') as mock_setup_config:
+        with patch('azm_ai.core.cli.setup_config_from_args') as mock_setup_config:
             mock_config = AppConfig()
             mock_config.cli_multiline_input = False
             mock_config.security = Mock()
@@ -101,7 +101,7 @@ def mock_config():
 
 @pytest.fixture
 def mock_memory():
-    with patch('openhands.core.cli.create_memory') as mock_create_memory:
+    with patch('azm_ai.core.cli.create_memory') as mock_create_memory:
         mock_memory_instance = AsyncMock()
         mock_create_memory.return_value = mock_memory_instance
         yield mock_memory_instance
@@ -109,14 +109,14 @@ def mock_memory():
 
 @pytest.fixture
 def mock_read_task():
-    with patch('openhands.core.cli.read_task') as mock_read_task:
+    with patch('azm_ai.core.cli.read_task') as mock_read_task:
         mock_read_task.return_value = None
         yield mock_read_task
 
 
 @pytest.fixture
 def mock_runtime():
-    with patch('openhands.core.cli.create_runtime') as mock_create_runtime:
+    with patch('azm_ai.core.cli.create_runtime') as mock_create_runtime:
         mock_runtime_instance = AsyncMock()
 
         mock_event_stream = MockEventStream()
@@ -138,11 +138,11 @@ async def test_help_command(
 ):
     buffer = StringIO()
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
+    with patch('azm_ai.core.cli.manage_azm_ai_file', return_value=True):
         with patch(
-            'openhands.core.cli.check_folder_security_agreement', return_value=True
+            'azm_ai.core.cli.check_folder_security_agreement', return_value=True
         ):
-            with patch('openhands.core.cli.read_prompt_input') as mock_prompt:
+            with patch('azm_ai.core.cli.read_prompt_input') as mock_prompt:
                 # Setup to return /help first, then simulate an exit
                 mock_prompt.side_effect = ['/help', '/exit']
 
@@ -176,7 +176,7 @@ async def test_help_command(
                     output = buffer.read()
 
                     # Verify help output was displayed
-                    assert 'OpenHands CLI' in output
+                    assert 'AZM AI CLI' in output
                     assert 'Things that you can try' in output
                     assert 'Interactive commands' in output
                     assert '/help' in output
@@ -197,15 +197,15 @@ async def test_exit_command(
 ):
     buffer = StringIO()
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
+    with patch('azm_ai.core.cli.manage_azm_ai_file', return_value=True):
         with patch(
-            'openhands.core.cli.check_folder_security_agreement', return_value=True
+            'azm_ai.core.cli.check_folder_security_agreement', return_value=True
         ):
-            with patch('openhands.core.cli.read_prompt_input') as mock_prompt:
+            with patch('azm_ai.core.cli.read_prompt_input') as mock_prompt:
                 # First prompt call returns /exit
                 mock_prompt.side_effect = ['/exit']
 
-                with patch('openhands.core.cli.shutdown') as mock_shutdown:
+                with patch('azm_ai.core.cli.shutdown') as mock_shutdown:
                     with create_app_session(
                         input=create_pipe_input(), output=create_output(stdout=buffer)
                     ):
@@ -252,15 +252,15 @@ async def test_init_command(
 ):
     buffer = StringIO()
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
+    with patch('azm_ai.core.cli.manage_azm_ai_file', return_value=True):
         with patch(
-            'openhands.core.cli.check_folder_security_agreement', return_value=True
+            'azm_ai.core.cli.check_folder_security_agreement', return_value=True
         ):
-            with patch('openhands.core.cli.read_prompt_input') as mock_prompt:
+            with patch('azm_ai.core.cli.read_prompt_input') as mock_prompt:
                 # First prompt call returns /init, second call returns /exit
                 mock_prompt.side_effect = ['/init', '/exit']
 
-                with patch('openhands.core.cli.init_repository') as mock_init_repo:
+                with patch('azm_ai.core.cli.init_repository') as mock_init_repo:
                     with create_app_session(
                         input=create_pipe_input(), output=create_output(stdout=buffer)
                     ):
@@ -310,15 +310,15 @@ async def test_init_command_non_local_runtime(
     # Set runtime to non-local for this test
     mock_config.runtime = 'remote'
 
-    with patch('openhands.core.cli.manage_openhands_file', return_value=True):
+    with patch('azm_ai.core.cli.manage_azm_ai_file', return_value=True):
         with patch(
-            'openhands.core.cli.check_folder_security_agreement', return_value=True
+            'azm_ai.core.cli.check_folder_security_agreement', return_value=True
         ):
-            with patch('openhands.core.cli.read_prompt_input') as mock_prompt:
+            with patch('azm_ai.core.cli.read_prompt_input') as mock_prompt:
                 # First prompt call returns /init, second call returns /exit
                 mock_prompt.side_effect = ['/init', '/exit']
 
-                with patch('openhands.core.cli.init_repository') as mock_init_repo:
+                with patch('azm_ai.core.cli.init_repository') as mock_init_repo:
                     with create_app_session(
                         input=create_pipe_input(), output=create_output(stdout=buffer)
                     ):

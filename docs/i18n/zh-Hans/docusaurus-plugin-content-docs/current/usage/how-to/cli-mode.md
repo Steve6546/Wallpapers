@@ -2,32 +2,32 @@
 
 # 命令行模式
 
-OpenHands 可以在交互式命令行模式下运行,允许用户通过命令行启动交互式会话。
+AZM AI 可以在交互式命令行模式下运行,允许用户通过命令行启动交互式会话。
 
 这种模式不同于[无头模式](headless-mode),后者是非交互式的,更适合脚本编写。
 
 ## 使用 Python
 
-要通过命令行启动交互式 OpenHands 会话,请按照以下步骤操作:
+要通过命令行启动交互式 AZM AI 会话,请按照以下步骤操作:
 
-1. 确保你已按照[开发设置说明](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md)进行操作。
+1. 确保你已按照[开发设置说明](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md)进行操作。
 
 2. 运行以下命令:
 
 ```bash
-poetry run python -m openhands.core.cli
+poetry run python -m azm_ai.core.cli
 ```
 
-该命令将启动一个交互式会话,你可以在其中输入任务并接收来自 OpenHands 的响应。
+该命令将启动一个交互式会话,你可以在其中输入任务并接收来自 AZM AI 的响应。
 
-你需要确保通过环境变量[或 `config.toml` 文件](https://github.com/All-Hands-AI/OpenHands/blob/main/config.template.toml)设置你的模型、API 密钥和其他设置。
+你需要确保通过环境变量[或 `config.toml` 文件](https://github.com/All-Hands-AI/AZM AI/blob/main/config.template.toml)设置你的模型、API 密钥和其他设置。
 
 
 ## 使用 Docker
 
-要在 Docker 中以命令行模式运行 OpenHands,请按照以下步骤操作:
+要在 Docker 中以命令行模式运行 AZM AI,请按照以下步骤操作:
 
-1. 将 `WORKSPACE_BASE` 设置为你希望 OpenHands 编辑的目录:
+1. 将 `WORKSPACE_BASE` 设置为你希望 AZM AI 编辑的目录:
 
 ```bash
 WORKSPACE_BASE=$(pwd)/workspace
@@ -58,12 +58,12 @@ docker run -it \
     -v $WORKSPACE_BASE:/opt/workspace_base \
     -v /var/run/docker.sock:/var/run/docker.sock \
     --add-host host.docker.internal:host-gateway \
-    --name openhands-app-$(date +%Y%m%d%H%M%S) \
-    docker.all-hands.dev/all-hands-ai/openhands:0.33 \
-    python -m openhands.core.cli
+    --name azm-ai-app-$(date +%Y%m%d%H%M%S) \
+    docker.all-hands.dev/all-hands-ai/azm_ai:0.33 \
+    python -m azm_ai.core.cli
 ```
 
-该命令将在 Docker 中启动一个交互式会话,你可以在其中输入任务并接收来自 OpenHands 的响应。
+该命令将在 Docker 中启动一个交互式会话,你可以在其中输入任务并接收来自 AZM AI 的响应。
 
 ## CLI 命令和预期输出示例
 

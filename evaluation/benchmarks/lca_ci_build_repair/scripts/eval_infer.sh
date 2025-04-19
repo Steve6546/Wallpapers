@@ -9,13 +9,13 @@ if [ -z "$PROCESS_FILEPATH" ]; then
     exit 1
 fi
 
-get_openhands_version
+get_azm_ai_version
 
 PROCESS_FILEPATH=$(realpath $PROCESS_FILEPATH)
-echo "OPENHANDS_VERSION: $OPENHANDS_VERSION"
+echo "AZM_AI_VERSION: $AZM_AI_VERSION"
 echo "PROCESS_FILEPATH: $PROCESS_FILEPATH"
 
-EVAL_NOTE="$OPENHANDS_VERSION"
+EVAL_NOTE="$AZM_AI_VERSION"
 if [ -n "$EXP_NAME" ]; then
   EVAL_NOTE="$EVAL_NOTE-$EXP_NAME"
 fi

@@ -5,7 +5,7 @@ const sidebars: SidebarsConfig = {
   docsSidebar: [
     {
       type: 'doc',
-      label: 'Running OpenHands',
+      label: 'Running AZM AI',
       id: 'usage/installation',
     },
     {
@@ -20,12 +20,12 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'OpenHands Cloud',
+      label: 'AZM AI Cloud',
       items: [
         {
           type: 'doc',
-          label: 'Openhands Cloud',
-          id: 'usage/cloud/openhands-cloud',
+          label: 'AZM AI Cloud',
+          id: 'usage/cloud/azm_ai-cloud',
         },
 
         {
@@ -225,7 +225,7 @@ const sidebars: SidebarsConfig = {
     },
     {
       type: 'category',
-      label: 'For OpenHands Developers',
+      label: 'For AZM AI Developers',
       items: [
         {
           type: 'doc',

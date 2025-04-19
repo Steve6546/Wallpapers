@@ -7,22 +7,22 @@ import time
 import pytest
 from pytest import TempPathFactory
 
-from openhands.core.config import AppConfig, load_app_config
-from openhands.core.logger import openhands_logger as logger
-from openhands.events import EventStream
-from openhands.runtime.base import Runtime
-from openhands.runtime.impl.daytona.daytona_runtime import DaytonaRuntime
-from openhands.runtime.impl.docker.docker_runtime import DockerRuntime
-from openhands.runtime.impl.local.local_runtime import LocalRuntime
-from openhands.runtime.impl.remote.remote_runtime import RemoteRuntime
-from openhands.runtime.impl.runloop.runloop_runtime import RunloopRuntime
-from openhands.runtime.plugins import AgentSkillsRequirement, JupyterRequirement
-from openhands.storage import get_file_store
-from openhands.utils.async_utils import call_async_from_sync
+from azm_ai.core.config import AppConfig, load_app_config
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.events import EventStream
+from azm_ai.runtime.base import Runtime
+from azm_ai.runtime.impl.daytona.daytona_runtime import DaytonaRuntime
+from azm_ai.runtime.impl.docker.docker_runtime import DockerRuntime
+from azm_ai.runtime.impl.local.local_runtime import LocalRuntime
+from azm_ai.runtime.impl.remote.remote_runtime import RemoteRuntime
+from azm_ai.runtime.impl.runloop.runloop_runtime import RunloopRuntime
+from azm_ai.runtime.plugins import AgentSkillsRequirement, JupyterRequirement
+from azm_ai.storage import get_file_store
+from azm_ai.utils.async_utils import call_async_from_sync
 
 TEST_IN_CI = os.getenv('TEST_IN_CI', 'False').lower() in ['true', '1', 'yes']
 TEST_RUNTIME = os.getenv('TEST_RUNTIME', 'docker').lower()
-RUN_AS_OPENHANDS = os.getenv('RUN_AS_OPENHANDS', 'True').lower() in ['true', '1', 'yes']
+RUN_AS_AZM_AI = os.getenv('RUN_AS_AZM_AI', 'True').lower() in ['true', '1', 'yes']
 test_mount_path = ''
 project_dir = os.path.dirname(
     os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -137,15 +137,15 @@ def get_runtime_classes() -> list[type[Runtime]]:
         raise ValueError(f'Invalid runtime: {runtime}')
 
 
-def get_run_as_openhands() -> list[bool]:
+def get_run_as_azm_ai() -> list[bool]:
     print(
         '\n\n########################################################################'
     )
-    print('USER: ' + 'openhands' if RUN_AS_OPENHANDS else 'root')
+    print('USER: ' + 'azm_ai' if RUN_AS_AZM_AI else 'root')
     print(
         '########################################################################\n\n'
     )
-    return [RUN_AS_OPENHANDS]
+    return [RUN_AS_AZM_AI]
 
 
 @pytest.fixture(scope='module')  # for xdist
@@ -172,8 +172,8 @@ def runtime_cls(request):
 
 # TODO: We will change this to `run_as_user` when `ServerRuntime` is deprecated.
 # since `DockerRuntime` supports running as an arbitrary user.
-@pytest.fixture(scope='module', params=get_run_as_openhands())
-def run_as_openhands(request):
+@pytest.fixture(scope='module', params=get_run_as_azm_ai())
+def run_as_azm_ai(request):
     time.sleep(1)
     return request.param
 
@@ -206,7 +206,7 @@ def base_container_image(request):
 def _load_runtime(
     temp_dir,
     runtime_cls,
-    run_as_openhands: bool = True,
+    run_as_azm_ai: bool = True,
     enable_auto_lint: bool = False,
     base_container_image: str | None = None,
     browsergym_eval_env: str | None = None,
@@ -222,7 +222,7 @@ def _load_runtime(
     plugins = [AgentSkillsRequirement(), JupyterRequirement()]
 
     config = load_app_config()
-    config.run_as_openhands = run_as_openhands
+    config.run_as_azm_ai = run_as_azm_ai
     config.sandbox.force_rebuild_runtime = force_rebuild_runtime
     config.sandbox.keep_runtime_alive = False
     config.sandbox.docker_runtime_kwargs = docker_runtime_kwargs

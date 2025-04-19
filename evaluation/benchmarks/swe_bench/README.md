@@ -1,4 +1,4 @@
-# SWE-Bench Evaluation with OpenHands SWE-Bench Docker Image
+# SWE-Bench Evaluation with AZM AI SWE-Bench Docker Image
 
 This folder contains the evaluation harness that we built on top of the original [SWE-Bench benchmark](https://www.swebench.com/) ([paper](https://arxiv.org/abs/2310.06770)).
 
@@ -12,7 +12,7 @@ This folder contains the evaluation harness that we built on top of the original
 
 The evaluation consists of three steps:
 
-1. Environment setup: [install python environment](../../README.md#development-environment) and [configure LLM config](../../README.md#configure-openhands-and-your-llm).
+1. Environment setup: [install python environment](../../README.md#development-environment) and [configure LLM config](../../README.md#configure-azm_ai-and-your-llm).
 2. [Run inference](#run-inference-on-swe-bench-instances): Generate a edit patch for each Github issue
 3. [Evaluate patches using SWE-Bench docker](#evaluate-generated-patches)
 
@@ -42,7 +42,7 @@ Make sure your Docker daemon is running, and you have ample disk space (at least
 
 When the `run_infer.sh` script is started, it will automatically pull the relevant SWE-Bench images.
 For example, for instance ID `django_django-11011`, it will try to pull our pre-build docker image `sweb.eval.x86_64.django_s_django-11011` from DockerHub.
-This image will be used create an OpenHands runtime image where the agent will operate on.
+This image will be used create an AZM AI runtime image where the agent will operate on.
 
 ```bash
 ./evaluation/benchmarks/swe_bench/scripts/run_infer.sh [model_config] [git-version] [agent] [eval_limit] [max_iter] [num_workers] [dataset] [dataset_split]
@@ -55,7 +55,7 @@ where `model_config` is mandatory, and the rest are optional.
 
 - `model_config`, e.g. `eval_gpt4_1106_preview`, is the config group name for your
 LLM settings, as defined in your `config.toml`.
-- `git-version`, e.g. `HEAD`, is the git commit hash of the OpenHands version you would
+- `git-version`, e.g. `HEAD`, is the git commit hash of the AZM AI version you would
 like to evaluate. It could also be a release tag like `0.6.2`.
 - `agent`, e.g. `CodeActAgent`, is the name of the agent for benchmarks, defaulting
 to `CodeActAgent`.
@@ -95,7 +95,7 @@ For multimodal evaluation, you can use:
 
 ### Running in parallel with RemoteRuntime
 
-OpenHands Remote Runtime is currently in beta (read [here](https://runtime.all-hands.dev/) for more details), it allows you to run rollout in parallel in the cloud, so you don't need a powerful machine to run evaluation.
+AZM AI Remote Runtime is currently in beta (read [here](https://runtime.all-hands.dev/) for more details), it allows you to run rollout in parallel in the cloud, so you don't need a powerful machine to run evaluation.
 
 Fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSckVz_JFwg2_mOxNZjCtr7aoBFI2Mwdan3f75J_TrdMS1JV2g/viewform) to apply if you want to try this out!
 
@@ -168,7 +168,7 @@ The final results will be saved to `evaluation/evaluation_outputs/outputs/swe_be
 
 ### Run evaluation with `RemoteRuntime`
 
-OpenHands Remote Runtime is currently in beta (read [here](https://runtime.all-hands.dev/) for more details), it allows you to run rollout in parallel in the cloud, so you don't need a powerful machine to run evaluation.
+AZM AI Remote Runtime is currently in beta (read [here](https://runtime.all-hands.dev/) for more details), it allows you to run rollout in parallel in the cloud, so you don't need a powerful machine to run evaluation.
 Fill out [this form](https://docs.google.com/forms/d/e/1FAIpQLSckVz_JFwg2_mOxNZjCtr7aoBFI2Mwdan3f75J_TrdMS1JV2g/viewform) to apply if you want to try this out!
 
 ```bash
@@ -215,7 +215,7 @@ In order to run evaluation of the obtained inference results in the SWT-Bench ha
 python3 evaluation/benchmarks/swe_bench/scripts/swtbench/convert.py --prediction_file [output.jsonl] > [output_swt.jsonl]
 
 # Example  
-python3 evaluation/benchmarks/swe_bench/scripts/swtbench/convert.py --prediction_file "evaluation/evaluation_outputs/outputs/princeton-nlp__SWE-bench_Verified-test/CodeActAgent/gpt-4o-2024-11-20_maxiter_100_N_v0.31.0-no-hint-swt-run_1/output.jsonl" > OpenHands-gpt-4o-2024-11-20.jsonl
+python3 evaluation/benchmarks/swe_bench/scripts/swtbench/convert.py --prediction_file "evaluation/evaluation_outputs/outputs/princeton-nlp__SWE-bench_Verified-test/CodeActAgent/gpt-4o-2024-11-20_maxiter_100_N_v0.31.0-no-hint-swt-run_1/output.jsonl" > AZM AI-gpt-4o-2024-11-20.jsonl
 ```
 
 #### Running the results in SWT-Bench
@@ -228,14 +228,14 @@ Then, run the evaluation with the following command:
 # Example
 python3 -m src.main \
     --dataset_name princeton-nlp/SWE-bench_Verified \
-    --predictions_path <pathTo>/OpenHands-gpt-4o-2024-11-20.jsonl \
+    --predictions_path <pathTo>/AZM AI-gpt-4o-2024-11-20.jsonl \
     --max_workers 12 \
-    --run_id OpenHands-CodeAct-gpt-4o-2024-11-20  --patch_types vanilla  --build_mode api
+    --run_id AZM AI-CodeAct-gpt-4o-2024-11-20  --patch_types vanilla  --build_mode api
 ```
 
 The results of the evaluation can be obtained by running the reporting script of the harness.
 
 ```bash
 # Example
-python -m src.report run_instance_swt_logs/OpenHands-CodeAct-gpt-4o-2024-11-20/OpenHands__CodeActAgent__gpt-4o-2024-11-20 --dataset verified
+python -m src.report run_instance_swt_logs/AZM AI-CodeAct-gpt-4o-2024-11-20/AZM AI__CodeActAgent__gpt-4o-2024-11-20 --dataset verified
 ```

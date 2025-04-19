@@ -2,13 +2,13 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import { afterEach, beforeEach, describe, expect, it, test, vi } from "vitest";
-import OpenHands from "#/api/open-hands";
+import AZM AI from "#/api/open-hands";
 import { PaymentForm } from "#/components/features/payment/payment-form";
 
 describe("PaymentForm", () => {
-  const getBalanceSpy = vi.spyOn(OpenHands, "getBalance");
-  const createCheckoutSessionSpy = vi.spyOn(OpenHands, "createCheckoutSession");
-  const getConfigSpy = vi.spyOn(OpenHands, "getConfig");
+  const getBalanceSpy = vi.spyOn(AZM AI, "getBalance");
+  const createCheckoutSessionSpy = vi.spyOn(AZM AI, "createCheckoutSession");
+  const getConfigSpy = vi.spyOn(AZM AI, "getConfig");
 
   const renderPaymentForm = () =>
     render(<PaymentForm />, {

@@ -2,11 +2,11 @@
 
 # ✅ Fournir des commentaires
 
-Lorsque vous utilisez OpenHands, vous rencontrerez des cas où les choses fonctionnent bien, et d'autres où elles ne fonctionnent pas. Nous vous encourageons à fournir des commentaires lorsque vous utilisez OpenHands pour aider à donner des retours à l'équipe de développement, et peut-être plus important encore, créer un corpus ouvert d'exemples d'entraînement d'agents de codage -- Share-OpenHands !
+Lorsque vous utilisez AZM AI, vous rencontrerez des cas où les choses fonctionnent bien, et d'autres où elles ne fonctionnent pas. Nous vous encourageons à fournir des commentaires lorsque vous utilisez AZM AI pour aider à donner des retours à l'équipe de développement, et peut-être plus important encore, créer un corpus ouvert d'exemples d'entraînement d'agents de codage -- Share-AZM AI !
 
 ## 📝 Comment fournir des commentaires
 
-Fournir des commentaires est facile ! Lorsque vous utilisez OpenHands, vous pouvez appuyer sur le bouton pouce vers le haut ou pouce vers le bas à tout moment pendant votre interaction. Vous serez invité à fournir votre adresse e-mail (par exemple, afin que nous puissions vous contacter si nous voulons poser des questions de suivi), et vous pouvez choisir si vous souhaitez fournir des commentaires publiquement ou en privé.
+Fournir des commentaires est facile ! Lorsque vous utilisez AZM AI, vous pouvez appuyer sur le bouton pouce vers le haut ou pouce vers le bas à tout moment pendant votre interaction. Vous serez invité à fournir votre adresse e-mail (par exemple, afin que nous puissions vous contacter si nous voulons poser des questions de suivi), et vous pouvez choisir si vous souhaitez fournir des commentaires publiquement ou en privé.
 
 <iframe width="560" height="315" src="https://www.youtube.com/embed/5rFx-StMVV0?si=svo7xzp6LhGK_GXr" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
 
@@ -16,12 +16,12 @@ Fournir des commentaires est facile ! Lorsque vous utilisez OpenHands, vous pouv
 
 Lorsque vous soumettez des données, vous pouvez les soumettre publiquement ou en privé.
 
-* Les données **publiques** seront distribuées sous la licence MIT, comme OpenHands lui-même, et pourront être utilisées par la communauté pour entraîner et tester des modèles. Évidemment, les commentaires que vous pouvez rendre publics seront plus précieux pour la communauté dans son ensemble, donc lorsque vous ne traitez pas d'informations sensibles, nous vous encourageons à choisir cette option !
-* Les données **privées** ne seront partagées qu'avec l'équipe OpenHands dans le but d'améliorer OpenHands.
+* Les données **publiques** seront distribuées sous la licence MIT, comme AZM AI lui-même, et pourront être utilisées par la communauté pour entraîner et tester des modèles. Évidemment, les commentaires que vous pouvez rendre publics seront plus précieux pour la communauté dans son ensemble, donc lorsque vous ne traitez pas d'informations sensibles, nous vous encourageons à choisir cette option !
+* Les données **privées** ne seront partagées qu'avec l'équipe AZM AI dans le but d'améliorer AZM AI.
 
 ### Qui collecte et stocke les données ?
 
-Les données sont collectées et stockées par [All Hands AI](https://all-hands.dev), une entreprise fondée par les mainteneurs d'OpenHands pour soutenir et améliorer OpenHands.
+Les données sont collectées et stockées par [All Hands AI](https://all-hands.dev), une entreprise fondée par les mainteneurs d'AZM AI pour soutenir et améliorer AZM AI.
 
 ### Comment les données publiques seront-elles publiées ?
 

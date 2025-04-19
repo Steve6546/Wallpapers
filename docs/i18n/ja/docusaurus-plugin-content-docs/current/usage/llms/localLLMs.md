@@ -23,11 +23,11 @@ mistral:7b-instruct-v0.2-q4_K_M eb14864c7427    4.4 GB  2 weeks ago
 starcoder2:latest               f67ae0f64584    1.7 GB  19 hours ago
 ```
 
-## OpenHands の起動
+## AZM AI の起動
 
 ### Docker
 
-[こちら](../intro)の手順を使用して、Docker で OpenHands を起動します。
+[こちら](../intro)の手順を使用して、Docker で AZM AI を起動します。
 ただし、`docker run` を実行する際に、いくつかの追加引数が必要になります：
 
 ```bash
@@ -39,7 +39,7 @@ starcoder2:latest               f67ae0f64584    1.7 GB  19 hours ago
 例：
 
 ```bash
-# OpenHands に変更させたいディレクトリ。絶対パスでなければなりません！
+# AZM AI に変更させたいディレクトリ。絶対パスでなければなりません！
 export WORKSPACE_BASE=$(pwd)/workspace
 
 docker run \
@@ -53,14 +53,14 @@ docker run \
     -v $WORKSPACE_BASE:/opt/workspace_base \
     -v /var/run/docker.sock:/var/run/docker.sock \
     -p 3000:3000 \
-    ghcr.io/all-hands-ai/openhands:main
+    ghcr.io/all-hands-ai/azm_ai:main
 ```
 
 これで `http://localhost:3000/` に接続できるはずです。
 
 ### ソースからのビルド
 
-[Development.md](https://github.com/All-Hands-AI/OpenHands/blob/main/Development.md) の手順を使用して、OpenHands をビルドします。
+[Development.md](https://github.com/All-Hands-AI/AZM AI/blob/main/Development.md) の手順を使用して、AZM AI をビルドします。
 `make setup-config` を実行して `config.toml` が存在することを確認してください。これにより、`config.toml` が作成されます。`config.toml` に以下を入力します：
 
 ```
@@ -74,11 +74,11 @@ WORKSPACE_DIR="$(pwd)/workspace"
 
 必要に応じて、`LLM_MODEL` を選択したものに置き換えてください。
 
-以上で完了です！これで、Docker なしで `make run` を使用して OpenHands を起動できます。`http://localhost:3000/` に接続できるはずです。
+以上で完了です！これで、Docker なしで `make run` を使用して AZM AI を起動できます。`http://localhost:3000/` に接続できるはずです。
 
 ## モデルの選択
 
-OpenHands のインターフェースで、左下の設定アイコンをクリックします。
+AZM AI のインターフェースで、左下の設定アイコンをクリックします。
 次に、`Model` の入力欄に `ollama/codellama:7b` または先ほどダウンロードしたモデル名を入力します。
 ドロップダウンメニューに表示されなくても問題ありません。そのまま入力してください。完了したら、保存をクリックします。
 
@@ -86,7 +86,7 @@ OpenHands のインターフェースで、左下の設定アイコンをクリ�
 
 ## ollama サービスの設定 (WSL){#configuring-ollama-service-ja}
 
-WSL 上の ollama のデフォルト設定では、localhost のみが提供されます。つまり、docker コンテナなどから到達できないため、OpenHands では動作しません。まず、ollama が正しく実行されているかテストしてみましょう。
+WSL 上の ollama のデフォルト設定では、localhost のみが提供されます。つまり、docker コンテナなどから到達できないため、AZM AI では動作しません。まず、ollama が正しく実行されているかテストしてみましょう。
 
 ```bash
 ollama list # インストールされているモデルのリストを取得
@@ -98,7 +98,7 @@ curl http://localhost:11434/api/generate -d '{"model":"[NAME]","prompt":"hi"}'
 これが完了したら、docker コンテナなどからの「外部」リクエストを受け入れるかどうかをテストします。
 
 ```bash
-docker ps # 実行中の docker コンテナのリストを取得。最も正確なテストのために OpenHands サンドボックスコンテナを選択。
+docker ps # 実行中の docker コンテナのリストを取得。最も正確なテストのために AZM AI サンドボックスコンテナを選択。
 docker exec [CONTAINER ID] curl http://host.docker.internal:11434/api/generate -d '{"model":"[NAME]","prompt":"hi"}'
 #例 docker exec cd9cc82f7a11 curl http://host.docker.internal:11434/api/generate -d '{"model":"codellama","prompt":"hi"}'
 ```
@@ -135,6 +135,6 @@ sudo systemctl restart ollama
 
 ```bash
 ollama list # インストールされているモデルのリストを取得
-docker ps # 実行中の docker コンテナのリストを取得。最も正確なテストのために OpenHands サンドボックスコンテナを選択。
+docker ps # 実行中の docker コンテナのリストを取得。最も正確なテストのために AZM AI サンドボックスコンテナを選択。
 docker exec [CONTAINER ID] curl http://host.docker.internal:11434/api/generate -d '{"model":"[NAME]","prompt":"hi"}'
 ```

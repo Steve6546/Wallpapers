@@ -5,10 +5,10 @@ from litellm.exceptions import (
     RateLimitError,
 )
 
-from openhands.core.config.app_config import AppConfig
-from openhands.core.config.llm_config import LLMConfig
-from openhands.server.session.session import Session
-from openhands.storage.memory import InMemoryFileStore
+from azm_ai.core.config.app_config import AppConfig
+from azm_ai.core.config.llm_config import LLMConfig
+from azm_ai.server.session.session import Session
+from azm_ai.storage.memory import InMemoryFileStore
 
 
 @pytest.fixture
@@ -33,7 +33,7 @@ def default_llm_config():
 
 
 @pytest.mark.asyncio
-@patch('openhands.llm.llm.litellm_completion')
+@patch('azm_ai.llm.llm.litellm_completion')
 async def test_notify_on_llm_retry(
     mock_litellm_completion, mock_sio, default_llm_config
 ):

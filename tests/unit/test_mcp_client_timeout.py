@@ -4,7 +4,7 @@ from unittest import mock
 
 import pytest
 
-from openhands.mcp.client import MCPClient
+from azm_ai.mcp.client import MCPClient
 
 
 @pytest.mark.asyncio
@@ -21,7 +21,7 @@ async def test_connect_sse_timeout():
 
     # Patch the sse_client function to return our slow context manager
     with mock.patch(
-        'openhands.mcp.client.sse_client', return_value=mock_slow_context()
+        'azm_ai.mcp.client.sse_client', return_value=mock_slow_context()
     ):
         # Test with a very short timeout
         with pytest.raises(asyncio.TimeoutError):

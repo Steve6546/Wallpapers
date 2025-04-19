@@ -31,19 +31,19 @@ from evaluation.utils.shared import (
     reset_logger_for_multiprocessing,
     run_evaluation,
 )
-from openhands.controller.state.state import State
-from openhands.core.config import (
+from azm_ai.controller.state.state import State
+from azm_ai.core.config import (
     AppConfig,
     get_llm_config_arg,
     get_parser,
     load_app_config,
 )
-from openhands.core.logger import openhands_logger as logger
-from openhands.core.main import create_runtime, run_controller
-from openhands.events.action import CmdRunAction, MessageAction
-from openhands.events.observation import CmdOutputObservation
-from openhands.runtime.base import Runtime
-from openhands.utils.async_utils import call_async_from_sync
+from azm_ai.core.logger import azm_ai_logger as logger
+from azm_ai.core.main import create_runtime, run_controller
+from azm_ai.events.action import CmdRunAction, MessageAction
+from azm_ai.events.observation import CmdOutputObservation
+from azm_ai.runtime.base import Runtime
+from azm_ai.utils.async_utils import call_async_from_sync
 
 config = load_app_config()
 
@@ -81,7 +81,7 @@ def get_config(
     sandbox_config.base_container_image = 'public.ecr.aws/i5g0m1f6/ml-bench'
     config = AppConfig(
         default_agent=metadata.agent_class,
-        run_as_openhands=False,
+        run_as_azm_ai=False,
         runtime='docker',
         max_iterations=metadata.max_iterations,
         sandbox=sandbox_config,
