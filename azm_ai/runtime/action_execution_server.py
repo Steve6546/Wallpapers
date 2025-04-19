@@ -550,7 +550,7 @@ if __name__ == '__main__':
     # example: python client.py 8000 --working-dir /workspace --plugins JupyterRequirement
     args = parser.parse_args()
 
-    port_path = '/tmp/oh-server-url'
+    port_path = '/tmp/azm-server-url'
     os.makedirs(os.path.dirname(port_path), exist_ok=True)
     with open(port_path, 'w') as f:
         f.write(f'http://127.0.0.1:{args.port}')
