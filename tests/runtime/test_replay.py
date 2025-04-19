@@ -6,7 +6,7 @@ from conftest import _close_test_runtime, _load_runtime
 
 from azm_ai.controller.state.state import State
 from azm_ai.core.config.app_config import AppConfig
-from azm_ai.core.config.config_utils import OH_DEFAULT_AGENT
+from azm_ai.core.config.config_utils import AZM_DEFAULT_AGENT
 from azm_ai.core.main import run_controller
 from azm_ai.core.schema.agent import AgentState
 from azm_ai.events.action.empty import NullAction
@@ -15,7 +15,7 @@ from azm_ai.events.event import EventSource
 from azm_ai.events.observation.commands import CmdOutputObservation
 
 
-def _get_config(trajectory_name: str, agent: str = OH_DEFAULT_AGENT):
+def _get_config(trajectory_name: str, agent: str = AZM_DEFAULT_AGENT):
     return AppConfig(
         default_agent=agent,
         run_as_azm_ai=False,

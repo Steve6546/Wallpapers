@@ -122,7 +122,7 @@ def test_str_replace_editor_valid():
     assert len(actions) == 1
     assert isinstance(actions[0], FileReadAction)
     assert actions[0].path == '/path/to/file'
-    assert actions[0].impl_source == FileReadSource.OH_ACI
+    assert actions[0].impl_source == FileReadSource.AZM_ACI
 
     # Test other commands
     response = create_mock_response(
@@ -138,7 +138,7 @@ def test_str_replace_editor_valid():
     assert len(actions) == 1
     assert isinstance(actions[0], FileEditAction)
     assert actions[0].path == '/path/to/file'
-    assert actions[0].impl_source == FileEditSource.OH_ACI
+    assert actions[0].impl_source == FileEditSource.AZM_ACI
 
 
 def test_str_replace_editor_missing_required():

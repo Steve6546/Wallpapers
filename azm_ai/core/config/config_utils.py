@@ -4,8 +4,8 @@ from typing import Any, get_args, get_origin
 from pydantic import BaseModel
 from pydantic.fields import FieldInfo
 
-OH_DEFAULT_AGENT = 'CodeActAgent'
-OH_MAX_ITERATIONS = 250
+AZM_DEFAULT_AGENT = 'CodeActAgent'
+AZM_MAX_ITERATIONS = 250
 
 
 def get_field_info(field: FieldInfo) -> dict[str, Any]:

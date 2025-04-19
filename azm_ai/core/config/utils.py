@@ -18,8 +18,8 @@ from azm_ai.core.config.agent_config import AgentConfig
 from azm_ai.core.config.app_config import AppConfig
 from azm_ai.core.config.condenser_config import condenser_config_from_toml_section
 from azm_ai.core.config.config_utils import (
-    OH_DEFAULT_AGENT,
-    OH_MAX_ITERATIONS,
+    AZM_DEFAULT_AGENT,
+    AZM_MAX_ITERATIONS,
 )
 from azm_ai.core.config.extended_config import ExtendedConfig
 from azm_ai.core.config.llm_config import LLMConfig
@@ -474,14 +474,14 @@ def get_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         '-c',
         '--agent-cls',
-        default=OH_DEFAULT_AGENT,
+        default=AZM_DEFAULT_AGENT,
         type=str,
         help='Name of the default agent to use',
     )
     parser.add_argument(
         '-i',
         '--max-iterations',
-        default=OH_MAX_ITERATIONS,
+        default=AZM_MAX_ITERATIONS,
         type=int,
         help='The maximum number of iterations to run the agent',
     )

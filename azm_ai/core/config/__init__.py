@@ -1,8 +1,8 @@
 from azm_ai.core.config.agent_config import AgentConfig
 from azm_ai.core.config.app_config import AppConfig
 from azm_ai.core.config.config_utils import (
-    OH_DEFAULT_AGENT,
-    OH_MAX_ITERATIONS,
+    AZM_DEFAULT_AGENT,
+    AZM_MAX_ITERATIONS,
     get_field_info,
 )
 from azm_ai.core.config.extended_config import ExtendedConfig
@@ -22,8 +22,8 @@ from azm_ai.core.config.utils import (
 )
 
 __all__ = [
-    'OH_DEFAULT_AGENT',
-    'OH_MAX_ITERATIONS',
+    'AZM_DEFAULT_AGENT',
+    'AZM_MAX_ITERATIONS',
     'AgentConfig',
     'AppConfig',
     'LLMConfig',

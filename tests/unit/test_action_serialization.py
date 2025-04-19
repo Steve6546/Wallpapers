@@ -168,7 +168,7 @@ def test_file_edit_action_aci_serialization_deserialization():
             'start': 1,
             'end': -1,
             'thought': 'Replacing text',
-            'impl_source': 'oh_aci',
+            'impl_source': 'azm_aci',
         },
     }
     serialization_deserialization(original_action_dict, FileEditAction)
@@ -233,7 +233,7 @@ def test_file_llm_based_edit_action_legacy_serialization():
             'start': 1,
             'end': -1,
             'thought': 'Replacing text',
-            'impl_source': 'oh_aci',
+            'impl_source': 'azm_aci',
             'translated_ipython_code': None,
         },
     }
@@ -244,7 +244,7 @@ def test_file_llm_based_edit_action_legacy_serialization():
     # Common arguments
     assert event.path == '/path/to/file.txt'
     assert event.thought == 'Replacing text'
-    assert event.impl_source == FileEditSource.OH_ACI
+    assert event.impl_source == FileEditSource.AZM_ACI
     assert not hasattr(event, 'translated_ipython_code')
 
     # OH_ACI arguments
@@ -264,7 +264,7 @@ def test_file_llm_based_edit_action_legacy_serialization():
 
     # Common arguments
     assert event_dict['args']['path'] == '/path/to/file.txt'
-    assert event_dict['args']['impl_source'] == 'oh_aci'
+    assert event_dict['args']['impl_source'] == 'azm_aci'
     assert event_dict['args']['thought'] == 'Replacing text'
 
     # OH_ACI arguments
@@ -289,7 +289,7 @@ def test_file_ohaci_edit_action_legacy_serialization():
             'start': 1,
             'end': -1,
             'thought': "I'll help you create a simple 2048 game in Python. I'll use the str_replace_editor to create the file.",
-            'impl_source': 'oh_aci',
+            'impl_source': 'azm_aci',
             'translated_ipython_code': "print(file_editor(**{'command': 'create', 'path': '/workspace/game_2048.py', 'file_text': 'New file content'}))",
         },
     }
@@ -303,7 +303,7 @@ def test_file_ohaci_edit_action_legacy_serialization():
         event.thought
         == "I'll help you create a simple 2048 game in Python. I'll use the str_replace_editor to create the file."
     )
-    assert event.impl_source == FileEditSource.OH_ACI
+    assert event.impl_source == FileEditSource.AZM_ACI
     assert not hasattr(event, 'translated_ipython_code')
 
     # OH_ACI arguments
@@ -323,7 +323,7 @@ def test_file_ohaci_edit_action_legacy_serialization():
 
     # Common arguments
     assert event_dict['args']['path'] == '/workspace/game_2048.py'
-    assert event_dict['args']['impl_source'] == 'oh_aci'
+    assert event_dict['args']['impl_source'] == 'azm_aci'
     assert (
         event_dict['args']['thought']
         == "I'll help you create a simple 2048 game in Python. I'll use the str_replace_editor to create the file."
@@ -362,7 +362,7 @@ def test_file_read_action_legacy_serialization():
             'start': 0,
             'end': -1,
             'thought': 'Reading the file contents',
-            'impl_source': 'oh_aci',
+            'impl_source': 'azm_aci',
             'translated_ipython_code': "print(file_editor(**{'command': 'view', 'path': '/workspace/test.txt'}))",
         },
     }
@@ -374,7 +374,7 @@ def test_file_read_action_legacy_serialization():
     # Common arguments
     assert event.path == '/workspace/test.txt'
     assert event.thought == 'Reading the file contents'
-    assert event.impl_source == FileReadSource.OH_ACI
+    assert event.impl_source == FileReadSource.AZM_ACI
     assert not hasattr(event, 'translated_ipython_code')
     assert not hasattr(
         event, 'command'
@@ -392,7 +392,7 @@ def test_file_read_action_legacy_serialization():
 
     # Common arguments in serialized form
     assert event_dict['args']['path'] == '/workspace/test.txt'
-    assert event_dict['args']['impl_source'] == 'oh_aci'
+    assert event_dict['args']['impl_source'] == 'azm_aci'
     assert event_dict['args']['thought'] == 'Reading the file contents'
 
     # Read-specific arguments in serialized form
