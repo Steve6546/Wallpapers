@@ -5,7 +5,7 @@ import EventLogger from "#/utils/event-logger";
 import { handleAssistantMessage } from "#/services/actions";
 import { showChatError } from "#/utils/error-handler";
 import { useRate } from "#/hooks/use-rate";
-import { AZM AIParsedEvent } from "#/types/core";
+import { AZMAIParsedEvent } from "#/types/core";
 import {
   AssistantMessageAction,
   CommandAction,
@@ -16,7 +16,7 @@ import {
 import { Conversation } from "#/api/open-hands.types";
 import { useAuth } from "./auth-context";
 
-const isAZM AIEvent = (event: unknown): event is AZM AIParsedEvent =>
+const isAZMAIEvent = (event: unknown): event is AZMAIParsedEvent =>
   typeof event === "object" &&
   event !== null &&
   "id" in event &&
@@ -25,18 +25,18 @@ const isAZM AIEvent = (event: unknown): event is AZM AIParsedEvent =>
   "timestamp" in event;
 
 const isFileWriteAction = (
-  event: AZM AIParsedEvent,
+  event: AZMAIParsedEvent,
 ): event is FileWriteAction => "action" in event && event.action === "write";
 
 const isFileEditAction = (
-  event: AZM AIParsedEvent,
+  event: AZMAIParsedEvent,
 ): event is FileEditAction => "action" in event && event.action === "edit";
 
-const isCommandAction = (event: AZM AIParsedEvent): event is CommandAction =>
+const isCommandAction = (event: AZMAIParsedEvent): event is CommandAction =>
   "action" in event && event.action === "run";
 
 const isUserMessage = (
-  event: AZM AIParsedEvent,
+  event: AZMAIParsedEvent,
 ): event is UserMessageAction =>
   "source" in event &&
   "type" in event &&
@@ -44,7 +44,7 @@ const isUserMessage = (
   event.type === "message";
 
 const isAssistantMessage = (
-  event: AZM AIParsedEvent,
+  event: AZMAIParsedEvent,
 ): event is AssistantMessageAction =>
   "source" in event &&
   "type" in event &&
@@ -52,7 +52,7 @@ const isAssistantMessage = (
   event.type === "message";
 
 const isMessageAction = (
-  event: AZM AIParsedEvent,
+  event: AZMAIParsedEvent,
 ): event is UserMessageAction | AssistantMessageAction =>
   isUserMessage(event) || isAssistantMessage(event);
 
@@ -137,7 +137,7 @@ export function WsClientProvider({
       EventLogger.error("WebSocket is not connected.");
       return;
     }
-    sioRef.current.emit("oh_user_action", event);
+    sioRef.current.emit("azm_user_action", event);
   }
 
   function handleConnect() {
@@ -145,7 +145,7 @@ export function WsClientProvider({
   }
 
   function handleMessage(event: Record<string, unknown>) {
-    if (isAZM AIEvent(event)) {
+    if (isAZMAIEvent(event)) {
       if (isMessageAction(event)) {
         messageRateHandler.record(new Date().getTime());
       }
@@ -235,7 +235,7 @@ export function WsClientProvider({
       query,
     });
     sio.on("connect", handleConnect);
-    sio.on("oh_event", handleMessage);
+    sio.on("azm_event", handleMessage);
     sio.on("connect_error", handleError);
     sio.on("connect_failed", handleError);
     sio.on("disconnect", handleDisconnect);
@@ -244,7 +244,7 @@ export function WsClientProvider({
 
     return () => {
       sio.off("connect", handleConnect);
-      sio.off("oh_event", handleMessage);
+      sio.off("azm_event", handleMessage);
       sio.off("connect_error", handleError);
       sio.off("connect_failed", handleError);
       sio.off("disconnect", handleDisconnect);
