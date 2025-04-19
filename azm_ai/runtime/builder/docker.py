@@ -136,19 +136,32 @@ class DockerRuntimeBuilder(RuntimeBuilder):
                         logger.error(f"Invalid command type: {type(cmd)}")
                         raise ValueError(f"Invalid command type: {type(cmd)}")
                     
+                    # Validate command for dangerous patterns
+                    if any(pattern in cmd for pattern in [';', '&&', '||', '`', '$(']):
+                        error_msg = f"Potentially unsafe command detected: {cmd}"
+                        logger.error(error_msg)
+                        raise ValueError(error_msg)
+                    
                     # Log the command being executed for debugging
                     logger.debug(f"Executing command: {cmd}")
                     
+                    # Create a safe environment
+                    safe_env = os.environ.copy()
+                    
                     # Execute with controlled environment and timeout
-                    result = subprocess.run(
-                        cmd, 
-                        shell=True,  # Required for these specific commands
-                        check=True, 
-                        stdout=subprocess.PIPE,
-                        stderr=subprocess.PIPE,
-                        timeout=300,  # 5 minute timeout
-                        env=os.environ.copy()  # Use a copy of the environment
-                    )
+                    try:
+                        result = subprocess.run(
+                            cmd, 
+                            shell=True,  # Required for these specific commands
+                            check=True, 
+                            stdout=subprocess.PIPE,
+                            stderr=subprocess.PIPE,
+                            timeout=300,  # 5 minute timeout
+                            env=safe_env
+                        )
+                    except subprocess.TimeoutExpired as e:
+                        logger.error(f"Command timed out after 300 seconds: {cmd}")
+                        raise AgentRuntimeBuildError(f"Docker build command timed out: {cmd}") from e
                 except subprocess.CalledProcessError as e:
                     logger.error(f'Image build failed:\n{e}')
                     logger.error(f'Command output:\n{e.stdout.decode() if e.stdout else ""}')
