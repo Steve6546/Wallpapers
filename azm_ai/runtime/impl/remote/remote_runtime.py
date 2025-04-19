@@ -415,15 +415,43 @@ class RemoteRuntime(ActionExecutionClient):
             super().close()
 
     def _send_runtime_api_request(self, method, url, **kwargs):
+        """Send a request to the runtime API with proper error handling.
+        
+        Args:
+            method: HTTP method (GET, POST, etc.)
+            url: Full URL to send the request to
+            **kwargs: Additional arguments to pass to the request
+            
+        Returns:
+            Response from the API
+            
+        Raises:
+            httpx.TimeoutException: If the request times out
+            Various other exceptions from send_request
+        """
         try:
+            # Validate URL to prevent injection
+            parsed_url = urlparse(url)
+            if not parsed_url.netloc or not parsed_url.scheme:
+                raise ValueError(f"Invalid runtime API URL: {url}")
+                
+            # Set timeout from config
             kwargs['timeout'] = self.config.sandbox.remote_runtime_api_timeout
+            
+            # Send request with proper error handling
             return send_request(self.session, method, url, **kwargs)
-        except httpx.TimeoutException:
+        except httpx.TimeoutException as e:
             self.log(
                 'error',
                 f'No response received within the timeout period for url: {url}',
             )
-            raise
+            raise AgentRuntimeUnavailableError(f"Runtime API request timed out: {url}") from e
+        except httpx.HTTPError as e:
+            self.log('error', f'HTTP error when connecting to runtime API: {str(e)}')
+            raise AgentRuntimeError(f"Runtime API HTTP error: {str(e)}") from e
+        except Exception as e:
+            self.log('error', f'Unexpected error in runtime API request: {str(e)}')
+            raise AgentRuntimeError(f"Unexpected error in runtime API request: {str(e)}") from e
 
     def _send_action_server_request(self, method, url, **kwargs):
         if not self.config.sandbox.remote_runtime_enable_retries:

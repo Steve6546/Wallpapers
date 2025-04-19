@@ -132,10 +132,19 @@ class AttachConversationMiddleware(SessionMiddlewareInterface):
 
         conversation_id = ''
         if request.url.path.startswith('/api/conversation'):
-            # FIXME: we should be able to use path_params
+            # Extract conversation ID from path using a more robust method
             path_parts = request.url.path.split('/')
-            if len(path_parts) > 4:
-                conversation_id = request.url.path.split('/')[3]
+            try:
+                # Path format should be /api/conversation/{conversation_id}/...
+                if len(path_parts) > 3:
+                    conversation_id = path_parts[3]
+                    # Validate that we have a proper conversation ID (non-empty string)
+                    if not conversation_id or conversation_id == '':
+                        from azm_ai.core.logger import azm_ai_logger as logger
+                        logger.warning(f"Invalid conversation ID format in URL: {request.url.path}")
+            except Exception as e:
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.error(f"Error parsing conversation ID from URL: {request.url.path}. Error: {e}")
         if not conversation_id:
             return False
 
@@ -147,25 +156,41 @@ class AttachConversationMiddleware(SessionMiddlewareInterface):
         """
         Attach the user's session based on the provided authentication token.
         """
-        request.state.conversation = (
-            await shared.conversation_manager.attach_to_conversation(
-                request.state.sid, get_user_id(request)
+        try:
+            user_id = get_user_id(request)
+            request.state.conversation = (
+                await shared.conversation_manager.attach_to_conversation(
+                    request.state.sid, user_id
+                )
             )
-        )
-        if not request.state.conversation:
+            if not request.state.conversation:
+                from azm_ai.core.logger import azm_ai_logger as logger
+                logger.warning(f"Conversation not found: {request.state.sid} for user {user_id}")
+                return JSONResponse(
+                    status_code=status.HTTP_404_NOT_FOUND,
+                    content={'error': 'Conversation not found'},
+                )
+            return None
+        except Exception as e:
+            from azm_ai.core.logger import azm_ai_logger as logger
+            logger.error(f"Error attaching to conversation {request.state.sid}: {str(e)}")
             return JSONResponse(
-                status_code=status.HTTP_404_NOT_FOUND,
-                content={'error': 'Session not found'},
+                status_code=status.HTTP_500_INTERNAL_SERVER_ERROR,
+                content={'error': 'Failed to attach to conversation'},
             )
-        return None
 
     async def _detach_session(self, request: Request) -> None:
         """
         Detach the user's session.
         """
-        await shared.conversation_manager.detach_from_conversation(
-            request.state.conversation
-        )
+        try:
+            if hasattr(request.state, 'conversation') and request.state.conversation:
+                await shared.conversation_manager.detach_from_conversation(
+                    request.state.conversation
+                )
+        except Exception as e:
+            from azm_ai.core.logger import azm_ai_logger as logger
+            logger.error(f"Error detaching from conversation: {str(e)}")
 
     async def __call__(self, request: Request, call_next: Callable):
         if not self._should_attach(request):
