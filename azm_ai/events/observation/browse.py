@@ -70,13 +70,21 @@ class BrowserOutputObservation(Observation):
             try:
                 # We do not filter visible only here because we want to show the full content
                 # of the web page to the agent for simplicity.
-                # FIXME: handle the case when the web page is too large
-                cur_axtree_txt = self.get_axtree_str(filter_visible_only=False)
-                text += (
-                    f'============== BEGIN accessibility tree ==============\n'
-                    f'{cur_axtree_txt}\n'
-                    f'============== END accessibility tree ==============\n'
-                )
+                # Handle large web pages by limiting the size of the accessibility tree
+                try:
+                    cur_axtree_txt = self.get_axtree_str(filter_visible_only=False)
+                    # Limit the size of the accessibility tree to prevent memory issues
+                    max_length = 100000  # Limit to 100K characters
+                    if len(cur_axtree_txt) > max_length:
+                        cur_axtree_txt = cur_axtree_txt[:max_length] + "\n... [Content truncated due to size limitations]"
+                    
+                    text += (
+                        f'============== BEGIN accessibility tree ==============\n'
+                        f'{cur_axtree_txt}\n'
+                        f'============== END accessibility tree ==============\n'
+                    )
+                except MemoryError:
+                    text += "\n[Error: Web page too large to process. Try using more specific selectors or navigate to a simpler page.]"
             except Exception as e:
                 text += (
                     f'\n[Error encountered when processing the accessibility tree: {e}]'

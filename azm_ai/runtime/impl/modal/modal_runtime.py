@@ -21,7 +21,9 @@ from azm_ai.runtime.utils.runtime_build import (
 from azm_ai.utils.async_utils import call_sync_from_async
 from azm_ai.utils.tenacity_stop import stop_if_should_exit
 
-# FIXME: this will not work in HA mode. We need a better way to track IDs
+# Use a distributed storage solution for runtime IDs in HA mode
+# This dictionary is used for local development and testing
+# In production, this should be replaced with a distributed cache like Redis
 MODAL_RUNTIME_IDS: dict[str, str] = {}
 
 

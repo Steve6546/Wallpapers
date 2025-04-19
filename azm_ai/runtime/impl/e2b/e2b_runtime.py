@@ -61,5 +61,14 @@ class E2BRuntime(Runtime):
             self.file_store.write(action.path, ''.join(new_file))
             return FileWriteObservation('', path=action.path)
         else:
-            # FIXME: we should create a new file here
-            return ErrorObservation(f'File not found: {action.path}')
+            # Create a new file if it doesn't exist
+            try:
+                # Create parent directories if they don't exist
+                parent_dir = '/'.join(action.path.split('/')[:-1])
+                if parent_dir:
+                    self.file_store.mkdir(parent_dir, recursive=True)
+                # Write the content to the new file
+                self.file_store.write(action.path, action.content)
+                return FileWriteObservation('', path=action.path)
+            except Exception as e:
+                return ErrorObservation(f'Failed to create file {action.path}: {str(e)}')

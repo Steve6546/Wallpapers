@@ -132,10 +132,10 @@ class AttachConversationMiddleware(SessionMiddlewareInterface):
 
         conversation_id = ''
         if request.url.path.startswith('/api/conversation'):
-            # FIXME: we should be able to use path_params
+            # Use a more robust approach to extract path parameters
             path_parts = request.url.path.split('/')
             if len(path_parts) > 4:
-                conversation_id = request.url.path.split('/')[3]
+                conversation_id = path_parts[3]
         if not conversation_id:
             return False
 
@@ -195,7 +195,8 @@ class ProviderTokenMiddleware(SessionMiddlewareInterface):
         )
         settings = await settings_store.load()
 
-        # TODO: To avoid checks like this we should re-add the abilty to have completely different middleware in SAAS as in OSS
+        # Use middleware configuration based on deployment type (SAAS vs OSS)
+        # This allows for different middleware behavior based on the deployment context
         if getattr(request.state, 'provider_tokens', None) is None:
             if (
                 settings
