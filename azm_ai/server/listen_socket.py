@@ -91,7 +91,7 @@ async def connect(connection_id: str, environ):
         raise ConnectionRefusedError('Failed to join conversation')
     async_store = AsyncEventStoreWrapper(event_stream, latest_event_id + 1)
     async for event in async_store:
-        logger.debug(f'oh_event: {event.__class__.__name__}')
+        logger.debug(f'azm_event: {event.__class__.__name__}')
         if isinstance(
             event,
             (NullAction, NullObservation, RecallAction),
@@ -100,9 +100,9 @@ async def connect(connection_id: str, environ):
         elif isinstance(event, AgentStateChangedObservation):
             agent_state_changed = event
         else:
-            await sio.emit('oh_event', event_to_dict(event), to=connection_id)
+            await sio.emit('azm_event', event_to_dict(event), to=connection_id)
     if agent_state_changed:
-        await sio.emit('oh_event', event_to_dict(agent_state_changed), to=connection_id)
+        await sio.emit('azm_event', event_to_dict(agent_state_changed), to=connection_id)
     logger.info(f'Finished replaying event stream for conversation {conversation_id}')
 
 
