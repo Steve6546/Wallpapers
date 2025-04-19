@@ -247,7 +247,7 @@ def test_file_llm_based_edit_action_legacy_serialization():
     assert event.impl_source == FileEditSource.AZM_ACI
     assert not hasattr(event, 'translated_ipython_code')
 
-    # OH_ACI arguments
+    # AZM_ACI arguments
     assert event.command == ''
     assert event.file_text is None
     assert event.old_str is None
@@ -267,7 +267,7 @@ def test_file_llm_based_edit_action_legacy_serialization():
     assert event_dict['args']['impl_source'] == 'azm_aci'
     assert event_dict['args']['thought'] == 'Replacing text'
 
-    # OH_ACI arguments
+    # AZM_ACI arguments
     assert event_dict['args']['command'] == ''
     assert event_dict['args']['file_text'] is None
     assert event_dict['args']['old_str'] is None
@@ -306,7 +306,7 @@ def test_file_ohaci_edit_action_legacy_serialization():
     assert event.impl_source == FileEditSource.AZM_ACI
     assert not hasattr(event, 'translated_ipython_code')
 
-    # OH_ACI arguments
+    # AZM_ACI arguments
     assert event.command == 'create'
     assert event.file_text == 'New file content'
     assert event.old_str is None
@@ -329,7 +329,7 @@ def test_file_ohaci_edit_action_legacy_serialization():
         == "I'll help you create a simple 2048 game in Python. I'll use the str_replace_editor to create the file."
     )
 
-    # OH_ACI arguments
+    # AZM_ACI arguments
     assert event_dict['args']['command'] == 'create'
     assert event_dict['args']['file_text'] == 'New file content'
     assert event_dict['args']['old_str'] is None

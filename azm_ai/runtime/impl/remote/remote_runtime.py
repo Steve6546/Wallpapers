@@ -31,7 +31,7 @@ from azm_ai.utils.tenacity_stop import stop_if_should_exit
 
 
 class RemoteRuntime(ActionExecutionClient):
-    """This runtime will connect to a remote oh-runtime-client."""
+    """This runtime will connect to a remote azm-runtime-client."""
 
     port: int = 60000  # default port for the remote runtime client
     runtime_id: str | None = None

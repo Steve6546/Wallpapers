@@ -25,7 +25,7 @@ class SandboxConfig(BaseModel):
             This will be rendered into the end of the Dockerfile that builds the runtime image.
             It can contain any valid shell commands (e.g., pip install numpy).
             The path to the interpreter is available as $AZM_INTERPRETER_PATH,
-            which can be used to install dependencies for the OH-specific Python interpreter.
+            which can be used to install dependencies for the AZM-specific Python interpreter.
         runtime_startup_env_vars: The environment variables to set at the launch of the runtime.
             This is a dictionary of key-value pairs.
             This is useful for setting environment variables that are needed by the runtime.
