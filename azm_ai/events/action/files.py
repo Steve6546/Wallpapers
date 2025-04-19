@@ -21,7 +21,7 @@ class FileReadAction(Action):
     runnable: ClassVar[bool] = True
     security_risk: ActionSecurityRisk | None = None
     impl_source: FileReadSource = FileReadSource.DEFAULT
-    view_range: list[int] | None = None  # ONLY used in OH_ACI mode
+    view_range: list[int] | None = None  # ONLY used in AZM_ACI mode
 
     @property
     def message(self) -> str:
@@ -64,16 +64,16 @@ class FileEditAction(Action):
 
     This class supports two main modes of operation:
     1. LLM-based editing (impl_source = FileEditSource.LLM_BASED_EDIT)
-    2. ACI-based editing (impl_source = FileEditSource.OH_ACI)
+    2. ACI-based editing (impl_source = FileEditSource.AZM_ACI)
 
     Attributes:
-        path (str): The path to the file being edited. Works for both LLM-based and OH_ACI editing.
-        OH_ACI only arguments:
+        path (str): The path to the file being edited. Works for both LLM-based and AZM_ACI editing.
+        AZM_ACI only arguments:
             command (str): The editing command to be performed (view, create, str_replace, insert, undo_edit, write).
-            file_text (str): The content of the file to be created (used with 'create' command in OH_ACI mode).
-            old_str (str): The string to be replaced (used with 'str_replace' command in OH_ACI mode).
-            new_str (str): The string to replace old_str (used with 'str_replace' and 'insert' commands in OH_ACI mode).
-            insert_line (int): The line number after which to insert new_str (used with 'insert' command in OH_ACI mode).
+            file_text (str): The content of the file to be created (used with 'create' command in AZM_ACI mode).
+            old_str (str): The string to be replaced (used with 'str_replace' command in AZM_ACI mode).
+            new_str (str): The string to replace old_str (used with 'str_replace' and 'insert' commands in AZM_ACI mode).
+            insert_line (int): The line number after which to insert new_str (used with 'insert' command in AZM_ACI mode).
         LLM-based editing arguments:
             content (str): The content to be written or edited in the file (used in LLM-based editing and 'write' command).
             start (int): The starting line for editing (1-indexed, inclusive). Default is 1.
@@ -82,7 +82,7 @@ class FileEditAction(Action):
             action (str): The type of action being performed (always ActionType.EDIT).
         runnable (bool): Indicates if the action can be executed (always True).
         security_risk (ActionSecurityRisk | None): Indicates any security risks associated with the action.
-        impl_source (FileEditSource): The source of the implementation (LLM_BASED_EDIT or OH_ACI).
+        impl_source (FileEditSource): The source of the implementation (LLM_BASED_EDIT or AZM_ACI).
 
     Usage:
         - For LLM-based editing: Use path, content, start, and end attributes.
@@ -95,7 +95,7 @@ class FileEditAction(Action):
 
     path: str
 
-    # OH_ACI arguments
+    # AZM_ACI arguments
     command: str = ''
     file_text: str | None = None
     old_str: str | None = None
@@ -112,7 +112,7 @@ class FileEditAction(Action):
     action: str = ActionType.EDIT
     runnable: ClassVar[bool] = True
     security_risk: ActionSecurityRisk | None = None
-    impl_source: FileEditSource = FileEditSource.OH_ACI
+    impl_source: FileEditSource = FileEditSource.AZM_ACI
 
     def __repr__(self) -> str:
         ret = '**FileEditAction**\n'
@@ -122,7 +122,7 @@ class FileEditAction(Action):
         if self.impl_source == FileEditSource.LLM_BASED_EDIT:
             ret += f'Range: [L{self.start}:L{self.end}]\n'
             ret += f'Content:\n```\n{self.content}\n```\n'
-        else:  # OH_ACI mode
+        else:  # AZM_ACI mode
             ret += f'Command: {self.command}\n'
             if self.command == 'create':
                 ret += f'Created File with Text:\n```\n{self.file_text}\n```\n'
