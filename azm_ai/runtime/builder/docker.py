@@ -220,16 +220,23 @@ class DockerRuntimeBuilder(RuntimeBuilder):
             # Log the full command for debugging
             logger.debug(f"Executing buildx command: {' '.join(buildx_cmd)}")
             
+            # Create a safe environment
+            safe_env = os.environ.copy()
+            
             # Execute with controlled environment and timeout
-            process = subprocess.Popen(
-                buildx_cmd,
-                stdout=subprocess.PIPE,
-                stderr=subprocess.STDOUT,
-                universal_newlines=True,
-                bufsize=1,
-                shell=False,  # Explicitly set shell=False for security
-                env=os.environ.copy()  # Use a copy of the environment
-            )
+            try:
+                process = subprocess.Popen(
+                    buildx_cmd,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.STDOUT,
+                    universal_newlines=True,
+                    bufsize=1,
+                    shell=False,  # Explicitly set shell=False for security
+                    env=safe_env
+                )
+            except (subprocess.SubprocessError, OSError) as e:
+                logger.error(f"Failed to start buildx process: {str(e)}")
+                raise AgentRuntimeBuildError(f"Docker buildx command failed: {' '.join(buildx_cmd)}") from e
 
             if process.stdout:
                 for line in iter(process.stdout.readline, ''):
