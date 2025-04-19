@@ -191,14 +191,24 @@ class BashSession:
             # This starts a non-login (new) shell for the given user
             _shell_command = f'su {self.username} -'
 
-        # FIXME: we will introduce memory limit using sysbox-runc in coming PR
-        # # otherwise, we are running as the CURRENT USER (e.g., when running LocalRuntime)
-        # if self.max_memory_mb is not None:
-        #     window_command = (
-        #         f'prlimit --as={self.max_memory_mb * 1024 * 1024} {_shell_command}'
-        #     )
-        # else:
-        window_command = _shell_command
+        # Apply memory limits if configured
+        if self.max_memory_mb is not None:
+            try:
+                # Check if prlimit is available
+                import shutil
+                if shutil.which('prlimit'):
+                    # Convert MB to bytes for prlimit
+                    memory_limit_bytes = self.max_memory_mb * 1024 * 1024
+                    window_command = f'prlimit --as={memory_limit_bytes} {_shell_command}'
+                    logger.info(f"Applying memory limit of {self.max_memory_mb}MB to bash session")
+                else:
+                    logger.warning("prlimit not found, memory limit will not be applied")
+                    window_command = _shell_command
+            except Exception as e:
+                logger.error(f"Failed to apply memory limit: {str(e)}")
+                window_command = _shell_command
+        else:
+            window_command = _shell_command
 
         logger.debug(f'Initializing bash session with command: {window_command}')
         session_name = f'azm_ai-{self.username}-{uuid.uuid4()}'
