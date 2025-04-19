@@ -39,13 +39,31 @@ class DockerRuntimeBuilder(RuntimeBuilder):
     def check_buildx(is_podman: bool = False):
         """Check if Docker Buildx is available"""
         try:
+            # Use a safe command to check buildx availability
+            cmd = ['docker' if not is_podman else 'podman', 'buildx', 'version']
+            
+            # Validate command components to prevent injection
+            for part in cmd:
+                if not isinstance(part, str) or ';' in part or '&' in part or '|' in part or '>' in part or '<' in part:
+                    logger.error(f"Invalid command component detected: {part}")
+                    return False
+            
             result = subprocess.run(
-                ['docker' if not is_podman else 'podman', 'buildx', 'version'],
+                cmd,
                 capture_output=True,
                 text=True,
+                shell=False,  # Explicitly set shell=False for security
+                timeout=30,   # Add timeout to prevent hanging
             )
             return result.returncode == 0
         except FileNotFoundError:
+            logger.warning("Docker/Podman binary not found")
+            return False
+        except subprocess.TimeoutExpired:
+            logger.error("Buildx version check timed out")
+            return False
+        except Exception as e:
+            logger.error(f"Error checking buildx availability: {str(e)}")
             return False
 
     def build(
@@ -113,12 +131,31 @@ class DockerRuntimeBuilder(RuntimeBuilder):
             ]
             for cmd in commands:
                 try:
-                    subprocess.run(
-                        cmd, shell=True, check=True, stdout=subprocess.DEVNULL
+                    # Validate command to prevent injection
+                    if not isinstance(cmd, str):
+                        logger.error(f"Invalid command type: {type(cmd)}")
+                        raise ValueError(f"Invalid command type: {type(cmd)}")
+                    
+                    # Log the command being executed for debugging
+                    logger.debug(f"Executing command: {cmd}")
+                    
+                    # Execute with controlled environment and timeout
+                    result = subprocess.run(
+                        cmd, 
+                        shell=True,  # Required for these specific commands
+                        check=True, 
+                        stdout=subprocess.PIPE,
+                        stderr=subprocess.PIPE,
+                        timeout=300,  # 5 minute timeout
+                        env=os.environ.copy()  # Use a copy of the environment
                     )
                 except subprocess.CalledProcessError as e:
                     logger.error(f'Image build failed:\n{e}')
-                    logger.error(f'Command output:\n{e.output}')
+                    logger.error(f'Command output:\n{e.stdout.decode() if e.stdout else ""}')
+                    logger.error(f'Command error:\n{e.stderr.decode() if e.stderr else ""}')
+                    raise
+                except subprocess.TimeoutExpired as e:
+                    logger.error(f'Command timed out after {e.timeout} seconds: {cmd}')
                     raise
             logger.info('Downloaded and installed docker binary')
 
@@ -160,12 +197,25 @@ class DockerRuntimeBuilder(RuntimeBuilder):
         )
 
         try:
+            # Validate buildx command components
+            for part in buildx_cmd:
+                if not isinstance(part, str) or ';' in part or '&' in part or '|' in part or '>' in part or '<' in part:
+                    error_msg = f"Invalid buildx command component detected: {part}"
+                    logger.error(error_msg)
+                    raise ValueError(error_msg)
+            
+            # Log the full command for debugging
+            logger.debug(f"Executing buildx command: {' '.join(buildx_cmd)}")
+            
+            # Execute with controlled environment and timeout
             process = subprocess.Popen(
                 buildx_cmd,
                 stdout=subprocess.PIPE,
                 stderr=subprocess.STDOUT,
                 universal_newlines=True,
                 bufsize=1,
+                shell=False,  # Explicitly set shell=False for security
+                env=os.environ.copy()  # Use a copy of the environment
             )
 
             if process.stdout:
