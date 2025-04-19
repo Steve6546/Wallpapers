@@ -15,22 +15,22 @@ from azm_ai.events.serialization import event_from_dict
 tqdm.pandas()
 
 parser = argparse.ArgumentParser()
-parser.add_argument('oh_output_file', type=str)
+parser.add_argument('azm_output_file', type=str)
 args = parser.parse_args()
-output_md_folder = args.oh_output_file.replace('.jsonl', '.viz')
-print(f'Converting {args.oh_output_file} to markdown files in {output_md_folder}')
+output_md_folder = args.azm_output_file.replace('.jsonl', '.viz')
+print(f'Converting {args.azm_output_file} to markdown files in {output_md_folder}')
 
-oh_format = pd.read_json(args.oh_output_file, orient='records', lines=True)
-output_dir = os.path.dirname(args.oh_output_file)
+azm_format = pd.read_json(args.azm_output_file, orient='records', lines=True)
+output_dir = os.path.dirname(args.azm_output_file)
 
-swebench_eval_file = args.oh_output_file.replace('.jsonl', '.swebench_eval.jsonl')
+swebench_eval_file = args.azm_output_file.replace('.jsonl', '.swebench_eval.jsonl')
 if os.path.exists(swebench_eval_file):
     eval_output_df = pd.read_json(swebench_eval_file, orient='records', lines=True)
 else:
     eval_output_df = None
 
-# model name is the folder name of oh_output_file
-model_name = os.path.basename(os.path.dirname(args.oh_output_file))
+# model name is the folder name of azm_output_file
+model_name = os.path.basename(os.path.dirname(args.azm_output_file))
 
 
 def convert_history_to_str(history):
@@ -303,6 +303,6 @@ if eval_output_df is not None:
         .to_dict()
     )
 
-oh_format.progress_apply(
+azm_format.progress_apply(
     write_row_to_md_file, axis=1, instance_id_to_test_result=instance_id_to_test_result
 )

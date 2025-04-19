@@ -6,14 +6,14 @@ import pandas as pd
 from evaluation.swe_bench.eval_infer import process_git_patch
 
 parser = argparse.ArgumentParser()
-parser.add_argument('oh_output_file', type=str)
+parser.add_argument('azm_output_file', type=str)
 args = parser.parse_args()
-output_filepath = args.oh_output_file.replace('.jsonl', '.swebench.jsonl')
-print(f'Converting {args.oh_output_file} to {output_filepath}')
+output_filepath = args.azm_output_file.replace('.jsonl', '.swebench.jsonl')
+print(f'Converting {args.azm_output_file} to {output_filepath}')
 
-oh_format = pd.read_json(args.oh_output_file, orient='records', lines=True)
-# model name is the folder name of oh_output_file
-model_name = os.path.basename(os.path.dirname(args.oh_output_file))
+azm_format = pd.read_json(args.azm_output_file, orient='records', lines=True)
+# model name is the folder name of azm_output_file
+model_name = os.path.basename(os.path.dirname(args.azm_output_file))
 
 
 def convert_row_to_swebench_format(row):
@@ -31,5 +31,5 @@ def convert_row_to_swebench_format(row):
     }
 
 
-swebench_format = oh_format.apply(convert_row_to_swebench_format, axis=1)
+swebench_format = azm_format.apply(convert_row_to_swebench_format, axis=1)
 swebench_format.to_json(output_filepath, lines=True, orient='records')
