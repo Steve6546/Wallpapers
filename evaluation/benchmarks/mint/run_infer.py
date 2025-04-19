@@ -106,7 +106,7 @@ def get_config(
     sandbox_config = get_default_sandbox_config_for_eval()
     sandbox_config.base_container_image = 'xingyaoww/od-eval-mint:v1.0'
     sandbox_config.runtime_extra_deps = (
-        f'$OH_INTERPRETER_PATH -m pip install {" ".join(MINT_DEPENDENCIES)}'
+        f'$AZM_INTERPRETER_PATH -m pip install {" ".join(MINT_DEPENDENCIES)}'
     )
 
     config = AppConfig(

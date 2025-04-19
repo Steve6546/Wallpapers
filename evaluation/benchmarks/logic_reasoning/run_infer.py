@@ -48,7 +48,7 @@ def get_config(
     sandbox_config = get_default_sandbox_config_for_eval()
     sandbox_config.base_container_image = 'xingyaoww/od-eval-logic-reasoning:v1.0'
     sandbox_config.runtime_extra_deps = (
-        '$OH_INTERPRETER_PATH -m pip install scitools-pyke'
+        '$AZM_INTERPRETER_PATH -m pip install scitools-pyke'
     )
 
     config = AppConfig(
