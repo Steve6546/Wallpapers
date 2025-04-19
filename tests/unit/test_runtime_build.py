@@ -12,7 +12,7 @@ import toml
 from pytest import TempPathFactory
 
 import azm_ai
-from azm_ai import __version__ as oh_version
+from azm_ai import __version__ as azm_version
 from azm_ai.core.logger import azm_ai_logger as logger
 from azm_ai.runtime.builder.docker import DockerRuntimeBuilder
 from azm_ai.runtime.utils.runtime_build import (
@@ -27,7 +27,7 @@ from azm_ai.runtime.utils.runtime_build import (
     truncate_hash,
 )
 
-OH_VERSION = f'oh_v{oh_version}'
+AZM_VERSION = f'azm_v{azm_version}'
 DEFAULT_BASE_IMAGE = 'nikolaik/python-nodejs:python3.12-nodejs22'
 
 
@@ -189,21 +189,21 @@ def test_get_runtime_image_repo_and_tag_eventstream():
     img_repo, img_tag = get_runtime_image_repo_and_tag(base_image)
     assert (
         img_repo == f'{get_runtime_image_repo()}'
-        and img_tag == f'{OH_VERSION}_image_debian_tag_11'
+        and img_tag == f'{AZM_VERSION}_image_debian_tag_11'
     )
 
     img_repo, img_tag = get_runtime_image_repo_and_tag(DEFAULT_BASE_IMAGE)
     assert (
         img_repo == f'{get_runtime_image_repo()}'
         and img_tag
-        == f'{OH_VERSION}_image_nikolaik_s_python-nodejs_tag_python3.12-nodejs22'
+        == f'{AZM_VERSION}_image_nikolaik_s_python-nodejs_tag_python3.12-nodejs22'
     )
 
     base_image = 'ubuntu'
     img_repo, img_tag = get_runtime_image_repo_and_tag(base_image)
     assert (
         img_repo == f'{get_runtime_image_repo()}'
-        and img_tag == f'{OH_VERSION}_image_ubuntu_tag_latest'
+        and img_tag == f'{AZM_VERSION}_image_ubuntu_tag_latest'
     )
 
 
@@ -218,7 +218,7 @@ def test_build_runtime_image_from_scratch():
     mock_runtime_builder = MagicMock()
     mock_runtime_builder.image_exists.return_value = False
     mock_runtime_builder.build.return_value = (
-        f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+        f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
     )
     mock_prep_build_folder = MagicMock()
     mod = build_runtime_image.__module__
@@ -235,16 +235,16 @@ def test_build_runtime_image_from_scratch():
         mock_runtime_builder.build.assert_called_once_with(
             path=ANY,
             tags=[
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag',
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag',
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-versioned-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-versioned-tag',
             ],
             platform=None,
             extra_build_args=None,
         )
         assert (
             image_name
-            == f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+            == f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
         )
         mock_prep_build_folder.assert_called_once_with(
             ANY, base_image, BuildFromImageType.SCRATCH, None
@@ -262,7 +262,7 @@ def test_build_runtime_image_exact_hash_exist():
     mock_runtime_builder = MagicMock()
     mock_runtime_builder.image_exists.return_value = True
     mock_runtime_builder.build.return_value = (
-        f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+        f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
     )
     mock_prep_build_folder = MagicMock()
     mod = build_runtime_image.__module__
@@ -278,7 +278,7 @@ def test_build_runtime_image_exact_hash_exist():
         image_name = build_runtime_image(base_image, mock_runtime_builder)
         assert (
             image_name
-            == f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+            == f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
         )
         mock_runtime_builder.build.assert_not_called()
         mock_prep_build_folder.assert_not_called()
@@ -308,7 +308,7 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_exist():
 
     mock_runtime_builder.image_exists.side_effect = image_exists_side_effect
     mock_runtime_builder.build.return_value = (
-        f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+        f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
     )
 
     mock_prep_build_folder = MagicMock()
@@ -325,12 +325,12 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_exist():
         image_name = build_runtime_image(base_image, mock_runtime_builder)
         assert (
             image_name
-            == f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+            == f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
         )
         mock_runtime_builder.build.assert_called_once_with(
             path=ANY,
             tags=[
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag',
                 # lock tag will NOT be included - since it already exists
                 # VERSION tag will NOT be included except from scratch
             ],
@@ -339,7 +339,7 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_exist():
         )
         mock_prep_build_folder.assert_called_once_with(
             ANY,
-            f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag',
+            f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag',
             BuildFromImageType.LOCK,
             None,
         )
@@ -367,7 +367,7 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_not_exist_and_version
 
     mock_runtime_builder.image_exists.side_effect = image_exists_side_effect
     mock_runtime_builder.build.return_value = (
-        f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+        f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
     )
 
     mock_prep_build_folder = MagicMock()
@@ -384,13 +384,13 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_not_exist_and_version
         image_name = build_runtime_image(base_image, mock_runtime_builder)
         assert (
             image_name
-            == f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag'
+            == f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag'
         )
         mock_runtime_builder.build.assert_called_once_with(
             path=ANY,
             tags=[
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag_mock-source-tag',
-                f'{get_runtime_image_repo()}:{OH_VERSION}_mock-lock-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag_mock-source-tag',
+                f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-lock-tag',
                 # VERSION tag will NOT be included except from scratch
             ],
             platform=None,
@@ -398,7 +398,7 @@ def test_build_runtime_image_exact_hash_not_exist_and_lock_not_exist_and_version
         )
         mock_prep_build_folder.assert_called_once_with(
             ANY,
-            f'{get_runtime_image_repo()}:{OH_VERSION}_mock-versioned-tag',
+            f'{get_runtime_image_repo()}:{AZM_VERSION}_mock-versioned-tag',
             BuildFromImageType.VERSIONED,
             None,
         )
