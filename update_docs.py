@@ -14,6 +14,9 @@ def update_file(file_path):
     # Replace "OpenHands" with "AZM AI" (case-sensitive)
     updated_content = re.sub(r'OpenHands', 'AZM AI', updated_content)
     
+    # Replace "OPENHANDS" with "AZM_AI" (case-sensitive)
+    updated_content = re.sub(r'OPENHANDS', 'AZM_AI', updated_content)
+    
     # Replace ".openhands" with ".azm_ai" (case-sensitive)
     updated_content = re.sub(r'\.openhands', '.azm_ai', updated_content)
     
